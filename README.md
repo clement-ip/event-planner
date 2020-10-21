@@ -1,6 +1,6 @@
 # 470-planner-web-app
 
-# node_modules is by default .git_ignore
+## note: node_modules is by default .git_ignore
 
 Please install:
 
