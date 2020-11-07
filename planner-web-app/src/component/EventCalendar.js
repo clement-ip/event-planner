@@ -3,8 +3,9 @@ import FullCalendar, { formatDate } from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
+import axios from 'axios';
 
-export default class DemoApp extends React.Component {
+export default class EventCalendar extends React.Component {
 
     state = {
         weekendsVisible: true,
@@ -13,8 +14,42 @@ export default class DemoApp extends React.Component {
             { title: 'Meeting 2', date: '2020-11-02' },
             { title: 'Meeting 3', date: '2020-11-04' },
             { title: 'Meeting 5', "start": '2020-11-06', "end":'2020-11-10'}
-        ]
+        ],
+        dataBaseEvents:[],
+        dataBaseEventsFormatted:[]
     };
+
+
+
+    componentDidMount= () => {
+        this.getEventData();
+    }
+
+    getEventData = ()=>{
+        axios.get('/api')
+            .then((response)=>{
+                const data = response.data;
+                this.setState({dataBaseEvents:data});
+                console.log('Data has been populated');
+                console.log(this.state.dataBaseEvents);
+                //this.state.dataBaseEvents.forEach(this.formatEventData(entry));
+                this.formatEventData();
+                })
+            .catch(()=>{
+                alert('Error retrieving data')
+            })
+
+    }
+
+    formatEventData(){
+        const list = [];
+        this.state.dataBaseEvents.forEach(function(entry){
+            list.push({title: entry.name, "start":entry.start_date, "end":entry.end_date})
+            console.log(entry);
+        });
+        this.setState({dataBaseEventsFormatted : list});
+        console.log(this.state.dataBaseEventsFormatted);
+    }
 
     render() {
 
@@ -28,12 +63,13 @@ export default class DemoApp extends React.Component {
                             center: 'title',
                             right: 'dayGridMonth,timeGridWeek,timeGridDay'
                         }}
+                        contentHeight='auto'
                         initialView='dayGridMonth'
                         editable={true}
                         selectable={true}
                         selectMirror={true}
                         dayMaxEvents={true}
-                        events={this.state.currentEvents}
+                        events={this.state.dataBaseEventsFormatted}
                         //weekends={this.state.weekendsVisible}
                         //initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
                         //select={this.handleDateSelect}
@@ -51,4 +87,5 @@ export default class DemoApp extends React.Component {
         )
     }
 }
+
 
