@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import EventForm from './components/calendar/EventForm';
+
 
 import NavBar from "./components/navbar/navbar"
 
@@ -17,10 +19,13 @@ import {
 
 
 function App() {
+
+
   return (
     <div className="App">
       <Router>
         <NavBar></NavBar>
+        <EventForm/>
         <Switch>
           {/* <Link to="/">Home</Link> */}
           <Route exact path="/" component={MainPage} />
