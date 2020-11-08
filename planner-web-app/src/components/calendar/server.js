@@ -8,7 +8,7 @@ const uri = "mongodb+srv://470User:CMPT470@470cluster.tajiy.mongodb.net/userdata
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-const routes = require('../routes/api');
+const routes = require('../../routes/api');
 
 
 /*
