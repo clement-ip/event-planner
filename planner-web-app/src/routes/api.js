@@ -4,7 +4,7 @@ const router = express.Router();
 
 const Event = require('../models/Event');
 
-router.get('/', (req, res) =>{
+router.get('/getAll', (req, res) =>{
 
     Event.find({ })
         .then((data) => {
@@ -17,6 +17,7 @@ router.get('/', (req, res) =>{
 
 });
 
+//test route
 router.get('/name',(req, res) => {
     const data = {
         username: 'corey',
