@@ -7,3 +7,4 @@ Created by: Clement Ip, Corey See, Edison Suen, Eric Lam, Hassan Ali
 Please install:
 
 `npm install --save -g nodemon react-bootstrap body-parser mongoose`
+`npm install --save -g react-router-dom`

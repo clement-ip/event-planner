@@ -7,10 +7,8 @@ function ProfilePage() {
   return (
     <div className="App">
 
-
       <About />
       <Organization />
-      
 
     </div>
   );

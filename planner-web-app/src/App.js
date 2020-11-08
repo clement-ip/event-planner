@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import NavBar from "./components/navbar"
+import NavBar from "./components/navbar/navbar"
 
 import ProfilePage from "./pages/profile_page"
 import MainPage from "./pages/index"
@@ -11,10 +11,9 @@ import {
   BrowserRouter as Router,
     Switch,
     Route,
-    Link,
+    // Link,
     Redirect
 } from "react-router-dom";
-import NotFound from './pages/404';
 
 
 function App() {
@@ -33,9 +32,8 @@ function App() {
         </Switch>
       </Router>
 
-      {/* <About />
-      <Organization /> */}
-      
+
+    <footer>Something Something Disclaimer & Copyright Stuff by CCEEH Conglomerate</footer>
 
     </div>
   );
