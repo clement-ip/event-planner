@@ -19,19 +19,17 @@ import {
 
 
 function App() {
-
-
   return (
     <div className="App">
       <Router>
         <NavBar></NavBar>
-        <EventForm/>
-        <ImageUploader/>
-        <CommentBox></CommentBox>
         <Switch>
           {/* <Link to="/">Home</Link> */}
           <Route exact path="/" component={MainPage} />
           <Route exact path="/profile" component={ProfilePage}/>
+          <Route exact path="/EventForm" component={EventForm}/>
+          <Route exact path="/ImageUploader" component={ImageUploader}/>
+          <Route exact path="/CommentBox" component={CommentBox}/>
 
 
           <Route exact path="/404" component={NotFoundPage} />
