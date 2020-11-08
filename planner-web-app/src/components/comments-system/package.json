@@ -17,12 +17,6 @@
   "devDependencies": {
     "nodemon": "^2.0.6"
   },
-  "scripts": {
-    "start": "node index.js",
-    "server": "nodemon index.js",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
-  },
   "author": "",
   "license": "ISC"
 }

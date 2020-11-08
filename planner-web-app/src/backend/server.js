@@ -1,13 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const Comment = require('./models/comment');
+const Comment = require('../components/models/comment')
 const port = process.env.PORT || 5000
 
 const app = express();
 const cors = require('cors');
-const comment = require('./models/comment');
-const Event = require('./models/Event');
+const comment = require('../components/models/comment');
+const Event = require('../components/models/Event');
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
