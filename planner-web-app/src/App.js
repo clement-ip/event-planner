@@ -25,7 +25,7 @@ function App() {
           {/* <Link to="/">Home</Link> */}
           <Route exact path="/" component={MainPage} />
           <Route exact path="/profile" component={ProfilePage}/>
-
+        
 
           <Route exact path="/404" component={NotFoundPage} />
           <Redirect to="/404"/>
