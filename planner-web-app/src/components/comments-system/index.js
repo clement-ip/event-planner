@@ -7,8 +7,10 @@ const port = process.env.PORT || 5000
 const app = express();
 const cors = require('cors');
 const comment = require('./models/comment');
+const Event = require('./models/Event');
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
+
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -49,6 +51,57 @@ app.post('/comment', (req, res) => {
     })
 });
 
+app.get('/getAll', (req, res) =>{
+
+    Event.find({ })
+        .then((data) => {
+            console.log('Data: ', data);
+            res.json(data);
+        })
+        .catch((error)=>{
+            console.log("error");
+        })
+
+});
+
+app.get('/events', cors(), (req, res) => {
+    Event.find({}, function(err,result) {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.send(result);
+        }
+    })
+});
+
+//test route
+app.get('/name',(req, res) => {
+    const data = {
+        username: 'corey',
+        age: 23
+    };
+    res.json(data);
+})
+
+app.post('/save',(req, res) => {
+    console.log('Body:', req.body);
+    const data = req.body;
+    const newEvent = new Event(data);
+    //.save
+    newEvent.save((error) => {
+        if (error) {
+            res.status(500).json({msg: "Server error when attempting to save."})
+            return;
+        }
+        return res.json({
+            msg: "We received the data"
+        });
+    });
+});
+
+
+
 mongoose.connect("mongodb+srv://470User:CMPT470@470cluster.tajiy.mongodb.net/userdata?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -70,3 +123,5 @@ io.on('connection', (socket) => {
 http.listen(port, () => {
   console.log(`Listening on *:${port}`);
 });
+
+

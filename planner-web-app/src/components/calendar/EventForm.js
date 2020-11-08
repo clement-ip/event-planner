@@ -19,7 +19,7 @@ export default class MyForm extends React.Component{
     }
 
     getEventData = ()=>{
-        axios.get('/api/getAll')
+        axios.get('/getAll')
             .then((response)=>{
                 const data = response.data;
                 this.setState({dataBaseEvents:data});
@@ -71,7 +71,7 @@ export default class MyForm extends React.Component{
         console.log(event)
 
         axios({
-            url: '/api/save',
+            url: '/save',
             method: 'POST',
             data: event
         })
