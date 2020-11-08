@@ -5,8 +5,8 @@ import './List.css';
 class List extends Component {
     render() {
         var commentNodes = this.props.data.map((comment) => (
-                <Comment author={comment.author} key={comment.id}>
-                    <li className="list-group-item">{comment.text}</li>
+                <Comment user={comment.name} date={comment.time} key={comment._id}>
+                    <li className="list-group-item">{comment.message}</li>
                 </Comment>
             ));
           return (
