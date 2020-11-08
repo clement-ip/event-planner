@@ -34,6 +34,7 @@ class Box extends Component {
         .catch(e => console.log(e))
     }
 
+
     handleSubmit(e) {
       e.preventDefault();
       const newComment = JSON.stringify({name: e.target.name.value, message: e.target.message.value});
@@ -48,6 +49,8 @@ class Box extends Component {
         )
         .then(response => {
           this.fetchData();
+          e.target.name.value = "";
+          e.target.message.value = "";
         })
     };
 
