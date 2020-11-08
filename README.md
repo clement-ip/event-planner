@@ -18,7 +18,7 @@ npm install --save -g \
     socket.io-client \
     react-router-dom \
     axios \
-    fullcalendar/daygrid \
-    fullcalendar/interaction \
-    fullcalendar/react \
-    fullcalendar/timegrid
+    @fullcalendar/daygrid \
+    @fullcalendar/interaction \
+    @fullcalendar/react \
+    @fullcalendar/timegrid
