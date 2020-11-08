@@ -7,3 +7,4 @@ Created by: Clement Ip, Corey See, Edison Suen, Eric Lam, Hassan Ali
 Please install:
 
 `npm install --save -g nodemon react-bootstrap body-parser mongoose`
+'axios fullcalendar/daygrid fullcalendar/interaction fullcalendar/react fullcalendar/timegrid express'
