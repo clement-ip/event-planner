@@ -17,6 +17,9 @@ const MainPage = () => {
         <Link to="/profile">Profile Page</Link>
       </div>
       <div>
+        <Link to="/hosting_events">Events</Link>
+      </div>
+      <div>
         <Link to="/EventForm">Calendar</Link>
       </div>
       <div>
