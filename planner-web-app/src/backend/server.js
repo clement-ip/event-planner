@@ -8,6 +8,8 @@ const app = express();
 const cors = require('cors');
 const comment = require('../components/models/comment');
 const Event = require('../components/models/Event');
+const profile = require('../components/models/profile');
+const hosting_events = require('../components/models/hosting_events');
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
@@ -100,7 +102,31 @@ app.post('/save',(req, res) => {
     });
 });
 
+// Profile stuff
+app.get('/profile', (req, res) =>{
 
+  profile.find({ })
+      .then((data) => {
+          console.log('Data: ', data);
+          res.json(data);
+      })
+      .catch((error)=>{
+          console.log("error");
+      })
+
+});
+
+app.get('/hosting_events', (req, res) =>{
+  hosting_events.find({ })
+      .then((data) => {
+          console.log('Data: ', data);
+          res.json(data);
+      })
+      .catch((error)=>{
+          console.log("error");
+      })
+
+});
 
 mongoose.connect("mongodb+srv://470User:CMPT470@470cluster.tajiy.mongodb.net/userdata?retryWrites=true&w=majority", {
   useNewUrlParser: true,
