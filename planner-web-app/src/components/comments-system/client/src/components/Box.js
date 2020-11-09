@@ -19,7 +19,7 @@ class Box extends Component {
 
     componentDidMount() {
       axios.get('/comment')
-        .then(({data}) => this.setState({ comments: data }))
+        .then(({data}) => this.setState({ comments: JSON.parse(data) }))
         .catch(e => console.log(e))
       const socket = io(SERVER, {transports: ['websocket']});
       socket.on('Comment', (msg) => {
@@ -30,7 +30,7 @@ class Box extends Component {
 
     fetchData() {
       axios.get('/comment')
-        .then(({data}) => this.setState({ comments: data }))
+        .then(({data}) => this.setState({ comments: JSON.parse(data) }))
         .catch(e => console.log(e))
     }
 
