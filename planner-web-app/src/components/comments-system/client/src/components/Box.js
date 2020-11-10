@@ -18,20 +18,33 @@ class Box extends Component {
     }
 
     componentDidMount() {
-      axios.get('/comment')
-        .then(({data}) => this.setState({ comments: JSON.parse(data) }))
-        .catch(e => console.log(e))
-      const socket = io(SERVER, {transports: ['websocket']});
-      socket.on('Comment', (msg) => {
-        console.log("Received: ", msg);
-        this.fetchData();
-      });
-    }
+      // axios.get('/comment')
+      //   .then(({data}) => this.setState({ comments: data }))
+      //   .catch(e => console.log(e))
+      fetch('/comment')
+        .then(response => response.json())
+        .then(data => {
+          console.log("Get response: ", data);
+          this.setState({ comments: data })
+        })
+        .catch(error => console.error(error));
+            const socket = io(SERVER, {transports: ['websocket']});
+            socket.on('Comment', (msg) => {
+              console.log("Socket received: ", msg);
+              this.fetchData();
+            });
+          }
 
     fetchData() {
-      axios.get('/comment')
-        .then(({data}) => this.setState({ comments: JSON.parse(data) }))
-        .catch(e => console.log(e))
+      // axios.get('/comment')
+      //   .then(({data}) => this.setState({ comments: data}))
+      //   .catch(e => console.log(e))
+      fetch('/comment')
+      .then(response => response.json())    // one extra step
+      .then(data => {
+        console.log("Get response: ", data);
+        this.setState({ comments: data })
+      })
     }
 
 
@@ -41,7 +54,7 @@ class Box extends Component {
       console.log("New Comment: ", newComment);
       const socket = io(SERVER, {transports: ['websocket']});
       socket.emit('Comment', newComment);
-      axios.post('http://localhost:5000/comment', newComment, {
+      axios.post('/comment', newComment, {
         headers: {
             'Content-Type': 'application/json',
             }
