@@ -71,7 +71,7 @@ export default class MyForm extends React.Component{
         console.log(event)
 
         axios({
-            url: '/api/save',
+            url: 'http://localhost:8080/api/save',
             method: 'POST',
             data: event
         })
