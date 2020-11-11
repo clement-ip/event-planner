@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const path = require('path')
 
 
 //const MongoClient = require('mongodb').MongoClient;
@@ -7,7 +8,7 @@ const uri = "mongodb+srv://470User:CMPT470@470cluster.tajiy.mongodb.net/userdata
 //const client = new MongoClient(uri, { useNewUrlParser: true });
 const app = express();
 const PORT = process.env.PORT || 8080;
-
+const cors = require('cors');
 const routes = require('./routes/api');
 
 
@@ -33,6 +34,7 @@ mongoose.connection.on('connected', ()=>{
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
+
 
 //
 // //schema
@@ -90,11 +92,17 @@ const testData = {
 //     res.json(data);
 // })
 
-app.use('/api',routes)
 
+
+app.get('/', function(req, res, next) {
+    res.sendFile(path.join(__dirname, "/client/build/index.html"))
+});
+
+app.use('/api',routes)
+//app.use(express.static(path.join(__dirname,"/client/build/")));
 if(process.env.NODE_ENV === "production"){
     app.use(express.static('/client/build'));
 }
 
-
+app.use(cors());
 app.listen(PORT, console.log('server is starting up at',PORT));

@@ -1,9 +1,10 @@
 const express = require('express')
 
 const router = express.Router();
-
+const cors = require('cors')
 const Event = require('../models/Event');
 
+router.use(cors());
 router.get('/getAll', (req, res) =>{
 
     Event.find({ })

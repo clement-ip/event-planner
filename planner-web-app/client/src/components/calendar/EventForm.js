@@ -19,7 +19,7 @@ export default class MyForm extends React.Component{
     }
 
     getEventData = ()=>{
-        axios.get('/api/getAll')
+        axios.get('http://localhost:8080/api/getAll')
             .then((response)=>{
                 const data = response.data;
                 this.setState({dataBaseEvents:data});
