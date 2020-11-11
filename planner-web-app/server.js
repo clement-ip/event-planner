@@ -8,7 +8,7 @@ const uri = "mongodb+srv://470User:CMPT470@470cluster.tajiy.mongodb.net/userdata
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-const routes = require('../../routes/api');
+const routes = require('./routes/api');
 
 
 /*
@@ -21,7 +21,7 @@ client.connect(err => {
 });
 */
 
-mongoose.connect(uri),{
+mongoose.connect(process.env.MONGODB_URI || uri),{
     useNewUrlParser: true,
     useUnifiedTopology: true
 }
@@ -91,5 +91,10 @@ const testData = {
 // })
 
 app.use('/api',routes)
+
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static('/client/build'));
+}
+
 
 app.listen(PORT, console.log('server is starting up at',PORT));
