@@ -11,6 +11,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.0",
+    "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.10.12",
@@ -24,8 +25,10 @@
     "socket.io-client": "^3.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node index.js",
     "build": "react-scripts build",
+    "start-server": "nodemon index.js",
+    "dev": "concurrently \"npm run start-server\" \"react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
