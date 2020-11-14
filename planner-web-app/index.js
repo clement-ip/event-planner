@@ -28,10 +28,10 @@ app.use(bodyParser.json());
 app.get('/comment', (req, res) => {
   comment.find({}, function(err,result) {
     if (err) {
-      res.send(err);
+      res.status(500).send(err);
     }
     else {
-      res.send(result);
+      res.status(200).send(result);
     }
   })
 });
@@ -44,7 +44,7 @@ app.post('/comment', (req, res) => {
       res.status(500).json({msg: 'Error'});
     }
     else {
-      res.json({
+      res.status(200).json({
         msg: 'Received data: ', data
       })
     }
@@ -56,7 +56,7 @@ app.get('/getAll', (req, res) =>{
   Event.find({ })
       .then((data) => {
           console.log('Data: ', data);
-          res.json(data);
+          res.status(200).json(data);
       })
       .catch((error)=>{
           console.log("error");
@@ -65,12 +65,12 @@ app.get('/getAll', (req, res) =>{
 });
 
 app.get('/events', (req, res) => {
-  Event.find({}, function(err,result) {
+  Event.find({}, function(err, result) {
       if (err) {
-          res.send(err);
+          res.status(500).send(err);
       }
       else {
-          res.send(result);
+          res.status(200).send(result);
       }
   })
 });
@@ -94,7 +94,7 @@ app.post('/save',(req, res) => {
           res.status(500).json({msg: "Server error when attempting to save."})
           return;
       }
-      return res.json({
+      return res.status(200).json({
           msg: "We received the data"
       });
   });
@@ -106,7 +106,7 @@ app.get('/profile', (req, res) =>{
   profile.find({ })
     .then((data) => {
         console.log('Data: ', data);
-        res.json(data);
+        res.status(200).json(data);
     })
     .catch((error)=>{
         console.log("error");
@@ -118,7 +118,7 @@ app.get('/hosting_events', (req, res) =>{
 hosting_events.find({ })
     .then((data) => {
         console.log('Data: ', data);
-        res.json(data);
+        res.status(200).json(data);
     })
     .catch((error)=>{
         console.log("error");

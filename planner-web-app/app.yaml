@@ -18,9 +18,6 @@ handlers:
   - url: /static
     static_dir: build/static
 
-  - url: /assets
-    static_dir: build/assets
-
   - url: /(.*\.(json|ico|js))$
     static_files: build/\1
     upload: build/.*\.(json|ico|js)$
@@ -28,5 +25,6 @@ handlers:
   - url: .*
     static_files: build/index.html
     upload: build/index.html
+  
 # manual_scaling - Lock instances to 1 . using App Engine Flexible will create VM instances to serve from. If you want to lower your usage, you might restrict your App to just one 1 instance (probably not what you want in production, but perfect for in prototyping and development cases ).
 # https://stackoverflow.com/questions/37381694/google-app-engine-how-to-correctly-deploy-an-app

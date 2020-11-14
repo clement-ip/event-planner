@@ -1,21 +1,20 @@
-import React, {Component} from 'react';
+import React from 'react'
 import './Comment.css';
-class Comment extends Component {
-    render() {
-        return (
-            <section className="comment">
-                <h3 className="commentUser">
-                    {this.props.user}
-                </h3>
-                <p className="commentDate">
-                    {this.props.date}
-                </p>
-                <p>
-                    {this.props.children}
-                </p>
-            </section>
-        );
-    }
+
+function Comment(props) {
+    return (
+        <section className="comment">
+            <h3 className="commentUser">
+                {props.user}
+            </h3>
+            <p className="commentDate">
+                {props.date}
+            </p>
+            <p>
+                {props.children}
+            </p>
+        </section>
+    );
 }
 
 export default Comment;
