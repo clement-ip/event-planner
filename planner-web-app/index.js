@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Comment = require('./src/components/models/comment')
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5001
 
 const app = express();
 const cors = require('cors');

@@ -16,7 +16,7 @@ export default class ProfilePage extends React.Component{
     }
 
   componentDidMount(){
-    axios.get('/profile')
+    axios.get('http://localhost:5001/profile')
     .then((response)=>{
         const data = response.data;
         this.setState({db_profiles:data});
