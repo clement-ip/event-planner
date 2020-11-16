@@ -35,7 +35,6 @@ passport.use(new LocalStrategy({
     usernameField : 'email',
     passwordField : 'password'
 }, (username, password, done) => {
-    console.log(username)
     User.findOne({ email : username}, (err, user)=> {
         // Something went wrong with database
         if(err)

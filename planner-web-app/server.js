@@ -1,11 +1,25 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const authRoutes = require('./routes/authRoutes');
 
 
 const app = express();
+
+const corsOptions = {
+    origin : 'http://192.168.2.150:57036',
+    credentials : true
+}
+app.use(cors(corsOptions));
+
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
+
 
 app.use(cookieParser());
 app.use(express.json());
@@ -36,3 +50,9 @@ const User = require('./model/User');
 //         console.log(err)
 //     console.log(document);
 // })
+
+app.get('/test', (req, res) => {
+    // res.json('pls work');
+    res.status(301);
+    res.redirect('https://expressjs.com/');
+});
