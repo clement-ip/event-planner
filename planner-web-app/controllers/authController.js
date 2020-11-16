@@ -13,14 +13,14 @@ const signToken = userID => {
 }
 
 module.exports.register_get = (req, res) => {
-    res.send("register_get");
+    res.json("register_get");
 }
 
 module.exports.register_post = (req, res) => {
     const { name, email, password } = req.body;
     User.findOne({email}, (err, user) => {
         if(err)
-            res.status(500).json({message : {masgBody : "Error1 has occured", msgError : true}});
+            res.status(500).json({message : {masgBody : "Error has occured", msgError : true}});
         if(user)
             res.status(400).json({message : {masgBody : "Email is already taken", msgError : true}});
         else {
@@ -36,7 +36,8 @@ module.exports.register_post = (req, res) => {
 }
 
 module.exports.login_get = (req, res) => {
-    res.send("login_get");
+    // res.json("login_get");
+    res.redirect('http://localhost:3000/');
 }
 
 module.exports.login_post = (req, res) => {
@@ -55,5 +56,11 @@ module.exports.login_post = (req, res) => {
 module.exports.logout_get = (req, res) => {
     res.clearCookie('access_token');
     res.json({ user: { email : "" }, success : true});
+}
+
+// Sync up the backend and front end to get cookie if the browser is closed
+module.exports.authenticated_get = (req, res) => {
+    const { email } = req.user;
+    res.status(200).json({isAuthenticated : true, user : { email }});
 }
 
