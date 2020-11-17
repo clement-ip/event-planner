@@ -51,7 +51,7 @@ app.post('/comment', (req, res) => {
   })
 });
 
-app.get('/getAll', (req, res) =>{
+app.get('/getAllCalEvents', (req, res) =>{
 
   Event.find({ })
       .then((data) => {
@@ -84,7 +84,7 @@ app.get('/name',(req, res) => {
   res.json(data);
 })
 
-app.post('/save',(req, res) => {
+app.post('/saveCalEvent',(req, res) => {
   console.log('Body:', req.body);
   const data = req.body;
   const newEvent = new Event(data);
