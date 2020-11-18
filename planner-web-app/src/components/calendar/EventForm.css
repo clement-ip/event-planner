@@ -1,26 +1,11 @@
 @import "~@fullcalendar/daygrid/main.css";
-.container{
-    display:flex;
-    padding: 50px;
-}
-
 form{
     float:left;
     text-align: left;
     width: 100%;
 }
 
-.flexInput{
-    display:flex;
-    width:150px;
-    min-width:0px;
-    flex:1;
-}
-
-.col1{
-    flex: 30%;
-}
-
-.col2{
-    flex: 70%;
+.EventCal{
+    margin-right: auto;
+    margin-left: auto;
 }

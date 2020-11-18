@@ -4,7 +4,8 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import './EventForm.css'
+import './EventForm.css';
+import './EventForm.sass';
 
 function EventCalendar(){
 
@@ -14,7 +15,9 @@ function EventCalendar(){
         name:'',
         description:'',
         start_date:'',
+        start_time:'',
         end_date:'',
+        end_time:'',
     });
 
     useEffect(()=> {
@@ -77,7 +80,7 @@ function EventCalendar(){
             name: name,
             description: description,
             start_date: s_date,
-            end_date: e_date
+            end_date: e_date,
         }
         console.log("event", event)
 
@@ -105,42 +108,50 @@ function EventCalendar(){
 
 
     return(
-        <div className="container">
-            <div className="col1">
+        <div className="columns">
+            <div className="column is-one-quarter">
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor='event_name'>Name of Event:</label>
-                    <input type="text"
-                           name="name"
-                           className="flexInput"
-
-                    />
+                    <label className = "label" htmlFor='event_name'>Name of Event:</label>
+                    <div className="control">
+                        <input type="text"
+                               name="name"
+                               className="input"
+                               placeholder="Event Name"
+                        />
+                    </div>
                     <br></br>
-                    <label htmlFor='event_description'>Description of event:</label>
-                    <input type="text"
-                           name="description"
-                           className="flexInput"
-
-                    />
+                    <label className = "label"  htmlFor='event_description'>Description of event:</label>
+                    <div className="control">
+                        <textarea type="text"
+                               name="description"
+                               className="textarea"
+                                  placeholder="Event Description">
+                        </textarea>
+                    </div>
                     <br></br>
-                    <label htmlFor='event_start_date'>Start date:</label>
-                    <input type="date"
-                           className="flexInput"
-                           name="start_date"
+                    <label className = "label"  htmlFor='event_start_date'>Start date:</label>
+                    <div className="control">
+                        <input type="datetime-local"
+                               className="input"
+                               name="start_date"
 
-                    />
+                        />
+                    </div>
                     <br></br>
-                    <label htmlFor='event_end_date'>End date:</label>
-                    <input type="date"
-                           className="flexInput"
-                           name="end_date"
+                    <label className = "label"  htmlFor='event_end_date'>End date:</label>
+                    <div className="control">
+                        <input type="datetime-local"
+                               className="input"
+                               name="end_date"
 
-                    />
+                        />
+                    </div>
                     <br></br>
                     <input type="submit" value="Submit" className="flexInput"/>
                 </form>
             </div>
-            <div className="col2">
-                <FullCalendar
+            <div className="column is-three-quarters">
+                <FullCalendar className = "EventCal"
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                     headerToolbar={{
                         left: 'prev,next today',
@@ -153,6 +164,9 @@ function EventCalendar(){
                     selectable={true}
                     selectMirror={true}
                     dayMaxEvents={true}
+                    //eventColor='#378006'
+                    timeZone="local"
+                    eventTextColor='#fff'
                     events={data.dataBaseEventsFormatted}
                     //weekends={this.state.weekendsVisible}
                     //initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
