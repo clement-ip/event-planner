@@ -1,12 +1,7 @@
-.container {
-    display: flex;
-    flex-direction: row;
-    height: 580px;
-  }
-
 .list {
-    flex: 1;
-    overflow-y: scroll;
-    margin-bottom: 40px;
+    height: 500px;
+    overflow: auto;
+    padding-right: 50px;
+    width: 760px;
 }
 

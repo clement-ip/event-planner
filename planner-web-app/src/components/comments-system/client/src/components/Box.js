@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import List from './List'
 import './Box.css';
+import './comments-system.sass';
 import axios from 'axios';
 import io from 'socket.io-client'
 
@@ -58,19 +59,22 @@ function Box() {
 
     const css = `.hide { position:absolute; top:-1px; left:-1px; width:1px; height:1px; }`
     return (
-        <section className="box">
-            <h1>Comments</h1>
-            <List data={comments} />
-            <style>{css}</style>
-            <iframe title="hiddenFrame" name="hiddenFrame" className="hide"></iframe>
-            <form method="POST" id="form" target="hiddenFrame" onSubmit={handleSubmit}>
-                <input type="text" id="name" name="name" placeholder="Name" ></input>
-                <input type="text" id="message" name="message" placeholder="Message"></input><br></br>
-            <section className="btn">
-                <input className="btn btn-primary" type="submit" value="Submit"></input>
-            </section>
-            </form>
-        </section>
+      <section class="column is-5-desktop" id="box">
+          <section class="message is-primary">
+              <section class="message-header has-text-weight-semibold">
+              </section>
+              <List data={comments} />
+              <style>{css}</style>
+              <iframe title="hiddenFrame" name="hiddenFrame" className="hide"></iframe>
+              <form method="POST" id="form" target="hiddenFrame" onSubmit={handleSubmit}>
+                  <input class="input" type="text" id="name" name="name" placeholder="Name"></input>
+                  <textarea class="textarea" id="message" name="message" placeholder="Add a comment..."></textarea>
+              <section className="btn">
+                  <button class="button is-primary">Submit</button>
+              </section>
+              </form>
+          </section>
+          </section>
     );
 }
 

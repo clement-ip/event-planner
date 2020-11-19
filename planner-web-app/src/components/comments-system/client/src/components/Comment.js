@@ -1,18 +1,18 @@
 import React from 'react'
 import './Comment.css';
+import './comments-system.sass';
 
 function Comment(props) {
     return (
         <section className="comment">
-            <h3 className="commentUser">
-                {props.user}
-            </h3>
-            <p className="commentDate">
-                {props.date}
-            </p>
+            <section className="user-date">
+                <strong>{props.user}</strong> <small>{props.date}</small>
+            </section>
+            <section className="comment">
             <p>
                 {props.children}
             </p>
+            </section>
         </section>
     );
 }

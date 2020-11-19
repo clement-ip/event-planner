@@ -1,6 +1,8 @@
 import React from 'react';
 import Comment from './Comment';
 import './List.css';
+import './comments-system.sass';
+import ScrollableFeed from 'react-scrollable-feed'
 
 function List(props) {
     var commentNodes = props.data.map((comment) => (
@@ -9,12 +11,14 @@ function List(props) {
         </Comment>
     ));
     return (
-        <section className="container">
-        <section className="list">
-            <ul className="list-group">
-                {commentNodes}
-            </ul>
-        </section>
+        <section className="message-body">
+            <section className="list">
+                <ScrollableFeed forceScroll="true">
+                    <ul class="block-list">
+                        {commentNodes}
+                    </ul>
+                </ScrollableFeed>
+            </section>
         </section>
     );
 }

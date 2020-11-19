@@ -37,4 +37,9 @@
   }
 }
 
-
+footer {
+  clear: both;
+  position: relative;
+  height: 200px;
+  padding-top: 50px;
+}

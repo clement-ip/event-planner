@@ -9,3 +9,11 @@ p {
 section {
     background-color: white;
 }
+
+.user-date {
+    text-align: left;
+}
+
+.comment {
+    text-align: left;
+}

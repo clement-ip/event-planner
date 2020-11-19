@@ -17,6 +17,10 @@ npm install --save -g \
     socket.io \
     socket.io-client \
     react-router-dom \
+    react-scrollable-feed \
+    bulma \
+    bulma-block-list \
+    node-sass \
     axios \
     @fullcalendar/daygrid \
     @fullcalendar/interaction \
