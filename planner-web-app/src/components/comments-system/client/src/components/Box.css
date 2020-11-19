@@ -7,7 +7,7 @@ h1 {
     width: 95%;
 }
 
-.btn {
+#box .btn {
     padding-top: 10px;
     width: 140px;
     margin-left: 0%;
@@ -19,10 +19,10 @@ h1 {
     width: 40%;
 }
 
-#message {
+#box #message {
     margin-top: 15px;
 }
 
-#form #name {
+#box #form #name {
     width: 20%;
 }

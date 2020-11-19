@@ -14,7 +14,7 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const path = require("path");
 
-// app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "build")));
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -126,19 +126,19 @@ hosting_events.find({ })
 
 });
 
-if (process.env.NODE_ENV === 'production') {
-  // Exprees will serve up production assets
-  app.use(express.static(path.join(__dirname, 'build')));
+// if (process.env.NODE_ENV === 'production') {
+//   // Exprees will serve up production assets
+//   app.use(express.static(path.join(__dirname, 'build')));
 
-  // Express serve up index.html file if it doesn't recognize route
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
-}
+//   // Express serve up index.html file if it doesn't recognize route
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
+//   });
+// }
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "build/index.html"));
-// })
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build/index.html"));
+})
 
 mongoose.connect("mongodb+srv://470User:CMPT470@470cluster.tajiy.mongodb.net/userdata?retryWrites=true&w=majority", {
   useNewUrlParser: true,
