@@ -26,6 +26,7 @@ function App() {
   // AuthService.isAuthenticated().then(data => console.log(data));
   // AuthService.logout()
 
+<<<<<<< HEAD
   // const commentData = {
   //   eventID : "5fc3e92aeec5eb21f86af25f",
   //   message : "This is a test message",
@@ -35,18 +36,26 @@ function App() {
   // CommentServices.createComment(commentData).then(data => console.log("Testing", data));
 
   // EventServices.getAllEvents().then(({ eventsData }) => console.log('EventsData', eventsData));
+=======
+>>>>>>> renamed client folder
 
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
   return (
       <div className="App">
         <Navbar />
+<<<<<<< HEAD
         {/* { isAuthenticated ? <Redirect to="/hero"/>  : null} */}
         <Route exact path="/" component={Landing} />
         <Route exact path="/hero" component={Hero} />
         <Route exact path="/createEvent" component={CreateEvent}/>
         <Route exact path="/ListAllEvents" component={ListAllEvents}/>
         <Route exact path="/SingleEvent/:id" component={SingleEvent}/>
+=======
+        { isAuthenticated ? <Redirect to="/hero"/>  : null}
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/hero" component={Hero} />
+>>>>>>> renamed client folder
       </div>
   );
 }
