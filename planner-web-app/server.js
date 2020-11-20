@@ -9,7 +9,7 @@ const authRoutes = require('./routes/authRoutes');
 const app = express();
 
 const corsOptions = {
-    origin : 'http://192.168.2.150:57036',
+    origin : 'http://localhost:3000',
     credentials : true
 }
 app.use(cors(corsOptions));

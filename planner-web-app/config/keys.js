@@ -1,4 +1,4 @@
 module.exports = {
-    atlasURI: "mongodb+srv://470User:CMPT470@470-external.wozmd.mongodb.net/database",
+    atlasURI: "mongodb+srv://470User:CMPT470@470cluster.tajiy.mongodb.net/userdata",
     secretOrKey: "secret"
 }
