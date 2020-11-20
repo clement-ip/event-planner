@@ -2,7 +2,7 @@ import React, {useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 
 import { AuthContext } from './Context/AuthContext';
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Landing from "./components/Landing";
 import Hero from "./components/Hero";
 
