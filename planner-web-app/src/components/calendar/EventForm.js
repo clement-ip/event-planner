@@ -5,7 +5,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import './EventForm.css';
-import './EventForm.sass';
+import './EventFormBulma.sass';
 
 function EventCalendar(){
 
@@ -108,8 +108,8 @@ function EventCalendar(){
 
 
     return(
-        <div className="columns">
-            <div className="column is-one-quarter">
+        <div className="columns2">
+            <div className="column1">
                 <form onSubmit={handleSubmit}>
                     <label className = "label" htmlFor='event_name'>Name of Event:</label>
                     <div className="control">
@@ -117,6 +117,7 @@ function EventCalendar(){
                                name="name"
                                className="input"
                                placeholder="Event Name"
+                               required
                         />
                     </div>
                     <br></br>
@@ -134,7 +135,7 @@ function EventCalendar(){
                         <input type="datetime-local"
                                className="input"
                                name="start_date"
-
+                               required
                         />
                     </div>
                     <br></br>
@@ -143,14 +144,14 @@ function EventCalendar(){
                         <input type="datetime-local"
                                className="input"
                                name="end_date"
-
+                               required
                         />
                     </div>
                     <br></br>
                     <input type="submit" value="Submit" className="flexInput"/>
                 </form>
             </div>
-            <div className="column is-three-quarters">
+            <div className="column2">
                 <FullCalendar className = "EventCal"
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                     headerToolbar={{
