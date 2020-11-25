@@ -9,6 +9,8 @@ import ProfilePage from "./components/Profile_Page/profile_page"
 import hosting_events from "./components/hosting_events/hosting_events"
 import MainPage from "./components/index"
 import NotFoundPage from "./components/404"
+import ListAllEvents from "./components/listEvents/ListEvents"
+import SingleEvent from "./components/Event/SingleEvent";
 
 import {
   BrowserRouter as Router,
@@ -32,7 +34,8 @@ function App() {
           <Route exact path="/EventForm" component={EventForm}/>
           <Route exact path="/ImageUploader" component={ImageUploader}/>
           <Route exact path="/CommentBox" component={CommentBox}/>
-
+          <Route exact path="/ListAllEvents" component={ListAllEvents}/>
+          <Route exact path="/SingleEvent/:id" component={SingleEvent}/>
           <Route exact path="/404" component={NotFoundPage} />
           <Redirect to="/404"/>
         </Switch>

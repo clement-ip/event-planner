@@ -28,6 +28,9 @@ const MainPage = () => {
       <div>
         <Link to="/CommentBox">Comment Section</Link>
       </div>
+        <div>
+            <Link to="/ListAllEvents">Show All Events</Link>
+        </div>
     </div>
   );
 }
