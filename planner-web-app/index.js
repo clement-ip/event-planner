@@ -100,6 +100,24 @@ app.post('/saveCalEvent',(req, res) => {
   });
 });
 
+app.delete('/deleteCalEvent', (req,res)=>{
+   console.log('DELETE REQ');
+   console.log(req.body);
+   console.log(req.body.id);
+   Event.deleteOne({_id:req.body.id}, function(err){
+       if(!err){
+           console.log("deleted event")
+       }
+       else{
+           console.log("error",err)
+       }
+   });
+});
+
+
+
+
+
 // Profile stuff
 app.get('/profile', (req, res) =>{
 

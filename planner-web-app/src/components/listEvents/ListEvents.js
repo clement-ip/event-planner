@@ -76,19 +76,6 @@ function ListAllEvents(){
             </div>
 
             <div className="second">
-                {/*<div dangerouslySetInnerHTML={{__html: listAllEvents()}} />*/}
-                {/*{listAllEvents()}*/}
-                {/*<ul>*/}
-                {/*    {eventList}*/}
-                {/*</ul>*/}
-                {/*{ data.dataBaseEvents.map((event) => {*/}
-                {/*    return (*/}
-                {/*        <div key ={event._id}>*/}
-                {/*            <p> {event.name} </p>*/}
-                {/*            <button className="goToEventButton" onClick={goToEvent}> see more </button>*/}
-                {/*        </div>*/}
-                {/*    )*/}
-                {/*}) }*/}
                 <SingleEventForList eventsProp={data.dataBaseEvents}/>
             </div>
         </div>
