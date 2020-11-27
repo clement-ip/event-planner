@@ -44,7 +44,7 @@ function SingleEvent(props){
 
         })
             .catch(err => console.log(err));
-    }, []);
+    }, [props.match.params.id]);
 
 
     return(

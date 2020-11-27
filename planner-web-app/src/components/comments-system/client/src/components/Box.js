@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import List from './List'
 import './Box.css';
 import './comments-system.sass';
@@ -9,6 +9,8 @@ const SERVER = "http://localhost:5000";
 
 function Box(props) {
     const [comments, setComments] = useState([]);
+    const fetchData = useRef(() => {});
+
     useEffect(() => {
         fetch('/comment/'+ props.data)
         .then(response => response.json())
@@ -20,12 +22,12 @@ function Box(props) {
         const socket = io(SERVER, {transports: ['websocket']});
         socket.on('Comment', (msg) => {
             console.log('Socket received: ', msg);
-            fetchData();
+            fetchData.current();
         });
         return () => socket.disconnect();
-    }, []);
+    }, [props.data]);
 
-    function fetchData() {
+    fetchData.current = () => {
         // axios.get('/comment')
         //   .then(({data}) => this.setState({ comments: data}))
         //   .catch(e => console.log(e))
@@ -50,7 +52,7 @@ function Box(props) {
             }
           )
           .then(response => {
-            fetchData();
+            fetchData.current();
             e.target.name.value = "";
             e.target.message.value = "";
           })
@@ -59,12 +61,7 @@ function Box(props) {
     const css = `.hide { position:absolute; top:-1px; left:-1px; width:1px; height:1px; }`
     return (
       <section class="column is-5-desktop" id="box">
-          <section class="message is-primary">
-              <section class="message-header has-text-weight-semibold">
-              </section>
-              <List data={comments} />
-              <style>{css}</style>
-              <iframe title="hiddenFrame" name="hiddenFrame" className="hide"></iframe>
+                      <iframe title="hiddenFrame" name="hiddenFrame" className="hide"></iframe>
               <form method="POST" id="form" target="hiddenFrame" onSubmit={handleSubmit}>
                   <input class="input" type="text" id="name" name="name" placeholder="Name"></input>
                   <textarea class="textarea" id="message" name="message" placeholder="Add a comment..."></textarea>
@@ -72,6 +69,9 @@ function Box(props) {
                   <button class="button is-primary">Submit</button>
               </section>
               </form>
+          <section class="message is-primary">
+              <List data={comments} />
+              <style>{css}</style>
           </section>
           </section>
     );

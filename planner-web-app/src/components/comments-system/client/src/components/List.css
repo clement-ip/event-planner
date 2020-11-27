@@ -5,3 +5,7 @@
     width: 760px;
 }
 
+ul{
+    display: flex;
+    flex-direction: column-reverse;
+  }
