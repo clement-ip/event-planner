@@ -114,12 +114,14 @@ app.delete('/deleteCalEvent', (req,res)=>{
    console.log('DELETE REQ');
    console.log(req.body);
    console.log(req.body.id);
-   Event.deleteOne({_id:req.body.id}, function(err){
+   Event.deleteOne({_id:req.body.id}, function(err, result){
        if(!err){
+           res.status(200).json(result);
            console.log("Deleted event")
        }
        else{
-           console.log("Error: ",err)
+           res.status(500).json({msg: "Server error when attempting to delete."})
+           console.log("error",err)
        }
    });
    comment.deleteOne({eventId:req.body.id}, function(err){
@@ -129,7 +131,20 @@ app.delete('/deleteCalEvent', (req,res)=>{
     else{
         console.log("Error: ",err)
     }
+    });
 });
+
+app.get('/getSingleCalEvent:id', (req, res) =>{
+    console.log(req.params.id);
+    Event.findById(req.params.id)
+        .then((data) => {
+            console.log('Data: ', data);
+            res.status(200).json(data);
+        })
+        .catch((error)=>{
+            console.log("error");
+            //res.redirect('/404');
+        })
 });
 
 // Profile stuff
