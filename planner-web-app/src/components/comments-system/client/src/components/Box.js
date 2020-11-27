@@ -7,11 +7,10 @@ import io from 'socket.io-client'
 
 const SERVER = "http://localhost:5000";
 
-function Box() {
+function Box(props) {
     const [comments, setComments] = useState([]);
-
     useEffect(() => {
-        fetch('/comment')
+        fetch('/comment/'+ props.data)
         .then(response => response.json())
         .then(data => {
             console.log("Get response: ", data);
@@ -30,7 +29,7 @@ function Box() {
         // axios.get('/comment')
         //   .then(({data}) => this.setState({ comments: data}))
         //   .catch(e => console.log(e))
-        fetch('/comment')
+        fetch('/comment/' + props.data)
         .then(response => response.json())    // one extra step
         .then(data => {
           console.log("Get response: ", data);
@@ -44,7 +43,7 @@ function Box() {
         console.log("New Comment: ", newComment);
         const socket = io(SERVER, {transports: ['websocket']});
         socket.emit('Comment', newComment);
-        axios.post('/comment', newComment, {
+        axios.post('/comment/' + props.data, newComment, {
           headers: {
               'Content-Type': 'application/json',
               }

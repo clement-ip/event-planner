@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const Comment = require('./src/components/models/comment')
 const port = process.env.PORT || 5000
 
 const app = express();
@@ -25,8 +24,9 @@ app.options('*', cors());
 
 app.use(bodyParser.json());
 
-app.get('/comment', (req, res) => {
-  comment.find({}, function(err,result) {
+app.get('/comment/:id', (req, res) => {
+  const id = req.params.id;
+  comment.find({eventId: id}, function(err,result) {
     if (err) {
       res.status(500).send(err);
     }
@@ -36,9 +36,14 @@ app.get('/comment', (req, res) => {
   })
 });
 
-app.post('/comment', (req, res) => {
+app.post('/comment/:id', (req, res) => {
   const data = req.body;
-  const newComment = new Comment(data);
+  const id = req.params.id;
+ 
+  data.eventId = id; //add something
+
+  // const mongooseObject = commentsCollectionMap[id];
+  const newComment = new comment(data);
   newComment.save((error) => {
     if (error) {
       res.status(500).json({msg: 'Error'});
@@ -55,11 +60,11 @@ app.get('/getAllCalEvents', (req, res) =>{
 
   Event.find({ })
       .then((data) => {
-          console.log('Data: ', data);
+          // console.log('Data: ', data);
           res.status(200).json(data);
       })
       .catch((error)=>{
-          console.log("error");
+          console.log("Error: ", error);
       })
 
 });
@@ -88,12 +93,17 @@ app.post('/saveCalEvent',(req, res) => {
   console.log('Body:', req.body);
   const data = req.body;
   const newEvent = new Event(data);
-  //.save
-  newEvent.save((error) => {
+  
+  newEvent.save((error, data) => {
       if (error) {
           res.status(500).json({msg: "Server error when attempting to save."})
           return;
       }
+      // commentsCollectionMap[data.id] = mongoose.model("Comments_" + data.id, comment.commentSchema);
+      // commentsCollectionMap[data.id].createCollection().then(function(collection) {
+      //   console.log('Collection is created!');
+      // })
+      // .catch(error => console.log(error.message));
       return res.status(200).json({
           msg: "We received the data"
       });
@@ -106,17 +116,21 @@ app.delete('/deleteCalEvent', (req,res)=>{
    console.log(req.body.id);
    Event.deleteOne({_id:req.body.id}, function(err){
        if(!err){
-           console.log("deleted event")
+           console.log("Deleted event")
        }
        else{
-           console.log("error",err)
+           console.log("Error: ",err)
        }
    });
+   comment.deleteOne({eventId:req.body.id}, function(err){
+    if(!err){
+        console.log("Deleted comments associated with event")
+    }
+    else{
+        console.log("Error: ",err)
+    }
 });
-
-
-
-
+});
 
 // Profile stuff
 app.get('/profile', (req, res) =>{
@@ -127,7 +141,7 @@ app.get('/profile', (req, res) =>{
         res.status(200).json(data);
     })
     .catch((error)=>{
-        console.log("error");
+        console.log("Error: ", error);
     })
 
 });
@@ -139,7 +153,7 @@ hosting_events.find({ })
         res.status(200).json(data);
     })
     .catch((error)=>{
-        console.log("error");
+        console.log("Error: ", error);
     })
 
 });
@@ -166,7 +180,7 @@ mongoose.connection.on("error", err => {
   console.log("err", err)
 })
 mongoose.connection.on("connected", (err, res) => {
-  console.log("Mongoose is connected")
+  console.log("Mongoose is connected");
 })
 
 io.on('connection', (socket) => {

@@ -31,7 +31,11 @@ const commentSchema = new Schema({
     time : { 
         type : String, 
         default: joinedDate
+    },
+    eventId : {
+        type: String
     }
 });
 
 module.exports = Comment = mongoose.model('comment', commentSchema);
+// exports.commentSchema = commentSchema;

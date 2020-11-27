@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import "./Event.css"
+import CommentBox from "../comments-system/client/src/components/Box"
 
 
 function SingleEvent(props){
 
-    console.log(props);
+    console.log("HEREEEE: ", props);
 
     return(
 
@@ -14,6 +15,7 @@ function SingleEvent(props){
                 <strong>Event Description</strong>: {props.location.state.eventDes} <br></br>
                 <strong>Start Time</strong>: {props.location.state.eventS_datetime} <br></br>
                 <strong>End Time</strong>: {props.location.state.eventE_datetime}
+                <CommentBox data={props.location.state.event_id}></CommentBox>
             </p>
         </div>
 
