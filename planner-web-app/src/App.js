@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import EventForm from './components/calendar/EventForm';
+import CreateEvent from './components/createEvent/CreateEvent';
 import ImageUploader from './components/ImageUploader/ImageUpload.js'
 
 import NavBar from "./components/navbar/navbar"
@@ -31,7 +31,7 @@ function App() {
           <Route exact path="/" component={MainPage} />
           <Route exact path="/profile" component={ProfilePage}/>
           <Route exact path="/hosting_events" component={hosting_events}/>
-          <Route exact path="/EventForm" component={EventForm}/>
+          <Route exact path="/CreateEvent" component={CreateEvent}/>
           <Route exact path="/ImageUploader" component={ImageUploader}/>
           <Route exact path="/CommentBox" component={CommentBox}/>
           <Route exact path="/ListAllEvents" component={ListAllEvents}/>

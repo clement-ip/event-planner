@@ -20,7 +20,7 @@ const MainPage = () => {
         <Link to="/hosting_events">Events</Link>
       </div>
       <div>
-        <Link to="/EventForm">Calendar</Link>
+        <Link to="/CreateEvent">Create Event</Link>
       </div>
       <div>
       <Link to="/ImageUploader">Image Upload</Link>
