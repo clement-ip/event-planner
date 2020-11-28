@@ -1,26 +1,41 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 
 import { AuthContext } from '../../Context/AuthContext';
-import LoggedOutDropdown from './LoggedOutDropdown';
-import LoggedInDropdown from './LoggedInDropdown';
+import LoggedOutLeftMenu from './LoggedOutLeftMenu';
+import LoggedInLeftMenu from './LoggedInLeftMenu';
+import SearchBar from './SearchBar';
 
 const Navbar = () => {
     const {isAuthenticated } = useContext(AuthContext);
 
-    return ( 
-      <nav className="navbar has-shadow has-background-dark" role="navigation" aria-label="main navigation" style={{maxHeight: "60px"}}>
-        <div className="navbar-brand">
-          <a className="navbar-item">
-            <img src="https://bulma.io/images/bulma-logo.png" style={{maxHeight: "50px"}} className="py-2 px-2"/>
-          </a>
-          <a className="navbar-burger" id="burger">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
+    // Toggle the burger menu icon in mobile
+    const navbarMenuRef = useRef(null);
+    const burgermenuHandler = () => {
+      navbarMenuRef.current.classList.toggle('is-active');
+    }
 
-        { isAuthenticated ? <LoggedInDropdown /> : <LoggedOutDropdown />}
+    return ( 
+      <nav className="navbar is-dark" role="navigation" aria-label="main navigation" style={{maxHeight: "60px"}}>
+          {/* Need to replace icon with one of our own */}
+          <div className="navbar-brand">
+            <a className="navbar-item">
+              <img src="https://bulma.io/images/bulma-logo.png" style={{maxHeight: "50px"}} className="py-2 px-2"/>
+            </a>
+            {/* Burger menu shown during mobile */}
+            <a onClick={burgermenuHandler} className="navbar-burger">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+          
+          {/* Menu changes depending on authentication */}
+          <div className="navbar-menu" ref={navbarMenuRef}>
+            <div className="navbar-start">
+              <SearchBar />
+            </div>
+            { isAuthenticated ? <LoggedInLeftMenu /> : <LoggedOutLeftMenu />}
+          </div>
       </nav>
     );
 }
