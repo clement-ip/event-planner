@@ -1,0 +1,11 @@
+.list {
+    height: 500px;
+    overflow: auto;
+    padding-right: 50px;
+    width: 760px;
+}
+
+ul{
+    display: flex;
+    flex-direction: column-reverse;
+  }
