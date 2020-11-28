@@ -1,0 +1,29 @@
+h1 {
+    text-align:center;
+}
+
+#box form {
+    margin-left: 3%;
+    width: 95%;
+}
+
+#box .btn {
+    padding-top: 10px;
+    width: 140px;
+    margin-left: 0%;
+    margin-right: 20%;
+    margin-bottom: 20px;
+}
+
+#box {
+    margin: auto;
+    width: 40%;
+}
+
+#box #message {
+    margin-top: 15px;
+}
+
+#box #form #name {
+    width: 35%;
+}

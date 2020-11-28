@@ -5,7 +5,7 @@ import { AuthContext } from './Context/AuthContext';
 import Navbar from "./components/Navbar/Navbar";
 import Landing from "./components/Landing";
 import Hero from "./components/Hero";
-
+import CommentBox from './components/comments-system/client/src/components/Box';
 
 import AuthService from './Services/AuthService';
 
@@ -27,7 +27,7 @@ function App() {
   return (
       <div className="App">
         <Navbar />
-        { isAuthenticated ? <Redirect to="/hero"/>  : null}
+        {/* { isAuthenticated ? <Redirect to="/hero"/>  : null} */}
         <Route exact path="/" component={Landing} />
         <Route exact path="/hero" component={Hero} />
       </div>
