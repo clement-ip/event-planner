@@ -3,6 +3,8 @@ import { Redirect } from "react-router-dom";
 
 import { AuthContext } from '../Context/AuthContext';
 
+import Footer from './Footer';
+
 
 const Hero = (props) => {
 
@@ -14,6 +16,7 @@ const Hero = (props) => {
     return (
     <div>
         Welcome to Hero page
+        <Footer />
     </div>
   );
 }
