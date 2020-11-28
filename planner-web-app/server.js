@@ -1,12 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-
+const comment = require('./model/comment');
 const authRoutes = require('./routes/authRoutes');
 
-
 const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 
 const corsOptions = {
     origin : 'http://localhost:3000',
@@ -23,6 +25,7 @@ app.use(cors(corsOptions));
 
 app.use(cookieParser());
 app.use(express.json());
+app.use(bodyParser.json());
 
 // Port
 const port = process.env.PORT || 5000;
@@ -30,7 +33,7 @@ const port = process.env.PORT || 5000;
 // Configure AtlasDB
 const { atlasURI } = require('./config/keys');
 mongoose.connect(atlasURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
-    .then((result) => app.listen(port))
+    .then((result) => http.listen(port))
     .then(() => console.log(`DB connect and running server on port ${ port }`))
     .catch((err) => console.log(err));
 
@@ -56,3 +59,45 @@ app.get('/test', (req, res) => {
     res.status(301);
     res.redirect('https://expressjs.com/');
 });
+
+
+app.get('/comment/:id', (req, res) => {
+    console.log("Trying to GET");
+    const id = req.params.id;
+    comment.find({eventId: id}, function(err,result) {
+      if (err) {
+        res.status(500).send(err);
+      }
+      else {
+        res.status(200).send(result);
+      }
+    })
+  });
+  
+app.post('/comment/:id', (req, res) => {
+    const data = req.body;
+    const id = req.params.id;
+   
+    data.eventId = id; //add something
+  
+    // const mongooseObject = commentsCollectionMap[id];
+    const newComment = new comment(data);
+    newComment.save((error) => {
+      if (error) {
+        res.status(500).json({msg: 'Error'});
+      }
+      else {
+        res.status(200).json({
+          msg: 'Received data: ', data
+        })
+      }
+    })
+  });
+  
+io.on('connection', (socket) => {
+    console.log('A user has connected');
+    socket.on('Comment', (msg) => {
+      io.emit('Comment', msg);
+    });
+  });
+  

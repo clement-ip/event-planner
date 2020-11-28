@@ -1,0 +1,19 @@
+h2 {
+    color: black;
+}
+
+p {
+    color:black;
+}
+
+section {
+    background-color: white;
+}
+
+.user-date {
+    text-align: left;
+}
+
+.comment {
+    text-align: left;
+}
