@@ -22,14 +22,13 @@ const SearchBar = () => {
     return (
         <div className="navbar-item">
             <div  className="field has-addons">
-                <p className="control has-icons-left">
+                <p className="control">
                     <input onClick={searchClickHandler} onBlur={searchBlurkHandler} className="input is-small is-rounded" type="text" ref={searchInputRef} placeholder="Search" style={{width: "250px"}} />
+                </p>
+                <a className="button is-small is-info" ref={searchBtnRef}>
                     <span className="icon is-small is-left" ref={searchIconRef}>
                         <i className="fas fa-search"></i>
                     </span>
-                </p>
-                <a className="button is-small is-info" ref={searchBtnRef}>
-                    Search
                 </a>
             </div>
         </div>
