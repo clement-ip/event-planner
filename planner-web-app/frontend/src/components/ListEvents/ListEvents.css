@@ -1,0 +1,8 @@
+#containerForEvent.container{
+    border: 1px solid black;
+    margin-bottom: 5px;
+    align-content: center;
+}
+
+#goToEventButton.button.is-info{
+}
