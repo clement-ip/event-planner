@@ -5,6 +5,7 @@ import { AuthContext } from './Context/AuthContext';
 import Navbar from "./components/Navbar/Navbar";
 import Landing from "./components/Landing";
 import Hero from "./components/Hero";
+import CreateEvent from "./components/CreateEvent/CreateEvent";
 import CommentBox from './components/comments-system/client/src/components/Box';
 
 import AuthService from './Services/AuthService';
@@ -30,6 +31,7 @@ function App() {
         {/* { isAuthenticated ? <Redirect to="/hero"/>  : null} */}
         <Route exact path="/" component={Landing} />
         <Route exact path="/hero" component={Hero} />
+        <Route exact path="/createEvent"component={CreateEvent}/>
       </div>
   );
 }
