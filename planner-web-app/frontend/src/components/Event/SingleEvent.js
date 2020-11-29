@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext } from "react";
 import "./Event.css"
 import CommentBox from "../comments-system/client/src/components/Box"
 import { AuthContext } from '../../Context/AuthContext';
@@ -8,7 +8,7 @@ import axios from "axios";
 
 function SingleEvent(props){
 
-    console.log("HEREEEE: ", props);
+    const {user} = useContext(AuthContext);
     const [data, setData] = useState({
         dataBaseEvents:[],
         //dataBaseEventsFormatted:[],
@@ -39,7 +39,7 @@ function SingleEvent(props){
     useEffect(()=> {
 
         axios({
-            url: '/getSingleEvent'+props.match.params.id,
+            url: '/getSingleEvent/'+props.match.params.id,
             method: 'GET',
         })
             .then((res) =>{
@@ -88,7 +88,7 @@ function SingleEvent(props){
                 <strong>Tags</strong>: {data.tags}<br/>
                 <strong>Requirements</strong>: {data.requirements}
             </p>
-            {/*<CommentBox data={props.match.params.id} user={AuthContext.user}/>*/}
+            <CommentBox data={props.match.params.id} user={user}/>
         </div>
     )
 }

@@ -12,7 +12,7 @@ function List(props) {
     return (
         <section className="message-body">
             <section className="list">
-                <ul class="block-list">
+                <ul className="block-list">
                     {commentNodes}
                 </ul>
             </section>
