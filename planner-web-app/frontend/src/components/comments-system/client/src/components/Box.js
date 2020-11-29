@@ -61,16 +61,16 @@ function Box(props) {
 
     const css = `.hide { position:absolute; top:-1px; left:-1px; width:1px; height:1px; }`
     return (
-      <section class="column is-5-desktop" id="box">
+      <section className="column is-5-desktop" id="box">
                 <iframe title="hiddenFrame" name="hiddenFrame" className="hide"></iframe>
               <form method="POST" id="form" target="hiddenFrame" onSubmit={handleSubmit}>
-                  <input class="input" type="text" id="name" name="name" value={props.user.email} disabled></input>
-                  <textarea class="textarea" id="message" name="message" placeholder="Add a comment..."></textarea>
+                  <input className="input" type="text" id="name" name="name" value={props.user.email} disabled></input>
+                  <textarea className="textarea" id="message" name="message" placeholder="Add a comment..."></textarea>
               <section className="btn">
-                  <button class="button is-primary">Submit</button>
+                  <button className="button is-primary">Submit</button>
               </section>
               </form>
-          <section class="message is-primary">
+          <section className="message is-primary">
               <List data={comments} />
               <style>{css}</style>
           </section>
