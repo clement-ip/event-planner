@@ -147,7 +147,7 @@ app.delete('/deleteEvent', (req,res)=>{
     // });
 });
 
-app.get('/getSingleEvent:id', (req, res) =>{
+app.get('/getSingleEvent/:id', (req, res) =>{
     console.log(req.params.id);
     Event.findById(req.params.id)
         .then((data) => {
@@ -159,15 +159,6 @@ app.get('/getSingleEvent:id', (req, res) =>{
             //res.redirect('/404');
         })
 });
-
-
-
-
-
-
-
-
-
 
 io.on('connection', (socket) => {
     console.log('A user has connected');
