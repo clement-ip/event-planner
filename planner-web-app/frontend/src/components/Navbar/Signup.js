@@ -28,7 +28,7 @@ const Signup = (props) => {
             AuthService.register(user).then(({message}) => {
                 const { msgBody, msgError} = message;
                 if(msgError){
-                    if(msgBody == "Email is already taken") {
+                    if(msgBody === "Email is already taken") {
                         setError("email", {
                             type: "taken",
                             message: msgBody
@@ -37,8 +37,8 @@ const Signup = (props) => {
                 } else {
                     console.log(msgBody);
                     clearErrors();
-                    setIsAuthenticated(true);
                     props.modalRef.current.classList.remove('is-active');
+                    setIsAuthenticated(true);
                     props.history.push('/hero');
                 }
             });
