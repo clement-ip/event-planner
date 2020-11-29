@@ -1,0 +1,27 @@
+
+form{
+    float:left;
+    text-align: left;
+    width: 100%;
+}
+
+.EventCal{
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.columns2{
+    display: flex;
+}
+
+.column1{
+    display: flex;
+    flex:30%;
+    padding:20px;
+}
+
+.column2{
+    display: flex;
+    flex:70%;
+    padding:20px;
+}
