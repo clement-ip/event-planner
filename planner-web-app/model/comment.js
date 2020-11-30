@@ -22,18 +22,20 @@ const joinedDate = newSplitDate.join(" ");
 
 const commentSchema = new Schema({
     name: {
-        type:String,
+        type: String,
         required: true
     },
     message: {
-        type: String
+        type: String,
+        required: true
     },
     time : { 
         type : String, 
         default: joinedDate
     },
     eventId : {
-        type: String
+        type: String,
+        required: true
     }
 });
 
