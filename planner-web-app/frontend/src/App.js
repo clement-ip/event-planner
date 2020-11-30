@@ -9,10 +9,13 @@ import CreateEvent from "./components/CreateEvent/CreateEvent";
 import CommentBox from './components/comments-system/client/src/components/Box';
 import ListAllEvents from "./components/ListEvents/ListEvents";
 import SingleEvent from "./components/Event/SingleEvent";
+import ProfilePage from "./components/ProfilePage/profile_page"
 
 import AuthService from './Services/AuthServices';
 import CommentServices from './Services/CommentServices';
 import EventServices from './Services/EventServices';
+import ProfileServices from './Services/ProfileServices';
+
 
 function App() {
   // const person = {
@@ -26,36 +29,32 @@ function App() {
   // AuthService.isAuthenticated().then(data => console.log(data));
   // AuthService.logout()
 
-<<<<<<< HEAD
-  // const commentData = {
-  //   eventID : "5fc3e92aeec5eb21f86af25f",
-  //   message : "This is a test message",
-  //   name : "Hassan"
-  // }
+//   const commentData = {
+//     eventID : "5fc3e92aeec5eb21f86af25f",
+//     message : "This is a test message",
+//     name : "Hassan"
+//   }
 
-  // CommentServices.createComment(commentData).then(data => console.log("Testing", data));
+//   CommentServices.createComment(commentData).then(data => console.log("Testing", data));
 
-  // EventServices.getAllEvents().then(({ eventsData }) => console.log('EventsData', eventsData));
-=======
->>>>>>> renamed client folder
+//   EventServices.getAllEvents().then(({ eventsData }) => console.log('EventsData', eventsData));
 
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+
+  const {user} = useContext(AuthContext);
+//   console.log(user)
+//   ProfileServices.getProfile(user.user_id).then(({ ProfileData }) => console.log('ProfileData', ProfileData));
 
   return (
       <div className="App">
         <Navbar />
-<<<<<<< HEAD
         {/* { isAuthenticated ? <Redirect to="/hero"/>  : null} */}
         <Route exact path="/" component={Landing} />
         <Route exact path="/hero" component={Hero} />
         <Route exact path="/createEvent" component={CreateEvent}/>
         <Route exact path="/ListAllEvents" component={ListAllEvents}/>
         <Route exact path="/SingleEvent/:id" component={SingleEvent}/>
-=======
-        { isAuthenticated ? <Redirect to="/hero"/>  : null}
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/hero" component={Hero} />
->>>>>>> renamed client folder
+        <Route exact path="/profile/:id" component={ProfilePage}/>
       </div>
   );
 }
