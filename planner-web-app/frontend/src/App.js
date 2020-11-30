@@ -33,7 +33,7 @@ function App() {
         {/* { isAuthenticated ? <Redirect to="/hero"/>  : null} */}
         <Route exact path="/" component={Landing} />
         <Route exact path="/hero" component={Hero} />
-        <Route exact path="/createEvent"component={CreateEvent}/>
+        <Route exact path="/createEvent" component={CreateEvent}/>
         <Route exact path="/ListAllEvents" component={ListAllEvents}/>
         <Route exact path="/SingleEvent/:id" component={SingleEvent}/>
       </div>

@@ -13,6 +13,8 @@ function Box(props) {
     const fetchData = useRef(() => {});
 
     useEffect(() => {
+        console.log('pros.data: ', props.data)
+        // Fetch call 1
         fetch('/comment/'+ props.data)
         .then(response => response.json())
         .then(data => {
@@ -46,6 +48,7 @@ function Box(props) {
         console.log("New Comment: ", newComment);
         const socket = io(SERVER, {transports: ['websocket']});
         socket.emit('Comment', newComment);
+        // Fetch call 2
         axios.post('/comment/' + props.data, newComment, {
           headers: {
               'Content-Type': 'application/json',
