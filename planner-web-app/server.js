@@ -1,33 +1,28 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const comment = require('./model/Comment');
-const authRoutes = require('./routes/authRoutes');
-const commentRoutes = require('./routes/commentRoutes');
 const Event = require('./model/Event');
 
+const authRoutes = require('./routes/authRoutes');
+const commentRoutes = require('./routes/commentRoutes');
+
+
+// App
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
+app.use(cookieParser());
+app.use(express.json());
+
+// Cors
 const corsOptions = {
     origin : 'http://localhost:3000',
     credentials : true
 }
 app.use(cors(corsOptions));
 
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
-
-
-app.use(cookieParser());
-app.use(express.json());
-app.use(bodyParser.json());
 
 // Port
 const port = process.env.PORT || 5000;
@@ -39,50 +34,16 @@ mongoose.connect(atlasURI, { useNewUrlParser: true, useUnifiedTopology: true, us
     .then(() => console.log(`DB connect and running server on port ${ port }`))
     .catch((err) => console.log(err));
 
-
+// Routes
 app.use(authRoutes);
 app.use(commentRoutes);
 
-const User = require('./model/User');
-// const userInput = {
-//     name: "Hassan",
-//     email: "shali3@sfu.ca",
-//     password: "123456"
-// }
-
-// const user = new User(userInput);
-// user.save((err,document) => {
-//     if(err)
-//         console.log(err)
-//     console.log(document);
-// })
 
 app.get('/test', (req, res) => {
     // res.json('pls work');
     res.status(301);
     res.redirect('https://expressjs.com/');
 });
-
-
-// app.post('/comment/:id', (req, res) => {
-//     const data = req.body;
-//     const id = req.params.id;
-   
-//     data.eventId = id; //add something
-  
-//     // const mongooseObject = commentsCollectionMap[id];
-//     const newComment = new comment(data);
-//     newComment.save((error) => {
-//       if (error) {
-//         res.status(502).json({msg: 'Error'});
-//       }
-//       else {
-//         res.status(200).json({
-//           msg: 'Received data: ', data
-//         })
-//       }
-//     })
-//   });
 
 app.get('/getAllEvents', (req, res) =>{
     console.log('IN THE GET CALL');

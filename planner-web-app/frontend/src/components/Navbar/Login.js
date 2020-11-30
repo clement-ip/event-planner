@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import FormError from './FormErrors';
 import { AuthContext } from '../../Context/AuthContext';
-import AuthService from '../../Services/AuthService';
+import AuthServices from '../../Services/AuthServices';
 
 const Login = (props) => {
     const { register, handleSubmit, errors, setError, clearErrors } = useForm();
@@ -18,7 +18,7 @@ const Login = (props) => {
             password
         };
         
-        AuthService.login(user).then(res => {
+        AuthServices.login(user).then(res => {
             if(!(res.isAuthenticated)){
                 console.log("login unsucessful")
                 {

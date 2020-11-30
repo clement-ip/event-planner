@@ -10,7 +10,8 @@ import CommentBox from './components/comments-system/client/src/components/Box';
 import ListAllEvents from "./components/ListEvents/ListEvents";
 import SingleEvent from "./components/Event/SingleEvent";
 
-import AuthService from './Services/AuthService';
+import AuthService from './Services/AuthServices';
+import CommentServices from './Services/CommentServices';
 
 function App() {
   // const person = {
@@ -24,6 +25,21 @@ function App() {
   // AuthService.isAuthenticated().then(data => console.log(data));
   // AuthService.logout()
 
+  const commentData = {
+    eventID : "5fc3e92aeec5eb21f86af25f",
+    message : "This is a test message",
+    name : "Hassan"
+  }
+
+  const eventID = "5fc3e92aeec5eb21f86af25f";
+
+  // CommentServices.commentList(eventID)
+  //       .then(({ message, data }) => {
+  //         if(message.msgError)
+  //           console.log(message.msgBody);
+  //         else
+  //           console.log("comment data: ", data);
+  //       });
 
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 

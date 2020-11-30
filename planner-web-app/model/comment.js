@@ -33,7 +33,7 @@ const commentSchema = new Schema({
         type : String, 
         default: joinedDate
     },
-    eventId : {
+    eventID : {
         type: String,
         required: true
     }

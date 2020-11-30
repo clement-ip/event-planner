@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import FormError from './FormErrors';
 import { AuthContext } from '../../Context/AuthContext';
-import AuthService from '../../Services/AuthService';
+import AuthServices from '../../Services/AuthServices';
 
 const Signup = (props) => {
     const { register, handleSubmit, errors, setError, clearErrors } = useForm();
@@ -25,7 +25,7 @@ const Signup = (props) => {
                 password
             };
 
-            AuthService.register(user).then(({message}) => {
+            AuthServices.register(user).then(({message}) => {
                 const { msgBody, msgError} = message;
                 if(msgError){
                     if(msgBody === "Email is already taken") {
