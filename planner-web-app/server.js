@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const comment = require('./model/comment');
+const comment = require('./model/Comment');
 const authRoutes = require('./routes/authRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 const Event = require('./model/Event');
 
 const app = express();
@@ -40,6 +41,7 @@ mongoose.connect(atlasURI, { useNewUrlParser: true, useUnifiedTopology: true, us
 
 
 app.use(authRoutes);
+app.use(commentRoutes);
 
 const User = require('./model/User');
 // const userInput = {
@@ -62,38 +64,25 @@ app.get('/test', (req, res) => {
 });
 
 
-app.get('/comment/:id', (req, res) => {
-    console.log("Trying to GET");
-    const id = req.params.id;
-    comment.find({eventId: id}, function(err,result) {
-      if (err) {
-        res.status(500).send(err);
-      }
-      else {
-        res.status(200).send(result);
-      }
-    })
-  });
-
-app.post('/comment/:id', (req, res) => {
-    const data = req.body;
-    const id = req.params.id;
+// app.post('/comment/:id', (req, res) => {
+//     const data = req.body;
+//     const id = req.params.id;
    
-    data.eventId = id; //add something
+//     data.eventId = id; //add something
   
-    // const mongooseObject = commentsCollectionMap[id];
-    const newComment = new comment(data);
-    newComment.save((error) => {
-      if (error) {
-        res.status(500).json({msg: 'Error'});
-      }
-      else {
-        res.status(200).json({
-          msg: 'Received data: ', data
-        })
-      }
-    })
-  });
+//     // const mongooseObject = commentsCollectionMap[id];
+//     const newComment = new comment(data);
+//     newComment.save((error) => {
+//       if (error) {
+//         res.status(502).json({msg: 'Error'});
+//       }
+//       else {
+//         res.status(200).json({
+//           msg: 'Received data: ', data
+//         })
+//       }
+//     })
+//   });
 
 app.get('/getAllEvents', (req, res) =>{
     console.log('IN THE GET CALL');
