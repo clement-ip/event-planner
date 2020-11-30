@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const Event = require('./model/Event');
+const profileRoutes = require('./routes/profilePageRoutes');
 
 const authRoutes = require('./routes/authRoutes');
 const commentRoutes = require('./routes/commentRoutes');
@@ -30,7 +31,7 @@ const port = process.env.PORT || 5000;
 
 // Configure AtlasDB
 const { atlasURI } = require('./config/keys');
-mongoose.connect(atlasURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(atlasURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
     .then((result) => http.listen(port))
     .then(() => console.log(`DB connect and running server on port ${ port }`))
     .catch((err) => console.log(err));
@@ -39,7 +40,7 @@ mongoose.connect(atlasURI, { useNewUrlParser: true, useUnifiedTopology: true, us
 app.use(authRoutes);
 app.use(commentRoutes);
 app.use(eventRoutes);
-
+app.use(profileRoutes);
 
 app.get('/test', (req, res) => {
     // res.json('pls work');
