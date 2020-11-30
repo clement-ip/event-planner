@@ -88,7 +88,7 @@ function SingleEvent(props){
                 <strong>Tags</strong>: {data.tags}<br/>
                 <strong>Requirements</strong>: {data.requirements}
             </p>
-            <CommentBox data={props.match.params.id} user={user}/>
+            <CommentBox eventID={props.match.params.id} user={user}/>
         </div>
     )
 }

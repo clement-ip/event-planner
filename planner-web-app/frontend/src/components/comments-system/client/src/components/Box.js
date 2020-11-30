@@ -6,6 +6,8 @@ import axios from 'axios';
 import io from 'socket.io-client'
 import { PromiseProvider } from 'mongoose';
 
+import CommentServices from '../../../../../Services/CommentServices';
+
 const SERVER = "http://localhost:5000";
 
 function Box(props) {
@@ -13,34 +15,33 @@ function Box(props) {
     const fetchData = useRef(() => {});
 
     useEffect(() => {
-        console.log('pros.data: ', props.data)
-        // Fetch call 1
-        fetch('/comment/'+ props.data)
-        .then(response => response.json())
-        .then(data => {
-            console.log("Get response: ", data);
+        console.log('pros.eventID: ', props.eventID)
+
+        CommentServices.commentList(props.eventID)
+        .then(({ message, data }) => {
+          if(message.msgError)
+            console.log(message.msgBody);
+          else
             setComments(data);
-        })
-        .catch(error => console.error(error));
+        });
         const socket = io(SERVER, {transports: ['websocket']});
         socket.on('Comment', (msg) => {
             console.log('Socket received: ', msg);
             fetchData.current();
         });
         return () => socket.disconnect();
-    }, [props.data]);
+    }, [props.eventID]);
 
     fetchData.current = () => {
-        // axios.get('/comment')
-        //   .then(({data}) => this.setState({ comments: data}))
-        //   .catch(e => console.log(e))
-        fetch('/comment/' + props.data)
-        .then(response => response.json())    // one extra step
-        .then(data => {
-          console.log("Get response: ", data);
-          setComments(data)
-        })
-      }
+      CommentServices.commentList(props.eventID)
+      .then(({ message, data }) => {
+        if(message.msgError)
+          console.log(message.msgBody);
+        else
+          setComments(data);
+      });
+
+    }
 
     function handleSubmit(e) {
         e.preventDefault();

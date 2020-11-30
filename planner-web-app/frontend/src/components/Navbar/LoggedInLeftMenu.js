@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 
-import AuthService from '../../Services/AuthService';
+import AuthServices from '../../Services/AuthServices';
 import { AuthContext } from '../../Context/AuthContext';
 
 const LoggedOutDropdown = () => {
     const { setIsAuthenticated } = useContext(AuthContext);
 
     const logOutHandler = () => {
-        AuthService.logout();
+        AuthServices.logout();
         setIsAuthenticated(false);
     }
 

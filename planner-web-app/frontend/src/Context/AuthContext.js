@@ -1,5 +1,5 @@
 import React, {createContext, useState, useEffect} from 'react';
-import AuthService from '../Services/AuthService';
+import AuthServices from '../Services/AuthServices';
 
 /*
     Uses the context API to set global state for Authentication
@@ -13,12 +13,13 @@ export const AuthContext = createContext();
 // Children are the components which will be wrapped 
 export default ({ children }) => {
     // states
+    // NEED TO ALSO TRACK NAME OF USER
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        AuthService.isAuthenticated().then(data => {
+        AuthServices.isAuthenticated().then(data => {
             console.log(data)
             setUser(data.user);
             setIsAuthenticated(data.isAuthenticated);
