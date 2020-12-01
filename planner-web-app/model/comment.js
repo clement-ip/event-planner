@@ -37,6 +37,18 @@ const commentSchema = new Schema({
         type: String,
         required: true
     },
+    topLevel : {
+        type: Boolean,
+        required: true
+    },
+    replyLevel : {
+        type: Boolean,
+        required: true
+    },
+    topLevelID : {
+        type: String,
+        required: false
+    }
 });
 
 module.exports = Comment = mongoose.model('comment', commentSchema);

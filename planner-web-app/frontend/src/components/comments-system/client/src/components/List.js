@@ -5,8 +5,9 @@ import './comments-system.sass';
 
 function List(props) {
     const onUpdateDeletedComment = props.onUpdateDeletedComment;
+    const fetchData = props.fetchData;
     var commentNodes = props.data.map((comment) => (
-        <Comment user={comment.name} date={comment.time} key={comment._id} commentId={comment._id} onUpdateDeletedComment={onUpdateDeletedComment}>
+        <Comment user={comment.name} date={comment.time} key={comment._id} commentID={comment._id} eventID={comment.eventID} message={comment.message} onUpdateDeletedComment={onUpdateDeletedComment} fetchData={fetchData}>
             <li className="list-group-item">{comment.message}</li>
         </Comment>
     ));
