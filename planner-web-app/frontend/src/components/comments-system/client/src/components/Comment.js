@@ -15,7 +15,7 @@ function Comment(props) {
     }
 
     function handleDelete() {
-        props.onUpdateDeletedComment(true);
+        props.onUpdateDeletedComment();
         CommentServices.deleteComment(props.commentId)
         .then(response => {
             console.log(response);
