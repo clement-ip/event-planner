@@ -31,15 +31,7 @@ function App() {
     name : "Hassan"
   }
 
-  const eventID = "5fc3e92aeec5eb21f86af25f";
-
-  // CommentServices.commentList(eventID)
-  //       .then(({ message, data }) => {
-  //         if(message.msgError)
-  //           console.log(message.msgBody);
-  //         else
-  //           console.log("comment data: ", data);
-  //       });
+  CommentServices.createComment(commentData).then(data => console.log("Testing", data));
 
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
