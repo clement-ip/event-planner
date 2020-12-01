@@ -12,8 +12,13 @@ section {
 
 .user-date {
     text-align: left;
+    margin-bottom: 10px;
 }
 
 .comment {
     text-align: left;
+}
+
+.user-date button{
+    float:right;
 }

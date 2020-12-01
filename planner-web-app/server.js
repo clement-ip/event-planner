@@ -75,8 +75,6 @@ app.post('/saveEvent',(req, res) => {
 
 app.delete('/deleteEvent', (req,res)=>{
     console.log('DELETE REQ');
-    console.log(req.body);
-    console.log(req.body.id);
     Event.deleteOne({_id:req.body.id}, function(err, result){
         if(!err){
             res.status(200).json(result);
@@ -87,14 +85,14 @@ app.delete('/deleteEvent', (req,res)=>{
             console.log("error",err)
         }
     });
-    // comment.deleteOne({eventId:req.body.id}, function(err){
-    //     if(!err){
-    //         console.log("Deleted comments associated with event")
-    //     }
-    //     else{
-    //         console.log("Error: ",err)
-    //     }
-    // });
+    Comment.deleteMany({eventID:req.body.id}, function(err){
+        if(!err){
+            console.log("Deleted comments associated with event")
+        }
+        else{
+            console.log("Error: ",err)
+        }
+    });
 });
 
 app.get('/getSingleEvent/:id', (req, res) =>{
@@ -115,5 +113,7 @@ io.on('connection', (socket) => {
     socket.on('Comment', (msg) => {
       io.emit('Comment', msg);
     });
+    socket.on('DeleteComment', (msg) => {
+        io.emit('DeleteComment', msg);
+      });
 });
-  

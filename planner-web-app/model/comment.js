@@ -36,7 +36,7 @@ const commentSchema = new Schema({
     eventID : {
         type: String,
         required: true
-    }
+    },
 });
 
 module.exports = Comment = mongoose.model('comment', commentSchema);

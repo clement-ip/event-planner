@@ -47,7 +47,7 @@ const SingleEventForList = props => (
                                     eventDes: event.description,
                                     eventS_datetime: event.start_date,
                                     eventE_datetime: event.end_date,
-                                    event_id: event._id
+                                    eventID: event._id
                                 },
                             }} >See More</Link>
                         </button>

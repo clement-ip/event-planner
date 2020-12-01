@@ -13,29 +13,41 @@ const socket = io(SERVER, {transports: ['websocket']});
 
 function Box(props) {
     const [comments, setComments] = useState([]);
+    var deletedComment = false;
+
     const fetchData = useRef(() => {});
 
     useEffect(() => {
       CommentServices.commentList(props.eventID)
       .then(({ message, data }) => {
-        if(message.msgError)
+        if(message.msgError) {
           console.log(message.msgBody);
-        else
+        }
+        else {
           setComments(data);
+        }
       });
 
-        // console.log('pros.eventID: ', props.eventID)
-        // const socket = io(SERVER, {transports: ['websocket']});
-        socket.on('Comment', (msg) => {
-            console.log('Socket received: ', msg);
-            CommentServices.commentList(props.eventID)
-            .then(({ message, data }) => {
-              if(message.msgError)
-                console.log(message.msgBody);
-              else
-                setComments(data);
-            });
+      socket.on('Comment', (msg) => {
+          console.log('Socket received: ', msg);
+          CommentServices.commentList(props.eventID)
+          .then(({ message, data }) => {
+            if(message.msgError)
+              console.log(message.msgBody);
+            else
+              setComments(data);
+          });
         });
+        socket.on('DeleteComment', (msg) => {
+          console.log('Socket received delete comment');
+          CommentServices.commentList(props.eventID)
+          .then(({ message, data }) => {
+            if(message.msgError)
+              console.log(message.msgBody);
+            else
+              setComments(data);
+          });
+      });
         // return () => socket.disconnect();
     }, [props.eventID]);
 
@@ -44,10 +56,10 @@ function Box(props) {
       .then(({ message, data }) => {
         if(message.msgError)
           console.log(message.msgBody);
-        else
+        else {
           setComments(data);
+        }
       });
-
     }
 
     function handleSubmit(e) {
@@ -65,6 +77,14 @@ function Box(props) {
           })
       };
 
+    function updateDeletedComment(state) {
+      deletedComment = state;
+      console.log("deletedComment: " + deletedComment);
+      const socket = io(SERVER, {transports: ['websocket']});
+      socket.emit('DeleteComment');
+      fetchData.current();
+    }
+
     const css = `.hide { position:absolute; top:-1px; left:-1px; width:1px; height:1px; }`
     return (
       <section className="column is-5-desktop" id="box">
@@ -77,7 +97,7 @@ function Box(props) {
               </section>
               </form>
           <section className="message is-primary">
-              <List data={comments} />
+              <List data={comments} eventID={props.eventID} onUpdateDeletedComment={updateDeletedComment}/>
               <style>{css}</style>
           </section>
           </section>
