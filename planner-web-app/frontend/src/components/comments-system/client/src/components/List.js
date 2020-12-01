@@ -4,8 +4,9 @@ import './List.css';
 import './comments-system.sass';
 
 function List(props) {
+    const onUpdateDeletedComment = props.onUpdateDeletedComment;
     var commentNodes = props.data.map((comment) => (
-        <Comment user={comment.name} date={comment.time} key={comment._id}>
+        <Comment user={comment.name} date={comment.time} key={comment._id} commentId={comment._id} onUpdateDeletedComment={onUpdateDeletedComment}>
             <li className="list-group-item">{comment.message}</li>
         </Comment>
     ));

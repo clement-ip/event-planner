@@ -35,5 +35,22 @@ export default {
                 else
                     return { isAuthenticated : false, message : { msgBody : "Not Authenticated", msgError : true}};
             });
+    },
+    deleteComment : commentID => {
+        return fetch('http://localhost:5000/comment/' + commentID, {
+            credentials : 'include',
+            method : "delete",
+            headers : {
+                'Content-Type' : 'application/json'
+            }
+        })
+            .then(res => {
+                if(res.status !== 401)
+                    return res.json().then(({ message }) => {
+                        return { isAuthenticated : true, message };
+                    });
+                else
+                    return { isAuthenticated : false, message : { msgBody : "Not Authenticated", msgError : true}};
+            });
     }
 }

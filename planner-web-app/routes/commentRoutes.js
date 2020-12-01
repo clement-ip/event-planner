@@ -5,8 +5,8 @@ const commentController = require('../controllers/commentController');
 const router = Router();
 
 // Need to add passport jwt once front end is successful
-router.get('/comment/:id', commentController.commentid_get);
+router.get('/comment/:eventID', commentController.commentid_get);
 router.post('/comment', commentController.commentid_post);
-
+router.delete('/comment/:commentID', commentController.commentid_delete);
 
 module.exports = router;
