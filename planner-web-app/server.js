@@ -115,5 +115,5 @@ io.on('connection', (socket) => {
     socket.on('Comment', (msg) => {
       io.emit('Comment', msg);
     });
-  });
+});
   
