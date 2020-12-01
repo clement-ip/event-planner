@@ -50,6 +50,7 @@ function Box(props) {
     }, [props.eventID]);
 
     fetchData.current = () => {
+      console.log("fetchData called");
       CommentServices.commentList(props.eventID)
       .then(({ message, data }) => {
         if(message.msgError)
@@ -62,7 +63,7 @@ function Box(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        const newComment = {name: e.target.name.value, message: e.target.message.value, eventID: props.eventID};
+        const newComment = {name: e.target.name.value, message: e.target.message.value, eventID: props.eventID, topLevel: true, replyLevel: false};
         console.log("New Comment: ", newComment);
         const socket = io(SERVER, {transports: ['websocket']});
         socket.emit('Comment', newComment);
@@ -93,7 +94,7 @@ function Box(props) {
               </section>
               </form>
           <section className="message is-primary">
-              <List data={comments} eventID={props.eventID} onUpdateDeletedComment={updateDeletedComment}/>
+              <List data={comments} eventID={props.eventID} onUpdateDeletedComment={updateDeletedComment} fetchData={fetchData.current}/>
               <style>{css}</style>
           </section>
           </section>

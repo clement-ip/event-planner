@@ -20,5 +20,32 @@ section {
 }
 
 .user-date button{
-    float:right;
+    float: right;
+}
+
+.reply-btn {
+    background: none;
+    border: none;
+}
+
+.reply-btn #label {
+    color: rgb(163, 158, 158);
+}
+
+.reply-list {
+    margin-left:5%;
+}
+
+.reply-user-date {
+    margin-bottom: 10px;
+}
+
+.delete-btn {
+    float: right;
+    background: none;
+    border: none;
+}
+
+.delete-btn #label {
+    color: rgb(163, 158, 158);
 }
