@@ -37,7 +37,7 @@ function Box(props) {
             });
         });
         // return () => socket.disconnect();
-    }, []);
+    }, [props.eventID]);
 
     fetchData.current = () => {
       CommentServices.commentList(props.eventID)
@@ -52,17 +52,12 @@ function Box(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        const newComment = JSON.stringify({name: e.target.name.value, message: e.target.message.value});
+        const newComment = {name: e.target.name.value, message: e.target.message.value, eventID: props.eventID};
         console.log("New Comment: ", newComment);
         const socket = io(SERVER, {transports: ['websocket']});
         socket.emit('Comment', newComment);
         // Fetch call 2
-        axios.post('/comment/' + props.data, newComment, {
-          headers: {
-              'Content-Type': 'application/json',
-              }
-            }
-          )
+        CommentServices.createComment(newComment)
           .then(response => {
             fetchData.current();
             e.target.name.value = "";
