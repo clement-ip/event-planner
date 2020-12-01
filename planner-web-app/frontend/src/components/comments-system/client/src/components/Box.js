@@ -9,28 +9,35 @@ import { PromiseProvider } from 'mongoose';
 import CommentServices from '../../../../../Services/CommentServices';
 
 const SERVER = "http://localhost:5000";
+const socket = io(SERVER, {transports: ['websocket']});
 
 function Box(props) {
     const [comments, setComments] = useState([]);
     const fetchData = useRef(() => {});
 
     useEffect(() => {
-        console.log('pros.eventID: ', props.eventID)
+      CommentServices.commentList(props.eventID)
+      .then(({ message, data }) => {
+        if(message.msgError)
+          console.log(message.msgBody);
+        else
+          setComments(data);
+      });
 
-        CommentServices.commentList(props.eventID)
-        .then(({ message, data }) => {
-          if(message.msgError)
-            console.log(message.msgBody);
-          else
-            setComments(data);
-        });
-        const socket = io(SERVER, {transports: ['websocket']});
+        // console.log('pros.eventID: ', props.eventID)
+        // const socket = io(SERVER, {transports: ['websocket']});
         socket.on('Comment', (msg) => {
             console.log('Socket received: ', msg);
-            fetchData.current();
+            CommentServices.commentList(props.eventID)
+            .then(({ message, data }) => {
+              if(message.msgError)
+                console.log(message.msgBody);
+              else
+                setComments(data);
+            });
         });
-        return () => socket.disconnect();
-    }, [props.eventID]);
+        // return () => socket.disconnect();
+    }, []);
 
     fetchData.current = () => {
       CommentServices.commentList(props.eventID)
