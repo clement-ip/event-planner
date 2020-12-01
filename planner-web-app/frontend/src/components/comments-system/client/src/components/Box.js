@@ -13,8 +13,6 @@ const socket = io(SERVER, {transports: ['websocket']});
 
 function Box(props) {
     const [comments, setComments] = useState([]);
-    var deletedComment = false;
-
     const fetchData = useRef(() => {});
 
     useEffect(() => {
@@ -77,9 +75,7 @@ function Box(props) {
           })
       };
 
-    function updateDeletedComment(state) {
-      deletedComment = state;
-      console.log("deletedComment: " + deletedComment);
+    function updateDeletedComment() {
       const socket = io(SERVER, {transports: ['websocket']});
       socket.emit('DeleteComment');
       fetchData.current();
