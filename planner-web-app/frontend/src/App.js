@@ -25,13 +25,13 @@ function App() {
   // AuthService.isAuthenticated().then(data => console.log(data));
   // AuthService.logout()
 
-  const commentData = {
-    eventID : "5fc3e92aeec5eb21f86af25f",
-    message : "This is a test message",
-    name : "Hassan"
-  }
+  // const commentData = {
+  //   eventID : "5fc3e92aeec5eb21f86af25f",
+  //   message : "This is a test message",
+  //   name : "Hassan"
+  // }
 
-  CommentServices.createComment(commentData).then(data => console.log("Testing", data));
+  // CommentServices.createComment(commentData).then(data => console.log("Testing", data));
 
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
