@@ -24,7 +24,7 @@ function Carousel(props) {
 
     bulmaCarousel.attach('#carousel-items', {
       slidesToScroll: 1,
-      slidesToShow: 4,
+      slidesToShow: 6,
       pagination: false,
       infinite: true
     });

@@ -34,6 +34,12 @@
             "title": "Mon titre 6", 
             "description": "Ici une petite description pour tester le slider",
             "image": "https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+        },
+
+        {
+            "title": "Mon titre 7", 
+            "description": "Ici une petite description pour tester le slider",
+            "image": "https://images.unsplash.com/photo-1550930516-af8b8cc4f871?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
         }
     ]
 }
