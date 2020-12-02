@@ -17,10 +17,10 @@ const Login = (props) => {
             email,
             password
         };
-        
+
         AuthServices.login(user).then(res => {
             if(!(res.isAuthenticated)){
-                console.log("login unsucessful")
+                console.log("login unsuccessful")
                 {
                     [
                       {
@@ -67,10 +67,8 @@ const Login = (props) => {
                         </a>
                         <p className="modal-card-title has-text-centered is-size-5"><b>Log In</b></p>
                     </header>
-
                     {/* Body */}
                     <section className="modal-card-body">
-                        
                         {/* Email */}
                         <div className="field mx-5">
                             <label className="label">Email</label>
@@ -111,5 +109,5 @@ const Login = (props) => {
         </form>
     );
 }
- 
+
 export default withRouter(Login);

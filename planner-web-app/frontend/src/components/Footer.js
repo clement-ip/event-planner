@@ -21,7 +21,9 @@ const Footer = () => {
                             <span className="icon">
                                 <i className="fab fa-github-alt"></i>
                             </span>
-                            <a href="https://csil-git1.cs.surrey.sfu.ca/kci1/470-planner-web-app" className="has-text-grey">Github</a>
+                            <a href="https://csil-git1.cs.surrey.sfu.ca/kci1/470-planner-web-app" className="has-text-grey">
+                                Github
+                            </a>
                         </p>
                     </div>
                 </div>
@@ -29,5 +31,5 @@ const Footer = () => {
         </footer>
     );
 }
- 
+
 export default Footer;

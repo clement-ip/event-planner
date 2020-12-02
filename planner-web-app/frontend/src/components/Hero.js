@@ -9,7 +9,6 @@ import Footer from './Footer';
 const Hero = (props) => {
 
     const { isAuthenticated, setIsAuthenticated} = useContext(AuthContext);
-
     if(!isAuthenticated)
         return <Redirect to='/' />
 
@@ -20,5 +19,5 @@ const Hero = (props) => {
     </div>
   );
 }
- 
+
 export default Hero;
