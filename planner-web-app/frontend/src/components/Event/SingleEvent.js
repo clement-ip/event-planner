@@ -4,7 +4,7 @@ import CommentBox from "../comments-system/client/src/components/Box"
 import { AuthContext } from '../../Context/AuthContext';
 import axios from "axios";
 
-
+import EventServices from '../../Services/EventServices';
 
 function SingleEvent(props){
 
@@ -34,37 +34,36 @@ function SingleEvent(props){
     //     end_date: '',
     // }
 
-    console.log("ID",props.match.params.id);
+    // console.log("ID",props.match.params.id);
 
     useEffect(()=> {
-
-        axios({
-            url: '/getSingleEvent/'+props.match.params.id,
-            method: 'GET',
-        })
-            .then((res) =>{
-                console.log('this the data',res.data);
-                setData({
-                    name: res.data.name,
-                    description: res.data.description,
-                    location_city: res.data.location_city,
-                    location_country: res.data.location_country,
-                    location_address: res.data.location_address,
-                    requirements: res.data.requirements,
-                    host_email: res.data.host_email,
-                    host_phone_number: res.data.host_phone_number,
-                    host_id: res.data.host_id,
-                    host_name: res.data.host_name,
-                    host_organization: res.data.host_organization,
-                    tags: res.data.tags,  //change to [String] and maybe implement react-tag-input
-                    start_date_time: res.data.start_date_time,
-                    end_date_time: res.data.end_date_time
-
-                });
-                console.log("data has been fetched");
-
+        const eventID = props.match.params.id;
+        EventServices.getSingleEvent(eventID)
+            .then(({ message, eventData}) =>{
+                if(message.msgError)
+                    console.log(message.msgBody);
+                else {
+                    setData({
+                        name: eventData.name,
+                        description: eventData.description,
+                        location_city: eventData.location_city,
+                        location_country: eventData.location_country,
+                        location_address: eventData.location_address,
+                        requirements: eventData.requirements,
+                        host_email: eventData.host_email,
+                        host_phone_number: eventData.host_phone_number,
+                        host_id: eventData.host_id,
+                        host_name: eventData.host_name,
+                        host_organization: eventData.host_organization,
+                        tags: eventData.tags,  //change to [String] and maybe implement react-tag-input
+                        start_date_time: eventData.start_date_time,
+                        end_date_time: eventData.end_date_time
+    
+                    });
+                }
+                // console.log('this the data',res.data);
+                // console.log("data has been fetched");
             })
-            .catch(err => console.log(err));
     }, [props.match.params.id]);
 
 

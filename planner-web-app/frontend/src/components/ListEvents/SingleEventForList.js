@@ -2,6 +2,9 @@ import React from "react";
 import {Link} from "react-router-dom";
 import './ListEvents.css';
 import axios from "axios";
+
+import EventServices from '../../Services/EventServices';
+
 function goToEvent(){
     console.log('okay');
 }
@@ -11,23 +14,34 @@ const logDelete = e =>{
     console.log(e)//
     //GO DELETE e WHICH IS THE ID TO DELETE;
     //AXIOS
-    var eventToDelete = {
+    var eventID = {
         id: e
     }
-    console.log(eventToDelete.id);
-    axios({
-        url: '/deleteEvent',
-        method: 'DELETE',
-        data: eventToDelete
-    })
-        //.then(response => response.json())
-        .then(response => {
-            console.log('DONE DELETING 1');
-            window.location.reload(true);
-        })
-        .catch(error => console.error(error));
-    console.log('DONE DELETING');
-    window.location.reload(true);
+    console.log(eventID.id);
+
+    EventServices.deleteEvent(eventID)
+        .then(({ message }) => {
+            if(message.msgError)
+                console.log(message.msgBody);
+            else {
+                console.log(message.msgBody);
+                window.location.reload(true);
+            }
+        });
+
+    // axios({
+    //     url: '/deleteEvent',
+    //     method: 'DELETE',
+    //     data: eventID
+    // })
+    //     //.then(response => response.json())
+    //     .then(response => {
+    //         console.log('DONE DELETING 1');
+    //         window.location.reload(true);
+    //     })
+    //     .catch(error => console.error(error));
+    // console.log('DONE DELETING');
+    // window.location.reload(true);
 }
 
 const SingleEventForList = props => (

@@ -10,14 +10,14 @@ import interactionPlugin from "@fullcalendar/interaction";
 
 function formatEventData(eventList){
     const list = [];
-    console.log("hi",eventList);
+    // console.log("hi",eventList);
     eventList.forEach(function(entry){
-        console.log("entry",entry);
+        // console.log("entry",entry);
         list.push({title: entry.name, "start":entry.start_date_time, "end":entry.end_date_time})
 
     });
     //data.dataBaseEventsFormatted = list
-    console.log("formatted",list);
+    // console.log("formatted",list);
     return list;
 }
 
@@ -25,7 +25,7 @@ function formatEventData(eventList){
 
 function Calendar(props){
 
-    console.log("the props",props.calendarProp);
+    // console.log("the props",props.calendarProp);
     var data = formatEventData(props.calendarProp);
 
     return(
