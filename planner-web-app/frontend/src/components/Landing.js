@@ -2,6 +2,7 @@ import React from "react";
 import Carousel from "./Carousel/Carousel";
 
 import Footer from './Footer';
+import FileUpload from "./Uploader/FileUpload";
 
 const Landing = () => {
 
@@ -9,6 +10,7 @@ const Landing = () => {
     <div>
       Landing
       <Carousel/>
+      <FileUpload/>
       <Footer />
     </div>
   );

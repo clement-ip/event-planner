@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const Event = require('./model/Event');
+const fileUpload = require('express-fileupload');
 
 const authRoutes = require('./routes/authRoutes');
 const commentRoutes = require('./routes/commentRoutes');
@@ -15,6 +16,7 @@ const io = require('socket.io')(http);
 
 app.use(cookieParser());
 app.use(express.json());
+app.use(fileUpload());
 
 // Cors
 const corsOptions = {
@@ -109,6 +111,23 @@ app.get('/getSingleEvent/:id', (req, res) =>{
             //res.redirect('/404');
         })
 });
+
+app.post('/upload', (req, res) => {
+    if (req.files === null) {
+      return res.status(400).json({ msg: 'No file uploaded' });
+    }
+  
+    const file = req.files.file;
+  
+    file.mv(`${__dirname}/frontend/public/uploads/${file.name}`, err => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send(err);
+      }
+  
+      res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+    });
+  });  
 
 io.on('connection', (socket) => {
     console.log('A user has connected');
