@@ -60,6 +60,7 @@ module.exports.logout_get = (req, res) => {
 
 // Sync up the backend and front end to get cookie if the browser is closed
 module.exports.authenticated_get = (req, res) => {
+    console.log(req.user);
     const { email } = req.user;
     res.status(200).json({isAuthenticated : true, user : { email }});
 }
