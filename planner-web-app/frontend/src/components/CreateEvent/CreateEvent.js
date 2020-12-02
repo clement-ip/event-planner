@@ -8,10 +8,6 @@ import EventForm from "./EventForm";
 
 import EventServices from '../../Services/EventServices';
 
-
-
-
-
 function EventCalendar(){
 
     const [data, setData] = useState({

@@ -52,7 +52,10 @@ const SingleEventForList = props => (
                     <div className="notification is-primary">
                         <h1>ID: {event._id}</h1>
                         <p>
-                            <strong>Event Name</strong>: {event.name} <strong>Event Description</strong>: {event.description} <strong>Start Time</strong>: {event.start_date} <strong>End Time</strong>: {event.end_date}
+                            <strong>Event Name</strong>: {event.name}
+                            <strong>Event Description</strong>: {event.description}
+                            <strong>Start Time</strong>: {event.start_date}
+                            <strong>End Time</strong>: {event.end_date}
                         </p>
                         <button className="button is-info is-light" id= "goToEventButton" onClick={goToEvent}>
                             <Link to= {{

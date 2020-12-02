@@ -132,5 +132,5 @@ const Signup = (props) => {
         </form>
     );
 }
- 
+
 export default withRouter(Signup);
