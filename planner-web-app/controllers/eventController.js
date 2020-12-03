@@ -58,3 +58,36 @@ module.exports.deleteEvent = (req, res) => {
                 });
     })
 }
+module.exports.editEvent = (req, res) => {
+    Event.updateOne({_id: req.body.eventID},
+        {
+            $set: {
+                host_name: req.body.host_name,
+                description: req.body.description,
+                location_city: req.body.location_city,
+                location_country: req.body.location_country,
+                location_address: req.body.location_address,
+                requirements: req.body.requirements,
+                host_email: req.body.host_email,
+                host_phone_number: req.body.host_phone_number,
+                host_id: req.body.host_id,
+                host_organization: req.body.host_organization,
+                tags: req.body.tags,
+                start_date_time: req.body.start_date_time,
+                end_date_time: req.body.end_date_time
+            }
+        }, (err, response) => {
+            if (err)
+                res.status(500).json({
+                    message: {
+                        msgBody: "Error has occurred", msgError: true
+                    }
+                });
+            else
+                res.status(200).json({
+                    message: {
+                        msgBody: "Event successfully updated", msgError: false
+                    }
+                });
+        })
+}
