@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from "react";
 import axios from "axios";
 import SingleEventForList from "./SingleEventForList";
 
-
+import EventServices from '../../Services/EventServices';
 
 function ListAllEvents(){
 
@@ -19,18 +19,28 @@ function ListAllEvents(){
 
 
     useEffect(()=> {
-        fetch('/getAllEvents')
-            .then(response => response.json())
-            .then(data => {
-                console.log("Get response: ", data);
-                const dataBaseEvents = data
-                setData({dataBaseEvents : dataBaseEvents});
-                //console.log("Calendar data has been populated")
-                console.log("events",dataBaseEvents);
-                //const formatted = formatEventData(dataBaseEvents);
-                //setData({dataBaseEventsFormatted : formatted});
-            })
-            .catch(error => console.error(error));
+        EventServices.getAllEvents()
+            .then(({ message, eventsData }) => {
+                if(message.msgError)
+                    console.log(message.msgBody);
+                else {
+                    const dataBaseEvents = eventsData;
+                    setData({dataBaseEvents : dataBaseEvents});
+                }
+            });
+
+        // fetch('/getAllEvents')
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         console.log("Get response: ", data);
+        //         const dataBaseEvents = data
+        //         setData({dataBaseEvents : dataBaseEvents});
+        //         //console.log("Calendar data has been populated")
+        //         console.log("events",dataBaseEvents);
+        //         //const formatted = formatEventData(dataBaseEvents);
+        //         //setData({dataBaseEventsFormatted : formatted});
+        //     })
+        //     .catch(error => console.error(error));
     }, []);
 
 

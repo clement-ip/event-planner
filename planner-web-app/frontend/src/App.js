@@ -12,6 +12,7 @@ import SingleEvent from "./components/Event/SingleEvent";
 
 import AuthService from './Services/AuthServices';
 import CommentServices from './Services/CommentServices';
+import EventServices from './Services/EventServices';
 
 function App() {
   // const person = {
@@ -32,6 +33,8 @@ function App() {
   // }
 
   // CommentServices.createComment(commentData).then(data => console.log("Testing", data));
+
+  // EventServices.getAllEvents().then(({ eventsData }) => console.log('EventsData', eventsData));
 
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
