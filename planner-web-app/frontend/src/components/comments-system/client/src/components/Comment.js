@@ -116,7 +116,7 @@ function Comment(props) {
             <section className="user-date">
                 <strong>{props.user}</strong> <small>{props.date}</small>
                 {showDelete() ? <button className="delete-btn" onClick={() => handleDelete(props.commentID)}><strong id="label">Delete</strong></button> : ''}
-                <button className="reply-btn" onClick={onClick}><strong id="label">Reply</strong></button>
+                <button className="reply-btn" onClick={onClick}><strong id="label">Reply ({replies.length})</strong></button>
             </section>
             <section className="comment">
             <p>
