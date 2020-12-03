@@ -4,13 +4,14 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import {useHistory} from "react-router-dom";
 
 function formatEventData(eventList){
     const list = [];
     // console.log("hi",eventList);
     eventList.forEach(function(entry){
         // console.log("entry",entry);
-        list.push({title: entry.name, "start":entry.start_date_time, "end":entry.end_date_time})
+        list.push({title: entry.name, "start":entry.start_date_time, "end":entry.end_date_time, "event_id":entry._id})
 
     });
     //data.dataBaseEventsFormatted = list
@@ -19,7 +20,7 @@ function formatEventData(eventList){
 }
 
 function Calendar(props){
-
+    const history = useHistory();
     // console.log("the props",props.calendarProp);
     var data = formatEventData(props.calendarProp);
 
@@ -40,6 +41,12 @@ function Calendar(props){
                       timeZone="local"
                       eventTextColor='#fff'
                       events={data}
+                      eventClick={
+                          function(arg){
+                              console.log(arg.event._def.extendedProps.event_id)
+                              history.push(`/SingleEvent/${arg.event._def.extendedProps.event_id}`)
+                          }
+                      }
             //weekends={this.state.weekendsVisible}
             //initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
             //select={this.handleDateSelect}
