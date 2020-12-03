@@ -2,30 +2,33 @@ import React, { useState, useEffect } from 'react';
 import bulmaCarousel from "bulma-carousel/dist/js/bulma-carousel.min.js";
 import "bulma-carousel/src/sass/index.sass";
 
+import EventServices from '../../Services/EventServices';
 import CarouselTestData from './CarouselTestData.json';
 
 function Carousel() {
-  const [carouselData, setCarouselData] = useState({
-    carousel_data: []
+  const [data, setData] = useState({
+    carouselData: []
   });
-
-  // let data = props.data["items"]
-  // constructor(props) {
-  //     super(props)
-  //     this.state = {
-  //         CarouselTestData: [],
-  //     }
-  // }
 
   useEffect(() => {
     bulmaCarousel.attach('#carousel-items', {
       slidesToScroll: 1,
-      slidesToShow: 6,
+      slidesToShow: 5,
       pagination: false,
       infinite: true
     });
 
-    // let path = '/getAllEvents';
+
+  // EventServices.getAllEvents().then(({ message, eventsData }) => {
+  //   if(message.msgError)
+  //       console.log(message.msgBody);
+  //   else {
+  //       const carouselData = eventsData;
+  //       setData({ carouselData : carouselData });
+  //       console.log("events", carouselData);
+  //   }
+  // })
+
     // fetch('/getAllEvents')
     //   .then(response => response.json())
     //   .then(carouselData => {
@@ -37,22 +40,12 @@ function Carousel() {
 
   },[]); 
 
-  // const componentDidMount = () => {
-  //   bulmaCarousel.attach('#carousel-items', {
-  //     slidesToScroll: 1,
-  //     slidesToShow: 4,
-  //     pagination: false,
-  //     infinite: true
-  //   });
-  // }
-
-  // render() {
     return(
       <section className="section">
         <div className="carousel-container">
           <div id="carousel-items" className="carousel">
             {
-              // carouselData.carousel_data.map((CarouselItem, index) =>{
+              // data.carouselData.map((CarouselItem, index) =>{
               CarouselTestData.items.map((CarouselItem, index) =>{
                 return (
                   <div className="card" key={index}>
@@ -65,8 +58,7 @@ function Carousel() {
                     </div>
                     <div className="card-content">
                       <div className="item__title">
-                        {CarouselItem.title}
-                        {/* {CarouselItem.name} */}
+                        {CarouselItem.name}
                       </div>
                       <div className="item__description">
                         {CarouselItem.description}
@@ -80,7 +72,6 @@ function Carousel() {
         </div>
       </section>
     );
-  // }
 }
 
 export default Carousel;
