@@ -3,6 +3,7 @@ import "./Event.css"
 import CommentBox from "../comments-system/client/src/components/Box"
 import { AuthContext } from '../../Context/AuthContext';
 import axios from "axios";
+import EventEditForm from './EventEditForm'
 
 import EventServices from '../../Services/EventServices';
 
@@ -10,8 +11,9 @@ function SingleEvent(props){
 
     const {user} = useContext(AuthContext);
     const [data, setData] = useState({
-        dataBaseEvents:[],
+        dataBaseEvents: [],
         //dataBaseEventsFormatted:[],
+        eventID:'',
         name: '',
         description: '',
         location_city: '',
@@ -24,17 +26,10 @@ function SingleEvent(props){
         host_organization: '',
         tags: '',  //change to [String] and maybe implement react-tag-input
         start_date_time: '',
-        end_date_time: ''
+        end_date_time: '',
+        editState: false
     });
 
-    // var event = {
-    //     name: '',
-    //     description: '',
-    //     start_date: '',
-    //     end_date: '',
-    // }
-
-    // console.log("ID",props.match.params.id);
 
     useEffect(()=> {
         const eventID = props.match.params.id;
@@ -44,6 +39,7 @@ function SingleEvent(props){
                     console.log(message.msgBody);
                 else {
                     setData({
+                        eventID: eventID,
                         name: eventData.name,
                         description: eventData.description,
                         location_city: eventData.location_city,
@@ -65,10 +61,65 @@ function SingleEvent(props){
             })
     }, [props.match.params.id]);
 
+    function toggleEditOn(){
+        console.log('toggle on ',data);
+        setData({editState: true,
+            eventID: data.eventID,
+            name:data.name,
+            description: data.description,
+            location_city: data.location_city,
+            location_country: data.location_country,
+            location_address: data.location_address,
+            requirements: data.requirements,
+            host_email: data.host_email,
+            host_phone_number: data.host_phone_number,
+            host_id: data.host_id,
+            host_name: data.host_name,
+            host_organization: data.host_organization,
+            tags: data.tags,
+            start_date_time: data.start_date_time,
+            end_date_time: data.end_date_time,
+        })
+    }
+
+    function toggleEditOff(){
+        console.log('toggle off',data);
+        setData({editState: false,
+            eventID: data.eventID,
+            name:data.name,
+            description: data.description,
+            location_city: data.location_city,
+            location_country: data.location_country,
+            location_address: data.location_address,
+            requirements: data.requirements,
+            host_email: data.host_email,
+            host_phone_number: data.host_phone_number,
+            host_id: data.host_id,
+            host_name: data.host_name,
+            host_organization: data.host_organization,
+            tags: data.tags,
+            start_date_time: data.start_date_time,
+            end_date_time: data.end_date_time,
+        })
+    }
+
+
+    if(data.editState === true){
+        return(
+            <div>
+                <div>
+                    <EventEditForm props={data}></EventEditForm>
+                    <button onClick={toggleEditOff}>Cancel</button>
+                    <CommentBox eventID={props.match.params.id} user={user}/>
+                </div>
+            </div>
+        )
+    }
 
     return(
         <div>
             <h1 className="title is-1">Single Event Comp for: {data.name}</h1>
+            <button onClick={toggleEditOn}>EDIT</button>
             <h2>Host Info</h2>
             <p>
                 <strong>Name</strong>: {data.host_name} <br/>

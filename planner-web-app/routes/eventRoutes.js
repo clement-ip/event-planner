@@ -12,4 +12,6 @@ router.post('/saveEvent', eventController.saveEvent);
 
 router.delete('/deleteEvent', eventController.deleteEvent);
 
+router.put('/editEvent', eventController.editEvent);
+
 module.exports = router;
