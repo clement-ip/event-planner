@@ -1,0 +1,45 @@
+{
+    "items": [
+        {
+            "title": "Mon titre 1", 
+            "description": "Ici une petite description pour tester le slider",
+            "image": "https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+        },
+        
+        {
+            "title": "Mon titre 2", 
+            "description": "Ici une petite description pour tester le slider",
+            "image": "https://images.unsplash.com/photo-1550945771-515f118cef86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
+        },
+
+        {
+            "title": "Mon titre 3", 
+            "description": "Ici une petite description pour tester le slider",
+            "image": "https://images.unsplash.com/photo-1550971264-3f7e4a7bb349?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+        },
+
+        {
+            "title": "Mon titre 4", 
+            "description": "Ici une petite description pour tester le slider",
+            "image": "https://images.unsplash.com/photo-1550931937-2dfd45a40da0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+        },
+
+        {
+            "title": "Mon titre 5", 
+            "description": "Ici une petite description pour tester le slider",
+            "image": "https://images.unsplash.com/photo-1550930516-af8b8cc4f871?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
+        },
+
+        {
+            "title": "Mon titre 6", 
+            "description": "Ici une petite description pour tester le slider",
+            "image": "https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+        },
+
+        {
+            "title": "Mon titre 7", 
+            "description": "Ici une petite description pour tester le slider",
+            "image": "https://images.unsplash.com/photo-1550930516-af8b8cc4f871?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
+        }
+    ]
+}
