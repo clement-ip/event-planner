@@ -5,7 +5,7 @@ import Footer from './Footer';
 
 const Landing = () => {
 
-  return ( 
+  return (
     <div>
       Landing
       <Carousel/>
@@ -13,5 +13,5 @@ const Landing = () => {
     </div>
   );
 }
- 
+
 export default Landing;

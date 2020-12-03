@@ -15,9 +15,8 @@ const LoggedOutDropdown = () => {
         loginRef.current.classList.add('is-active');
     };
 
-    return ( 
+    return (
         <div className="navbar-end">
-
             <a className="navbar-item">
                 Create an Event
             </a>
@@ -49,5 +48,5 @@ const LoggedOutDropdown = () => {
         </div>
      );
 }
- 
+
 export default LoggedOutDropdown;

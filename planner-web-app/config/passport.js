@@ -32,9 +32,9 @@ passport.use(new JwtStrategy({
 
 // Local strategy used to authenticate users when logging in with email and password
 passport.use(new LocalStrategy({
-    usernameField : 'email',
-    passwordField : 'password'
-}, (username, password, done) => {
+        usernameField : 'email',
+        passwordField : 'password'
+    }, (username, password, done) => {
     User.findOne({ email : username}, (err, user)=> {
         // Something went wrong with database
         if(err)

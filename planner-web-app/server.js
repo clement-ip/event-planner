@@ -47,6 +47,13 @@ app.get('/test', (req, res) => {
     res.redirect('https://expressjs.com/');
 });
 
+io.on('connection', (socket) => {
+    console.log('A user has connected');
+    socket.on('Comment', (msg) => {
+      io.emit('Comment', msg);
+    });
+});
+
 // app.get('/getAllEvents', (req, res) =>{
 //     console.log('IN THE GET CALL');
 //     Event.find({ })
