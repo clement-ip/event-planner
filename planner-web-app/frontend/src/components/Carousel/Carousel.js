@@ -5,7 +5,20 @@ import "bulma-carousel/src/sass/index.sass";
 import EventServices from '../../Services/EventServices';
 import CarouselTestData from './CarouselTestData.json';
 
-function Carousel() {
+// function formatEventData(eventList){
+//   const list = [];
+//   // console.log("hi",eventList);
+//   eventList.forEach(function(entry){
+//       // console.log("entry",entry);
+//       list.push({"name": entry.name, "description":entry.description})
+
+//   });
+//   //data.dataBaseEventsFormatted = list
+//   // console.log("formatted",list);
+//   return list;
+// }
+
+function Carousel(props) {
   const [data, setData] = useState({
     carouselData: []
   });
@@ -29,23 +42,25 @@ function Carousel() {
   //   }
   // })
 
-    // fetch('/getAllEvents')
-    //   .then(response => response.json())
-    //   .then(carouselData => {
-    //     const data = carouselData
-    //     setCarouselData({carousel_data : data});
-    //     console.log("events", data);
-    //   })
-    //   .catch(error => console.error(error));
+  // fetch('/getAllEvents')
+  //   .then(response => response.json())
+  //   .then(carouselData => {
+  //     const data = carouselData
+  //     setCarouselData({carousel_data : data});
+  //     console.log("events", data);
+  //   })
+  //   .catch(error => console.error(error));
 
   },[]); 
+
+  // var EventData = formatEventData(data.carouselData);
 
     return(
       <section className="section">
         <div className="carousel-container">
           <div id="carousel-items" className="carousel">
             {
-              // data.carouselData.map((CarouselItem, index) =>{
+              // EventData.map((CarouselItem, index) =>{
               CarouselTestData.items.map((CarouselItem, index) =>{
                 return (
                   <div className="card" key={index}>
