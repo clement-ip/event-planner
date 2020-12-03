@@ -58,7 +58,6 @@ function SingleEvent(props){
                         tags: eventData.tags,  //change to [String] and maybe implement react-tag-input
                         start_date_time: eventData.start_date_time,
                         end_date_time: eventData.end_date_time
-    
                     });
                 }
                 // console.log('this the data',res.data);

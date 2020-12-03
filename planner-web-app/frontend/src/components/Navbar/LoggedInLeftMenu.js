@@ -11,7 +11,7 @@ const LoggedOutDropdown = () => {
         setIsAuthenticated(false);
     }
 
-    return ( 
+    return (
         <div className="navbar-end">
         {/* Signup/Login Dropdown */}
             <div className="navbar-item is-hoverable">
@@ -36,5 +36,5 @@ const LoggedOutDropdown = () => {
         </div>
      );
 }
- 
+
 export default LoggedOutDropdown;

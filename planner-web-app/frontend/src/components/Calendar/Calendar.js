@@ -5,9 +5,6 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
-
-
-
 function formatEventData(eventList){
     const list = [];
     // console.log("hi",eventList);
@@ -20,8 +17,6 @@ function formatEventData(eventList){
     // console.log("formatted",list);
     return list;
 }
-
-
 
 function Calendar(props){
 

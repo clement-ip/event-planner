@@ -14,7 +14,7 @@ const Navbar = () => {
       navbarMenuRef.current.classList.toggle('is-active');
     }
 
-    return ( 
+    return (
       <nav className="navbar is-dark" role="navigation" aria-label="main navigation" style={{maxHeight: "60px"}}>
           {/* Need to replace icon with one of our own */}
           <div className="navbar-brand">
@@ -28,7 +28,6 @@ const Navbar = () => {
               <span aria-hidden="true"></span>
             </a>
           </div>
-          
           {/* Menu changes depending on authentication */}
           <div className="navbar-menu" ref={navbarMenuRef}>
             <div className="navbar-start">
