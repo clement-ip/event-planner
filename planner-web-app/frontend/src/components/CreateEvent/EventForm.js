@@ -88,7 +88,7 @@ function EventForm(){
             <br></br>
             <label className = "label"  htmlFor='event_host_email'>Email:</label>
             <div className="control">
-                <input type="text"
+                <input type="email"
                        className="input"
                        name="host_email"
                 />
@@ -96,7 +96,7 @@ function EventForm(){
             <br></br>
             <label className = "label"  htmlFor='event_host_number'>Phone Number:</label>
             <div className="control">
-                <input type="text"
+                <input type="number"
                        className="input"
                        name="host_phone_number"
                 />
