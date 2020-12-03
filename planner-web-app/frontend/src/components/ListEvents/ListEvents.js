@@ -43,40 +43,70 @@ function ListAllEvents(){
         //     .catch(error => console.error(error));
     }, []);
 
+    function sortHelper(event){
+        if(event.target.value === "NameA"){
+            var newData = data.dataBaseEvents.sort(sortByNameA);
+            setData({dataBaseEvents: newData});
+            console.log(newData);
+        }
+        if(event.target.value === "DateS"){
+            var newData = data.dataBaseEvents.sort(sortByDateS);
+            setData({dataBaseEvents: newData});
+            console.log(newData);
+        }
+        if(event.target.value === "NameZ"){
+            var newData = data.dataBaseEvents.sort(sortByNameZ);
+            setData({dataBaseEvents: newData});
+            console.log(data.dataBaseEvents);
+        }
+        if(event.target.value === "DateL"){
+            var newData = data.dataBaseEvents.sort(sortByDateL);
+            setData({dataBaseEvents: newData});
+            console.log(data.dataBaseEvents);
+        }
+    }
 
-    function goToEvent(){
-        console.log('okay');
+    function sortByNameA(a,b){
+        if(a.name.toLowerCase() < b.name.toLowerCase()){
+            return -1;
+        }
+        if (a.name.toLowerCase() > b.name.toLowerCase()){
+            return 1;
+        }
+        return 0;
+    }
+
+    function sortByDateS(a,b){
+        if(a.start_date_time < b.start_date_time){
+            return -1;
+        }
+        if (a.start_date_time > b.start_date_time){
+            return 1;
+        }
+        return 0;
+    }
+
+    function sortByNameZ(a,b){
+        if(a.name.toLowerCase() < b.name.toLowerCase()){
+            return 1;
+        }
+        if (a.name.toLowerCase() > b.name.toLowerCase()){
+            return -1;
+        }
+        return 0;
+    }
+
+    function sortByDateL(a,b){
+        if(a.start_date_time < b.start_date_time){
+            return 1;
+        }
+        if (a.start_date_time > b.start_date_time){
+            return -1;
+        }
+        return 0;
     }
 
 
-    // function listAllEvents(){
-    //     console.log(data.dataBaseEvents);
-    //     var eventList = "";
-    //     var count =1;
-    //     var x;
-    //     for(x = 0; x<data.dataBaseEvents.length;x++){
-    //         var name = data.dataBaseEvents[x].name;
-    //         var des = data.dataBaseEvents[x].description;
-    //         var s_date = data.dataBaseEvents[x].start_date;
-    //         var e_date = data.dataBaseEvents[x].end_date;
-    //         console.log(name)
-    //         eventList +=    "<div>" +
-    //                         "Event Name: " + name +
-    //                         " Event Description:" + des +
-    //                         " Event Start Date:" + s_date +
-    //                         " Event End Date:" + e_date +
-    //                         " <button onClick={goToEvent}> See More </button>" +
-    //                         "</div><br>"
-    //     }
-    //     //data.dataBaseEvents
-    //     // data.dataBaseEvents.map(event=>(
-    //     //     //console.log(event.name)
-    //     //     eventList+="<li>"+ event.name + "</li>"
-    //     // ))
-    //
-    //     console.log('list',eventList);
-    //     return eventList
-    // }
 
 
     return(
@@ -84,6 +114,16 @@ function ListAllEvents(){
             <div className="second">
                 <p>IN THE LIST EVENT COMPONENT</p>
             </div>
+
+            <p>Sort By:
+                <select onChange={sortHelper}>
+                    <option value="Default"></option>
+                    <option value="NameA">Name (A-Z)</option>
+                    <option value="NameZ">Name (Z-A)</option>
+                    <option value="DateS">Date (Soon-Later)</option>
+                    <option value="DateL">Date (Later-Soon)</option>
+                </select>
+            </p>
 
             <div className="second">
                 <SingleEventForList eventsProp={data.dataBaseEvents}/>

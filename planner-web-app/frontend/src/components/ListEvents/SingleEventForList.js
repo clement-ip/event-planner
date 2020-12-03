@@ -54,8 +54,8 @@ const SingleEventForList = props => (
                         <p>
                             <strong>Event Name</strong>: {event.name}
                             <strong>Event Description</strong>: {event.description}
-                            <strong>Start Time</strong>: {event.start_date}
-                            <strong>End Time</strong>: {event.end_date}
+                            <strong>Start Time</strong>: {event.start_date_time}
+                            <strong>End Time</strong>: {event.end_date_time}
                         </p>
                         <button className="button is-info is-light" id= "goToEventButton" onClick={goToEvent}>
                             <Link to= {{
