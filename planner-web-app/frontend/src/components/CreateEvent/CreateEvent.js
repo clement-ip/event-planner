@@ -6,6 +6,8 @@ import './EventForm.css';
 import './EventFormBulma.sass';
 import EventForm from "./EventForm";
 
+import EventServices from '../../Services/EventServices';
+
 
 
 
@@ -18,16 +20,26 @@ function EventCalendar(){
 
     useEffect(()=> {
         console.log('okay');
-        fetch('/getAllEvents')
-            .then(response => response.json())
-            .then(data => {
-                console.log("Get response: ", data);
-                const dataBaseEvents = data
-                setData({dataBaseEvents : dataBaseEvents});
-                console.log("Calendar data has been populated")
-                console.log("events",dataBaseEvents);
-            })
-            .catch(error => console.error(error));
+
+        EventServices.getAllEvents().then(({ message, eventsData }) => {
+            if(message.msgError)
+                console.log(message.msgBody);
+            else {
+                const dataBaseEvents = eventsData;
+                setData({ dataBaseEvents : dataBaseEvents });
+            }
+        })
+
+        // fetch('/getAllEvents')
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         console.log("Get response: ", data);
+        //         const dataBaseEvents = data
+        //         setData({dataBaseEvents : dataBaseEvents});
+        //         console.log("Calendar data has been populated")
+        //         console.log("events",dataBaseEvents);
+        //     })
+        //     .catch(error => console.error(error));
 
     }, []);
 

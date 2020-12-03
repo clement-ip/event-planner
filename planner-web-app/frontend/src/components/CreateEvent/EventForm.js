@@ -1,9 +1,12 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 
+import EventServices from '../../Services/EventServices';
+
 function handleSubmit(e){
     e.preventDefault();
-    console.log("good lord",e.target[14].value);
+    console.log('does this one work?')
+    // console.log("good lord",e.target[14].value);
 
     var host_name = e.target[0].value;
     var host_id= e.target[1].value;
@@ -43,19 +46,24 @@ function handleSubmit(e){
     }
     console.log("event", event)
 
-    axios({
-        url: '/saveEvent',
-        method: 'POST',
-        data: event
-    })
-        .then(() =>{
-            console.log("data has been sent to the server");
-        })
-        .catch((error) =>{
-            console.log(error);
-            console.log("Server Error");
+    EventServices.saveEvent(event)
+        .then(({ message }) => {
+            console.log(message.msgBody);
+            window.location.reload(false);
         });
-    window.location.reload(false)
+
+    // axios({
+    //     url: '/saveEvent',
+    //     method: 'POST',
+    //     data: event
+    // })
+    //     .then(() =>{
+    //         console.log("data has been sent to the server");
+    //     })
+    //     .catch((error) =>{
+    //         console.log(error);
+    //         console.log("Server Error");
+    //     });
 }
 
 function EventForm(){
