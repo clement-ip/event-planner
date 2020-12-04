@@ -1,3 +1,4 @@
+const { compareByFieldSpec } = require('@fullcalendar/react');
 const Event = require('../model/Event');
 
 module.exports.getSingleEvent = (req, res) => {
@@ -58,6 +59,38 @@ module.exports.deleteEvent = (req, res) => {
                 });
     })
 }
+
+module.exports.searchEvent = (req, res) => {
+    Event.search({ query_string: { query: req.params.name }}, (err, response) => {
+        if(err)
+            res.status(500).json({ message : {
+                    msgBody : "Error has occurred", msgError : true },
+                    eventsData : null
+                });
+        else
+            var data = response.hits.hits;
+            res.status(200).json({ message : {
+                    msgBody : "Successfully retrieved event", msgError : false },
+                    data
+                });
+    });
+}
+
+module.exports.getAllEvents = (req, res) => {
+    Event.find({}, (err, eventsData) => {
+        if(err)
+            res.status(500).json({ message : {
+                    msgBody : "Error has occurred", msgError : true },
+                    eventsData : null
+                });
+        else
+            res.status(200).json({ message : {
+                    msgBody : "Successfully retrieved event", msgError : false },
+                    eventsData
+                });
+    });
+}
+
 module.exports.editEvent = (req, res) => {
     Event.updateOne({_id: req.body.eventID},
         {

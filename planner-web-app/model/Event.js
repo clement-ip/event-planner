@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
-
+const mongoosastic = require('mongoosastic')
 //schema
 const Schema = mongoose.Schema;
 const EventSchema = new Schema({
-    name: String,
+    name: {type: String, es_indexed: true},
     description: String,
     location_city: String,
     location_country: String,
@@ -19,6 +19,11 @@ const EventSchema = new Schema({
     end_date_time: Date
 });
 
+EventSchema.plugin(mongoosastic, {
+    hosts: [
+      'localhost:9200'
+    ]
+  });
 
 //Model
 const Event = mongoose.model("event", EventSchema);
