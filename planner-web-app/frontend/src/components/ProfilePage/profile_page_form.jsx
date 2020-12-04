@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import ProfileServices from '../../Services/ProfileServices'
 import { AuthContext } from '../../Context/AuthContext';
@@ -95,13 +95,14 @@ function ProfileForm(props) {
             }
 
         } );
+        const path = `/profile/${user.user_id}`
+        props.history.push(path);
     }
 
-    console.log(user.user_id)
-    const finishEditing = () => {
-        var path = `/profile/${user.user_id}`
-        history.push(path);
-    }
+    // console.log('PROPS:',props)
+    // const finishEditing = () => {
+        
+    // }
 
     return(
         <form onSubmit={handleSubmit(SubmitEdit)}>
@@ -212,7 +213,7 @@ function ProfileForm(props) {
             </div>
 
             <div className="field is-grouped">
-                <button className="button is-success has-shadow py-5" >
+                <button className="button is-success has-shadow py-5">
                     {/* <p className="button is-light"> */}
                     <p className="is-size-4">
                             Submit
@@ -234,4 +235,4 @@ function ProfileForm(props) {
    )
 }
 
-export default ProfileForm;
+export default withRouter(ProfileForm);
