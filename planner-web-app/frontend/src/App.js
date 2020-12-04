@@ -10,6 +10,7 @@ import CommentBox from './components/comments-system/client/src/components/Box';
 import ListAllEvents from "./components/ListEvents/ListEvents";
 import SingleEvent from "./components/Event/SingleEvent";
 import ProfilePage from "./components/ProfilePage/profile_page"
+import EditProfilePage from "./components/ProfilePage/profile_page_form"
 
 import AuthService from './Services/AuthServices';
 import CommentServices from './Services/CommentServices';
@@ -55,6 +56,7 @@ function App() {
         <Route exact path="/ListAllEvents" component={ListAllEvents}/>
         <Route exact path="/SingleEvent/:id" component={SingleEvent}/>
         <Route exact path="/profile/:id" component={ProfilePage}/>
+        <Route exact path="/profile/" component={EditProfilePage}/>
       </div>
   );
 }

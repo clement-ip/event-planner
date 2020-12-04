@@ -1,14 +1,16 @@
-import React, {useEffect, useState} from 'react';
-// import { AuthContext } from '../../Context/AuthContext';
+import React, {useEffect, useState, useContext} from 'react';
+import { Route, Redirect } from "react-router-dom";
+import { AuthContext } from '../../Context/AuthContext';
 import ProfileServices from '../../Services/ProfileServices'
 import About from './Components/About';
 import ContactCard from './Components/ContactCard';
 import Interests from './Components/Interests';
 import Skills from './Components/Skills';
 import HostingAttendingEvents from './Components/HostingAttendingEvents';
+import { Link } from 'react-router-dom';
 
 function IndividualProfile(props){
-    // const {user} = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
     const [profile_data, setData] = useState({
         userID: '',
         email:'',
@@ -71,6 +73,11 @@ function IndividualProfile(props){
             <Skills skills_data={ profile_data.skills }/>
             <HostingAttendingEvents events_data={ { hostingEvents:profile_data.hostingEvents,
                                                     attendingEvents:profile_data.attendingEvents } }/>
+            <Link to="/profile/">
+                <button renderAs="Link">
+                    <span>Edit Profile</span>
+                </button>
+            </Link>
         </div>
     )
 }

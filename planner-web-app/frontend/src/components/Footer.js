@@ -12,7 +12,7 @@ const Footer = () => {
                     <div className="column is-2 mt-2">
                         <p><strong>Explore</strong></p>
                         <p className="is-size-7"><a href='/' className="has-text-grey">Home</a></p>
-                        <p className="is-size-7"><a className="has-text-grey">Profile</a></p>
+                        <p className="is-size-7"><a href='' className="has-text-grey">Profile</a></p>
                         <p className="is-size-7"><a className="has-text-grey">About</a></p>
                     </div>
                     <div className="column is-3 mt-2">
