@@ -74,7 +74,7 @@ function IndividualProfile(props){
             <HostingAttendingEvents events_data={ { hostingEvents:profile_data.hostingEvents,
                                                     attendingEvents:profile_data.attendingEvents } }/>
             <Link to="/profile/">
-                <button renderAs="Link">
+                <button class="button is-danger is-outlined" renderAs="Link">
                     <span>Edit Profile</span>
                 </button>
             </Link>

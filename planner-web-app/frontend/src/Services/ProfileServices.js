@@ -42,8 +42,8 @@ export default {
                     });
                 }
                 else{
-                    return res.json().then(({msg, data}) => {
-                        return { isAuthenticated : true, msg, data };
+                    return res.json().then(({msg, data, status}) => {
+                        return { isAuthenticated : true, msg, data, status };
                     });
                 }
             }

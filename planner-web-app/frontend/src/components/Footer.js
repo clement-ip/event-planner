@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Footer = () => {
+    // const {user} = useContext(AuthContext);
     return (
         <footer className="footer">
             <div className="container">
