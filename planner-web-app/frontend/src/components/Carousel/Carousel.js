@@ -20,7 +20,7 @@ import CarouselTestData from './CarouselTestData.json';
 
 function Carousel(props) {
   const [data, setData] = useState({
-    carouselData: []
+    carouselData:[]
   });
 
   useEffect(() => {
@@ -38,7 +38,8 @@ function Carousel(props) {
     else {
         const carouselData = eventsData;
         setData({carouselData : carouselData});
-        console.log("events", carouselData);
+        console.log("stuff", carouselData);
+        console.log("events", data.carouselData);
     }
   })
 
@@ -53,19 +54,19 @@ function Carousel(props) {
 
   },[]); 
 
+  // console.log("stuff2", data.carouselData);
 
-
-  // var EventData = formatEventData(data.carouselData);
-
+  // const EventData = data.carouselData;
+  // console.log(EventData);
+    console.log("HELLO", data.carouselData);
     return(
-      // console.log("stuff", data.carouselData),
       <section className="section">
         <div className="carousel-container">
           <div id="carousel-items" className="carousel">
-            {
+            { data.carouselData ? (
               // EventData.map((CarouselItem, index) =>{
-              // data.carouselData.map((CarouselItem, index) =>{
-              CarouselTestData.items.map((CarouselItem, index) =>{
+              data.carouselData.map((CarouselItem, index) =>{
+              // CarouselTestData.items.map((CarouselItem, index) =>{
                 return (
                   <div className="card" key={index}>
                     {/* <div className="card-image">
@@ -85,7 +86,7 @@ function Carousel(props) {
                     </div>
                   </div>
                 );
-              })
+              })) : null
             }
           </div>
         </div>
