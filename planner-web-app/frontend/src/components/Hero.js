@@ -18,7 +18,7 @@ const Hero = (props) => {
     <div>
         <h1 class = "title">Welcome to Hero page</h1>
         <Carousel/>
-        <ImageUpload/>
+        {/* <ImageUpload/> */}
         <Footer />
     </div>
   );
