@@ -31,34 +31,57 @@ function ProfileForm(props) {
                 else {
                     console.log(res.data)
                     setData({
+                        userID: res.data.userID,
+                        email: res.data.email,
+                        name: res.data.name,
                         about: res.data.about,
                         interests: res.data.interests,
                         occupation: res.data.occupation,
                         skills: res.data.skills,
                         organization: res.data.organization,
                         portfolio: res.data.portfolio,
+                        attendingEvents: res.data.attendingEvents,
+                        hostingEvents: res.data.hostingEvents,
                         profilePicture: res.data.profilePicture
                     });
                 }
             })
     },[]);
 
-    const submitEdit = e => {
+    const SubmitEdit = e => {
+        console.log('PRE! :',e)
+        e.profile_data.userID = profile_data.userID;
+        e.profile_data.email = profile_data.email;
+        e.profile_data.name = profile_data.name;
+        // setData({
+        //     about: e.profile_data.about,
+        //     interests: e.profile_data.interests,
+        //     occupation: e.profile_data.occupation,
+        //     skills: e.profile_data.skills,
+        //     organization: e.profile_data.organization,
+        //     portfolio: e.profile_data.portfolio,
+        //     profilePicture: e.profile_data.profilePicture
+        // });
 
-        ProfileServices.editProfile(profile_data).then(res => res.json())
-                            .then( json => setData({
-                                about: json.data.about,
-                                interests: json.data.interests,
-                                occupation: json.data.occupation,
-                                skills: json.data.skills,
-                                organization: json.data.organization,
-                                portfolio: json.data.portfolio,
-                                profilePicture: json.data.profilePicture
-                            }));
+        console.log('CHECK! :',e)
+
+        ProfileServices.editProfile(e.profile_data).then( res => {
+            console.log(res)
+            setData({
+                about: res.data.about,
+                interests: res.data.interests,
+                occupation: res.data.occupation,
+                skills: res.data.skills,
+                organization: res.data.organization,
+                portfolio: res.data.portfolio,
+                profilePicture: res.data.profilePicture
+            })
+        } );
+        console.log('CHECK POST! :',profile_data)
     }
 
     return(
-        <form onSubmit={handleSubmit(submitEdit)}>
+        <form onSubmit={handleSubmit(SubmitEdit)}>
             <div class="field">
                 <label class="label">Occupation</label>
                 <div class="control">
@@ -103,7 +126,7 @@ function ProfileForm(props) {
                 <p class="help">E.g. Javascript, Market Analysis, Product Development</p>
             </div>
 
-            <div class="field">
+            {/* <div class="field">
                 <label class="label">Portfolio and Social Media</label>
                 <p class="control has-icons-left">
                     <span class="select">
@@ -132,7 +155,7 @@ function ProfileForm(props) {
                     />
                 </div>
                 <p class="help">E.g. https://Github.com/Torvalds </p>
-            </div>
+            </div> */}
 
             <div class="field">
                 <label class="label">Interests</label>

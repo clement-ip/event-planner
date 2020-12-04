@@ -20,7 +20,8 @@ module.exports.profile_get = (req, res) => {
 
 module.exports.profile_edit = (req, res) => {
     const filter = {userID: req.body.userID, email:req.body.email};
-    console.log('User ', filter.email, filter.userID, ' requesting to edit their page.');
+    console.log(req.body)
+    console.log('User ', filter.email, ' ', filter.userID , ' requesting to edit their page.');
 
     Profile.findOneAndUpdate(filter, {$set:req.body}, {new:true}, (err,result)=>{
         if (err) {
@@ -35,6 +36,7 @@ module.exports.profile_edit = (req, res) => {
                 msg:"Bad Request: Invalid Access.",
             });
         }
+        console.log('User ', filter.email, ' ', filter.userID , ' successfully Edited their page!')
         return res.status(200).send({
             msg: "Successfully gotten profile data",
             data: result
