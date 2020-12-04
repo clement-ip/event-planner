@@ -4,10 +4,19 @@ const ContactCard = (props) => {
 
     const portfolio_data = props.card_data.portfolio;
 
-    const elements = [];
+    const portfolio_websites = [];
     for (var website in portfolio_data){
-        const website_string = portfolio_data[website].toString()
-        elements.push(<div>{website} : <a href={website_string}>{website_string}</a> </div>)
+        var website_string = portfolio_data[website].toString()
+
+        if (!website_string.includes("https://") || !website_string.includes("http://")) {
+            website_string = "https://"+ website_string
+        }
+
+        portfolio_websites.push(
+                <div>{website}:
+                     <a rel={'external'} target="_blank" href={website_string}> {website_string}</a>
+                </div>
+        )
     }
 
     return (
@@ -24,7 +33,7 @@ const ContactCard = (props) => {
                 {WARNING: THIS IS BREAKING B/C NEED TO PLAY AS ARRAY} */}
             <h1>
                 <strong>Portfolio</strong>:<br/>
-                {elements}
+                {portfolio_websites}
             </h1>
         </div>
     )
