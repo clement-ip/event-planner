@@ -53,79 +53,9 @@ io.on('connection', (socket) => {
     socket.on('Comment', (msg) => {
       io.emit('Comment', msg);
     });
-});
-
-// app.get('/getAllEvents', (req, res) =>{
-//     console.log('IN THE GET CALL');
-//     Event.find({ })
-//         .then((data) => {
-//             console.log('Data: ', data);
-//             res.status(200).json(data);
-//         })
-//         .catch((error)=>{
-//             console.log("Error: ", error);
-//         })
-// });
-
-// app.post('/saveEvent',(req, res) => {
-//     console.log('Body:', req.body);
-//     const data = req.body;
-//     const newEvent = new Event(data);
-
-//     newEvent.save((error, data) => {
-//         if (error) {
-//             res.status(500).json({msg: "Server error when attempting to save."})
-//             return;
-//         }
-//         return res.status(200).json({
-//             msg: "We received the data"
-//         });
-//     });
-// });
-
-// app.delete('/deleteEvent', (req,res)=>{
-//     console.log('DELETE REQ');
-//     console.log(req.body);
-//     console.log(req.body.id);
-//     Event.deleteOne({_id:req.body.id}, function(err, result){
-//         if(!err){
-//             res.status(200).json(result);
-//             console.log("Deleted event")
-//         }
-//         else{
-//             res.status(500).json({msg: "Server error when attempting to delete."})
-//             console.log("error",err)
-//         }
-//     });
-//     // comment.deleteOne({eventId:req.body.id}, function(err){
-//     //     if(!err){
-//     //         console.log("Deleted comments associated with event")
-//     //     }
-//     //     else{
-//     //         console.log("Error: ",err)
-//     //     }
-//     // });
-// });
-
-// app.get('/getSingleEvent/:id', (req, res) =>{
-//     console.log(req.params.id);
-//     Event.findById(req.params.id)
-//         .then((data) => {
-//             console.log('Data: ', data);
-//             res.status(200).json(data);
-//         })
-//         .catch((error)=>{
-//             console.log("error");
-//             //res.redirect('/404');
-//         })
-// });
-
-io.on('connection', (socket) => {
-    console.log('A user has connected');
-    socket.on('Comment', (msg) => {
-      io.emit('Comment', msg);
-    });
     socket.on('DeleteComment', (msg) => {
         io.emit('DeleteComment', msg);
       });
 });
+
+
