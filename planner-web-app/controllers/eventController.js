@@ -1,4 +1,3 @@
-const { compareByFieldSpec } = require('@fullcalendar/react');
 const Event = require('../model/Event');
 
 module.exports.getSingleEvent = (req, res) => {
