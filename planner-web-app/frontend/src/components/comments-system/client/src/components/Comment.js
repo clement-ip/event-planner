@@ -68,7 +68,7 @@ function Comment(props) {
         console.log(e.target.message.value);
         console.log("PROPS: ", props);
 
-        const newComment = {name: props.user, message: e.target.message.value, eventID: props.eventID, topLevel: false, replyLevel: true, topLevelID: props.commentID};
+        const newComment = {name: props.currentUser, message: e.target.message.value, eventID: props.eventID, topLevel: false, replyLevel: true, topLevelID: props.commentID};
         console.log("New Comment: ", newComment);
         const socket = io(SERVER, {transports: ['websocket']});
         socket.emit('Comment', newComment);
