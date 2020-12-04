@@ -5,19 +5,21 @@ const ContactCard = (props) => {
     const portfolio_data = props.card_data.portfolio;
 
     const portfolio_websites = [];
-    for (var website in portfolio_data){
-        var website_string = portfolio_data[website].toString()
+    for (let i = 0; i < portfolio_data.length; i++) {
+        for (var website in portfolio_data[i]){
+            var website_string = portfolio_data[i][website].toString().toLowerCase();
 
-        if (!website_string.includes("https://") || !website_string.includes("http://")) {
-            website_string = "https://"+ website_string
+            if (!website_string.includes("https://") || !website_string.includes("http://")) {
+                website_string = "https://"+ website_string
+            }
+            portfolio_websites.push(
+                    <div>{website}:
+                         <a rel={'external'} target="_blank" href={website_string}> {website_string}</a>
+                    </div>
+            )
         }
-
-        portfolio_websites.push(
-                <div>{website}:
-                     <a rel={'external'} target="_blank" href={website_string}> {website_string}</a>
-                </div>
-        )
     }
+
 
     return (
         <div className="Contact_Card">
