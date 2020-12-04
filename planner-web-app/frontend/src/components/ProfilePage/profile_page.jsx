@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react';
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, withRouter } from "react-router-dom";
 import { AuthContext } from '../../Context/AuthContext';
 import ProfileServices from '../../Services/ProfileServices'
 import About from './Components/About';
@@ -82,7 +82,7 @@ function IndividualProfile(props){
     )
 }
 
-export default IndividualProfile;
+export default withRouter(IndividualProfile);
 
 
 
