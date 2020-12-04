@@ -46,6 +46,7 @@ function App() {
 //   console.log(user)
 //   ProfileServices.getProfile(user.user_id).then(({ ProfileData }) => console.log('ProfileData', ProfileData));
 
+
   return (
       <div className="App">
         <Navbar />
@@ -55,7 +56,7 @@ function App() {
         <Route exact path="/createEvent" component={CreateEvent}/>
         <Route exact path="/ListAllEvents" component={ListAllEvents}/>
         <Route exact path="/SingleEvent/:id" component={SingleEvent}/>
-        <Route exact path="/profile/:id" component={ProfilePage}/>
+        <Route exact path='/profile/:id' component={ProfilePage}/>
         <Route exact path="/profile/" component={EditProfilePage}/>
       </div>
   );

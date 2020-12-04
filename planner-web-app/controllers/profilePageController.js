@@ -38,6 +38,7 @@ module.exports.profile_edit = (req, res) => {
         }
         console.log('User ', filter.email, ' ', filter.userID , ' successfully Edited their page!')
         return res.status(200).send({
+            status:'Succeeded',
             msg: "Successfully gotten profile data",
             data: result
         }
