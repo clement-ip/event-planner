@@ -6,18 +6,22 @@ import { AuthContext } from '../../Context/AuthContext';
 
 function ProfileForm(props) {
     const { register, handleSubmit } = useForm();
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [profile_data, setData] = useState({
+        userID: '',
+        email:'',
+        name: '',
         about: '',
         interests: '',
         occupation: '',
         skills: '',
         organization: '',
         portfolio: {},
+        attendingEvents:[],
+        hostingEvents:[],
         profilePicture:''
     });
 
-    console.log(user.user_id)
     useEffect(()=>{
         ProfileServices.getProfile(user.user_id)
             .then(res => {
@@ -40,23 +44,31 @@ function ProfileForm(props) {
     },[]);
 
     const submitEdit = e => {
-        ProfileServices.editProfile(profile_data)
+
+        ProfileServices.editProfile(profile_data).then(res => res.json())
+                            .then( json => setData({
+                                about: json.data.about,
+                                interests: json.data.interests,
+                                occupation: json.data.occupation,
+                                skills: json.data.skills,
+                                organization: json.data.organization,
+                                portfolio: json.data.portfolio,
+                                profilePicture: json.data.profilePicture
+                            }));
     }
-    console.log(profile_data)
 
     return(
-        <form class="profileForm" onSubmit={handleSubmit(submitEdit)}>
+        <form onSubmit={handleSubmit(submitEdit)}>
             <div class="field">
                 <label class="label">Occupation</label>
                 <div class="control">
-                    {/* Place holder needs to contain existing value */}
                     <input
                         class="input"
                         type="text"
                         placeholder="Job"
                         ref={register}
                         name="profile_data[occupation]"
-                        value={profile_data.occupation} />
+                        defaultValue={profile_data.occupation} />
                 </div>
                 <p class="help"> E.g. Programmer, Accountant, Professor, etc. </p>
             </div>
@@ -64,45 +76,45 @@ function ProfileForm(props) {
             <div class="field">
                 <label class="label">Organization</label>
                 <div class="control">
-                    {/* Place holder needs to contain existing value */}
                     <input
                         class="input"
                         type="text"
                         placeholder="Where you work or who you are affiliated with"
                         ref={register}
                         name="profile_data[organization]"
-                        value={profile_data.organization}
+                        defaultValue={profile_data.organization}
                     />
                 </div>
                 <p class="help"> E.g. Simon Fraser University </p>
             </div>
+
             <div class="field">
                 <label class="label">Skills</label>
                 <div class="control">
-                    {/* Place holder needs to contain existing value */}
                     <input
                         class="input"
                         type="text"
                         placeholder="List of Your Skills"
                         ref={register}
                         name="profile_data[skills]"
-                        value={profile_data.skills}
+                        defaultValue={profile_data.skills}
                     />
                 </div>
                 <p class="help">E.g. Javascript, Market Analysis, Product Development</p>
             </div>
+
             <div class="field">
                 <label class="label">Portfolio and Social Media</label>
                 <p class="control has-icons-left">
                     <span class="select">
                     <select name="profile_data[portfolio]">
-                        <option value="Personal">Personal</option>
-                        <option value="LinkedIn">LinkedIn</option>
-                        <option value="GitHub">GitHub</option>
-                        <option value="YouTube">YouTube</option>
-                        <option value="Instagram">Instagram</option>
-                        <option value="Twitter">Twitter</option>
-                        <option value="Other">Other</option>
+                        <option defaultValue="Personal">Personal</option>
+                        <option defaultValue="LinkedIn">LinkedIn</option>
+                        <option defaultValue="GitHub">GitHub</option>
+                        <option defaultValue="YouTube">YouTube</option>
+                        <option defaultValue="Instagram">Instagram</option>
+                        <option defaultValue="Twitter">Twitter</option>
+                        <option defaultValue="Other">Other</option>
                     </select>
                     </span>
                     <span class="icon is-small is-left">
@@ -110,14 +122,13 @@ function ProfileForm(props) {
                     </span>
                 </p>
                 <div class="control">
-                    {/* Place holder needs to contain existing value */}
                     <input
                         class="input"
                         type="text"
                         placeholder="Link"
                         ref={register}
                         name="profile_data[portfolio]"
-                        value={profile_data.portfolio}
+                        defaultValue={profile_data.portfolio}
                     />
                 </div>
                 <p class="help">E.g. https://Github.com/Torvalds </p>
@@ -126,14 +137,13 @@ function ProfileForm(props) {
             <div class="field">
                 <label class="label">Interests</label>
                 <div class="control">
-                    {/* Place holder needs to contain existing value */}
                     <input
                         class="input"
                         type="text"
                         placeholder=""
                         ref={register}
                         name="profile_data[interests]"
-                        value={profile_data.interests}
+                        defaultValue={profile_data.interests}
                     />
                 </div>
                 <p class="help"> E.g. Cooking, Darts, Hiking, Pool, Programming, etc. </p>
@@ -142,19 +152,19 @@ function ProfileForm(props) {
             <div class="field">
                 <label class="label">About Yourself</label>
                 <div class="control">
-                    {/* Place holder needs to contain existing value */}
                     <textarea
                         class="textarea"
                         type="text"
                         placeholder="Tell us about yourself!"
                         ref={register}
                         name="profile_data[about]"
-                        value={profile_data.about}
+                        defaultValue={profile_data.about}
                     >
                     </textarea>
                 </div>
                 <p class="help">E.g. I aspire to be the very best!</p>
             </div>
+
             <div class="field is-grouped">
                 <button className="button is-danger is-fullwidth has-shadow py-5">
                     <p className="is-size-4">
@@ -168,14 +178,6 @@ function ProfileForm(props) {
                 </button>
             </div>
             <br></br>
-
-            {/* <div className="field mx-5">
-                <button className="button is-danger is-fullwidth has-shadow py-5">
-                    <p className="is-size-4">Submit</p>
-                </button>
-            </div> */}
-
-
         </form>
    )
 }
