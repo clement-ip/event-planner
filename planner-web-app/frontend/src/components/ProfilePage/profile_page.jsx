@@ -5,6 +5,7 @@ import ProfileServices from '../../Services/ProfileServices'
 import About from './Components/About';
 import ContactCard from './Components/ContactCard';
 import Interests from './Components/Interests';
+import LocationMap from './Components/Location_Map';
 import Skills from './Components/Skills';
 import HostingAttendingEvents from './Components/HostingAttendingEvents';
 import { Link } from 'react-router-dom';
@@ -16,6 +17,7 @@ function IndividualProfile(props){
         email:'',
         name: '',
         about: '',
+        location: {},
         interests: '',
         occupation: '',
         skills: '',
@@ -41,12 +43,13 @@ function IndividualProfile(props){
                     console.log("Cannot retrieve profile");
                 }
                 else {
-                    console.log(res.data)
+                    console.log('Result Data: ',res.data)
                     setData({
                         userID:res.data.userID,
                         email:res.data.email,
                         name: res.data.name,
                         about: res.data.about,
+                        location: res.data.location,
                         interests: res.data.interests,
                         occupation: res.data.occupation,
                         skills: res.data.skills,
@@ -67,14 +70,17 @@ function IndividualProfile(props){
                                               occupation:profile_data.occupation,
                                               organization:profile_data.organization,
                                               portfolio:profile_data.portfolio,
-                                              profilePicture:profile_data.profilePicture } } />
+                                              profilePicture:profile_data.profilePicture,
+                                              country:profile_data.location.country,
+                                              city:profile_data.location.city,
+                                    } } />
             <About about_data={ profile_data.about }/>
+            <LocationMap location_data={ profile_data.location }/>
             <Interests interests_data={ profile_data.interests }/>
             <Skills skills_data={ profile_data.skills }/>
             <HostingAttendingEvents events_data={ { hostingEvents:profile_data.hostingEvents,
                                                     attendingEvents:profile_data.attendingEvents } }/>
-
-            {user.user_id === props.match.params.id &&
+            { user.user_id === props.match.params.id &&
                 <Link to="/profile/">
                     <button class="button is-danger is-outlined" renderAs="Link">
                         <span>Edit Profile</span>
