@@ -94,7 +94,7 @@ function Box(props) {
               </section>
               </form>
           <section className="message is-primary">
-              <List data={comments} eventID={props.eventID} onUpdateDeletedComment={updateDeletedComment} fetchData={fetchData.current}/>
+              <List data={comments} eventID={props.eventID} onUpdateDeletedComment={updateDeletedComment} fetchData={fetchData.current} currentUser={props.user.email}/>
               <style>{css}</style>
           </section>
           </section>
