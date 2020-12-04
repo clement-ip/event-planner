@@ -58,6 +58,9 @@ function EventResults(props){
                                         listOfFiltered.push(eventsData[x]);
                                     }
                                 }
+                                if(listOfFiltered.length==0){
+                                    listOfFiltered = -1;
+                                }
                                 setEventId({dataBaseEvents : listOfFiltered,
                                             listOfIds:data});
                             }
@@ -65,6 +68,7 @@ function EventResults(props){
                     //filterEvents(data);
                 }
             });
+
     }, []);
 
     function filterEvents(data){
@@ -91,19 +95,37 @@ function EventResults(props){
             });
     }
 
-    return(
-        <div>
+    if(eventId.dataBaseEvents.length>0){
+        return(
             <div>
-                {/*<Results></Results>*/}
+                <div>
+                    {/*<Results></Results>*/}
+                </div>
+                <div className="second">
+                    <p>hello:</p>
+                    <SingleEventForList eventsProp={eventId.dataBaseEvents}/>
+                </div>
             </div>
-            <div className="second">
-                <p>hello:</p>
-                <SingleEventForList eventsProp={eventId.dataBaseEvents}/>
+        )
+    }
+    else if(eventId.dataBaseEvents===-1){
+        return(
+            <div>
+                <div>
+                    Search returned 0 results.
+                </div>
             </div>
-        </div>
-
-
-    )
+        )
+    }
+    else{
+        return(
+            <div>
+                <div>
+                    Loading...
+                </div>
+            </div>
+        )
+    }
 
 
 }

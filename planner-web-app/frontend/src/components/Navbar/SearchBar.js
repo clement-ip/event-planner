@@ -5,11 +5,12 @@ function SearchBar() {
     const history = useHistory();
     // const navigateTo = () => history.push('/search');
     function navigateTo()
-    {
-        var name = document.getElementById("search").value;
-        history.push('/search/' + name);
+        {
+            var name = document.getElementById("search").value;
+            history.push('/search/' + name);
+            window.location.reload();
     }
-  
+
     
     const searchInputRef = useRef(null);
     const searchIconRef = useRef(null);
