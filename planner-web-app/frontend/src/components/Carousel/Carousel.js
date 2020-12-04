@@ -32,15 +32,15 @@ function Carousel(props) {
     });
 
 
-  // EventServices.getAllEvents().then(({ message, eventsData }) => {
-  //   if(message.msgError)
-  //       console.log(message.msgBody);
-  //   else {
-  //       const carouselData = eventsData;
-  //       setData({ carouselData : carouselData });
-  //       console.log("events", carouselData);
-  //   }
-  // })
+  EventServices.getAllEvents().then(({ message, eventsData }) => {
+    if(message.msgError)
+        console.log(message.msgBody);
+    else {
+        const carouselData = eventsData;
+        setData({carouselData : carouselData});
+        console.log("events", carouselData);
+    }
+  })
 
   // fetch('/getAllEvents')
   //   .then(response => response.json())
@@ -53,24 +53,28 @@ function Carousel(props) {
 
   },[]); 
 
+
+
   // var EventData = formatEventData(data.carouselData);
 
     return(
+      // console.log("stuff", data.carouselData),
       <section className="section">
         <div className="carousel-container">
           <div id="carousel-items" className="carousel">
             {
               // EventData.map((CarouselItem, index) =>{
+              // data.carouselData.map((CarouselItem, index) =>{
               CarouselTestData.items.map((CarouselItem, index) =>{
                 return (
                   <div className="card" key={index}>
-                    <div className="card-image">
+                    {/* <div className="card-image">
                       <figure className="image is-16by9 is-covered">
                         <img
                           src={CarouselItem.image}
                           alt="" />
                       </figure>
-                    </div>
+                    </div> */}
                     <div className="card-content">
                       <div className="item__title">
                         {CarouselItem.name}
