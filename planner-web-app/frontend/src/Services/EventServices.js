@@ -90,5 +90,19 @@ export default {
                 else
                     return { isAuthenticated : false, message : { msgBody : "Not Authenticated", msgError : true}};
             });
-    }
+    },
+    searchEvent : eventName => {
+        return fetch('http://localhost:5000/search/' + eventName, {
+            credentials : 'include',
+        })
+            .then(res => {
+                if(res.status !== 401){
+                    return res.json().then(({ message, data}) => {
+                        return { isAuthenticated : true, message, data };
+                    });
+                }
+                else
+                    return { isAuthenticated : false, message : { msgBody : "Not Authenticated", msgError : true}};
+            });
+    },
 }

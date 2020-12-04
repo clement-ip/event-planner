@@ -9,8 +9,12 @@ import CreateEvent from "./components/CreateEvent/CreateEvent";
 import CommentBox from './components/comments-system/client/src/components/Box';
 import ListAllEvents from "./components/ListEvents/ListEvents";
 import SingleEvent from "./components/Event/SingleEvent";
+<<<<<<< HEAD
 import ProfilePage from "./components/ProfilePage/profile_page"
 import EditProfilePage from "./components/ProfilePage/profile_page_form"
+=======
+import EventResults from "./components/EventResults/Results"
+>>>>>>> 3451d7d... Implemented basic search functionality
 
 import AuthService from './Services/AuthServices';
 import CommentServices from './Services/CommentServices';
@@ -58,6 +62,7 @@ function App() {
         <Route exact path="/SingleEvent/:id" component={SingleEvent}/>
         <Route exact path='/profile/:id' component={ProfilePage}/>
         <Route exact path="/profile/" component={EditProfilePage}/>
+        <Route exact path="/search/:id" component={EventResults}/>
       </div>
   );
 }
