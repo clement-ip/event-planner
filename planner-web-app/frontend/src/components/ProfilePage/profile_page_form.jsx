@@ -1,18 +1,20 @@
 import React, {useEffect, useState, useContext} from 'react';
-import { useHistory, withRouter } from 'react-router-dom';
+import { /*useHistory,*/ withRouter } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import ProfileServices from '../../Services/ProfileServices'
 import { AuthContext } from '../../Context/AuthContext';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 function ProfileForm(props) {
     const { user } = useContext(AuthContext);
-    const { history } = useHistory();
+    // const { history } = useHistory();
     const [profile_data, setData] = useState({
         userID: '',
         email:'',
         name: '',
         about: '',
+        location: {},
         interests: '',
         occupation: '',
         skills: '',
@@ -36,6 +38,7 @@ function ProfileForm(props) {
                         email: res.data.email,
                         name: res.data.name,
                         about: res.data.about,
+                        location: res.data.location,
                         interests: res.data.interests,
                         occupation: res.data.occupation,
                         skills: res.data.skills,
@@ -55,6 +58,9 @@ function ProfileForm(props) {
             email: profile_data.email,
             name: profile_data.name,
             about: profile_data.about,
+            country: profile_data.location.country,
+            city: profile_data.location.city,
+            location: profile_data.location,
             interests: profile_data.interests,
             occupation: profile_data.occupation,
             skills: profile_data.skills,
@@ -71,20 +77,12 @@ function ProfileForm(props) {
         e.profile_data.userID = profile_data.userID;
         e.profile_data.email = profile_data.email;
         e.profile_data.name = profile_data.name;
-        // setData({
-        //     about: e.profile_data.about,
-        //     interests: e.profile_data.interests,
-        //     occupation: e.profile_data.occupation,
-        //     skills: e.profile_data.skills,
-        //     organization: e.profile_data.organization,
-        //     portfolio: e.profile_data.portfolio,
-        //     profilePicture: e.profile_data.profilePicture
-        // });
 
         ProfileServices.editProfile(e.profile_data).then( res => {
             console.log('RESULT: ', res)
             if (!(res.status === 'Error')){
                 profile_data.about = res.data.about;
+                profile_data.location = res.data.location;
                 profile_data.interests = res.data.interests;
                 profile_data.occupation = res.data.occupation;
                 profile_data.skills = res.data.skills;
@@ -96,13 +94,9 @@ function ProfileForm(props) {
 
         } );
         const path = `/profile/${user.user_id}`
-        props.history.push(path);
+        // props.history.push(path);
+        window.location.replace(path);
     }
-
-    // console.log('PROPS:',props)
-    // const finishEditing = () => {
-        
-    // }
 
     return(
         <form onSubmit={handleSubmit(SubmitEdit)}>
@@ -149,6 +143,37 @@ function ProfileForm(props) {
                 </div>
                 <p className="help">E.g. Javascript, Market Analysis, Product Development</p>
             </div>
+
+            <div className="field">
+                <label className="label">Country</label>
+                <div className="control">
+                    <input
+                        className="input"
+                        type="text"
+                        placeholder=""
+                        name="profile_data[country]"
+                        defaultValue={profile_data.location.country}
+                        ref={register}
+                    />
+                </div>
+                <p className="help">E.g. Canada, China, USA, etc.</p>
+            </div>
+
+            <div className="field">
+                <label className="label">City</label>
+                <div className="control">
+                    <input
+                        className="input"
+                        type="text"
+                        placeholder=""
+                        name="profile_data[city]"
+                        defaultValue={profile_data.location.city}
+                        ref={register}
+                    />
+                </div>
+                <p className="help">E.g. New York City, Toronto, San Francisco, Vancouver, etc.</p>
+            </div>
+
 
             {/* <div className="field">
                 <label className="label">Portfolio and Social Media</label>
@@ -214,7 +239,6 @@ function ProfileForm(props) {
 
             <div className="field is-grouped">
                 <button className="button is-success has-shadow py-5">
-                    {/* <p className="button is-light"> */}
                     <p className="is-size-4">
                             Submit
                     </p>

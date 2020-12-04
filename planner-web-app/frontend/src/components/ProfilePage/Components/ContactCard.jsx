@@ -28,6 +28,8 @@ const ContactCard = (props) => {
 
             <h1><strong>Name</strong>: {props.card_data.name}<br/></h1>
             <h1><strong>Email</strong>: {props.card_data.email}<br/></h1>
+            <h1><strong>Country</strong>: {props.card_data.country}<br/></h1>
+            <h1><strong>City</strong>: {props.card_data.city}<br/></h1>
             <h1><strong>Occupation</strong>: {props.card_data.occupation}<br/></h1>
             <h1><strong>Organization</strong>: {props.card_data.organization}<br/></h1>
 
