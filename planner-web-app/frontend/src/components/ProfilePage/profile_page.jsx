@@ -67,10 +67,10 @@ function IndividualProfile(props){
                                               portfolio:profile_data.portfolio,
                                               profilePicture:profile_data.profilePicture } } />
             <About about_data={ profile_data.about }/>
-            {/* <Interests interests_data={ profile_data.interests }/>
+            <Interests interests_data={ profile_data.interests }/>
             <Skills skills_data={ profile_data.skills }/>
             <HostingAttendingEvents events_data={ { hostingEvents:profile_data.hostingEvents,
-                                                    attendingEvents:profile_data.attendingEvents } }/> */}
+                                                    attendingEvents:profile_data.attendingEvents } }/>
         </div>
     )
 }

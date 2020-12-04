@@ -1,20 +1,13 @@
-import React, { useState, useContext, useEffect, } from 'react';
+import React from 'react';
 
 const HostingAttendingEvents = (props) => {
-    const [data, setData] = useState({
-        HostingEvents:[],
-        AttendingEvents:[],
-    });
 
-    useEffect(()=> {
-        const about_info = props.About;
-        setData({ about:about_info });
-
-    })
     return (
         <div className="Profile_Events_Card">
-            <h1>Events</h1>
-            <p>{data.about}</p>
+            <h1><strong>Events</strong>: </h1>
+            {/* NOTE: Not working b/c need to populate fields */}
+            {/* <p>{props.events_data.hostingEvents}</p> */}
+            {/* <p>{props.events_data.attendingEvents}</p> */}
         </div>
 
     )

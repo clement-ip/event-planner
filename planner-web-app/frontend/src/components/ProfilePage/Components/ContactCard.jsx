@@ -4,12 +4,6 @@ const ContactCard = (props) => {
 
     const portfolio_data = props.card_data.portfolio;
 
-    // const get_obj_vals = () => { Object.entries(portfolio_data)
-    //                                     .map(([key,value]) => {
-    //                                         return (<div>{key} : {value.toString()}</div>);
-    //     });
-    // };
-
     const elements = [];
     for (var website in portfolio_data){
         const website_string = portfolio_data[website].toString()
