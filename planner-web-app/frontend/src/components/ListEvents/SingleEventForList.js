@@ -28,20 +28,13 @@ const logDelete = e =>{
                 window.location.reload(true);
             }
         });
+}
 
-    // axios({
-    //     url: '/deleteEvent',
-    //     method: 'DELETE',
-    //     data: eventID
-    // })
-    //     //.then(response => response.json())
-    //     .then(response => {
-    //         console.log('DONE DELETING 1');
-    //         window.location.reload(true);
-    //     })
-    //     .catch(error => console.error(error));
-    // console.log('DONE DELETING');
-    // window.location.reload(true);
+function convertTime(date){
+    var time = new Date(date);
+    console.log(time.toString())
+    var string = time.toLocaleDateString()+' '+time.toLocaleTimeString()
+    return string;
 }
 
 const SingleEventForList = props => (
@@ -55,8 +48,8 @@ const SingleEventForList = props => (
                         <p>
                             <strong>Event Name</strong>: {event.name}
                             <strong>Event Description</strong>: {event.description}
-                            <strong>Start Time</strong>: {event.start_date_time}
-                            <strong>End Time</strong>: {event.end_date_time}
+                            <strong>Start Time</strong>: {convertTime(event.start_date_time)}
+                            <strong>End Time</strong>: {convertTime(event.end_date_time)}
                         </p>
                         <button className="button is-info is-light" id= "goToEventButton" onClick={goToEvent}>
                             <Link to= {{

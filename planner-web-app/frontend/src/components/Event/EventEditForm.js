@@ -1,29 +1,33 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 import EventServices from "../../Services/EventServices";
+import {changeUTCLOCAL} from "./eventDateHelper"
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 function handleSubmit(eventID){
     return e => {
         e.preventDefault();
         console.log("is this the ID",eventID);
-        console.log("good lord",e.target[0].value);
+        console.log("good lord",e.target[7].value);
+
 
         var host_name = e.target[0].value;
         var host_id= e.target[1].value;
         var host_email= e.target[2].value;
-        var host_phone_number= e.target[3].value;
-        var host_organization= e.target[4].value;
+        var host_phone_number= e.target[4].value;
+        var host_organization= e.target[5].value;
 
-        var name  = e.target[5].value;
-        var description= e.target[6].value;
-        var start_date_time= e.target[7].value;
-        var end_date_time= e.target[8].value;
-        var location_city= e.target[9].value;
-        var location_country= e.target[10].value;
-        var location_address= e.target[11].value;
+        var name  = e.target[6].value;
+        var description= e.target[7].value;
+        var start_date_time= e.target[8].value;
+        var end_date_time= e.target[9].value;
+        var location_city= e.target[10].value;
+        var location_country= e.target[11].value;
+        var location_address= e.target[12].value;
 
-        var requirements= e.target[12].value;
-        var tags = e.target[13].value;
+        var requirements= e.target[13].value;
+        var tags = e.target[14].value;
 
 
         var event = {
@@ -55,17 +59,50 @@ function handleSubmit(eventID){
     }
 }
 
-function convertDateTime(props){
-    const start = props.props.start_date_time.substring(0,16);
-    props.props.start_date_time=start;
-    const end = props.props.end_date_time.substring(0,16);
-    props.props.end_date_time=end;
-}
+// function changeUTCLOCAL(date){
+//     var tryDate = new Date(date);
+//     var dateString = tryDate.toLocaleDateString();
+//     var timeString = tryDate.toLocaleTimeString('it-IT');
+//     var splitStart = dateString.split("/")
+//     console.log("what",dateString)
+//     console.log("what2",timeString)
+//     if(splitStart[0].length === 1){
+//         var final = splitStart[2]+'-'+'0'+splitStart[0]+'-'+splitStart[1]+'T'+timeString.substring(0,5);
+//     }
+//     else if(splitStart[1].length === 1){
+//         var final = splitStart[2]+'-'+splitStart[0]+'-'+'0'+splitStart[1]+'T'+timeString.substring(0,5);
+//     }
+//     else if(splitStart[1].length === 1 && splitStart[0].length === 1){
+//         var final = splitStart[2]+'-'+'0'+splitStart[0]+'-'+'0'+splitStart[1]+'T'+timeString.substring(0,5);
+//     }
+//     else{
+//         var final = splitStart[2]+'-'+splitStart[0]+'-'+splitStart[1]+'T'+timeString.substring(0,5);
+//     }
+//     console.log(final);
+//     return final;
+// }
+
+// function convertDateTime(props){
+//     // const start = props.props.start_date_time;
+//     // var tryDate = new Date(start);
+//     // var dateString = tryDate.toLocaleDateString();
+//     // var timeString = tryDate.toLocaleTimeString('it-IT');
+//     // console.log(dateString,timeString);
+//     // var splitStart = dateString.split("/")
+//     // console.log(splitStart);
+//     // var finalStart = splitStart[2]+'-'+splitStart[0]+'-'+splitStart[1]+'T'+timeString.substring(0,5);
+//     // console.log(finalStart);
+//     // console.log("uhghhh",start.substring(0,16));
+//     // const end = props.props.end_date_time.substring(0,16);
+//     props.props.start_date_time=changeUTCLOCAL(props.props.start_date_time);
+//     props.props.end_date_time=changeUTCLOCAL(props.props.end_date_time);
+// }
 
 function EventEditForm(props){
     console.log(props);
     console.log(props.props.eventID)
-    convertDateTime(props)
+    const [value, setValue] = useState()
+    //convertDateTime(props)
     return(
         <form onSubmit={handleSubmit(props.props.eventID)}>
             <h1 className="eventFormh1">Host info</h1>
@@ -101,11 +138,11 @@ function EventEditForm(props){
             <br></br>
             <label className = "label"  htmlFor='event_host_number'>Phone Number:</label>
             <div className="control">
-                <input type="number"
-                       className="input"
-                       name="host_phone_number"
-                    //onChange={handleChange}
-                       defaultValue={props.props.host_phone_number}
+                <PhoneInput
+                    className="input"
+                    name="host_phone_number"
+                    value={props.props.host_phone_number}
+                    onChange={setValue}
                 />
             </div>
             <br></br>
@@ -113,7 +150,7 @@ function EventEditForm(props){
             <div className="control">
                 <input type="text"
                        className="input"
-                       name="host_phone_org"
+                       name="host_org"
                     //onChange={handleChange}
                        defaultValue={props.props.host_organization}
                 />
@@ -150,7 +187,7 @@ function EventEditForm(props){
                        className="input"
                        name="start_date"
                     //onChange={handleChange}
-                       defaultValue={props.props.start_date_time}
+                       defaultValue={changeUTCLOCAL(props.props.start_date_time)}
                        required
                 />
             </div>
@@ -161,7 +198,7 @@ function EventEditForm(props){
                        className="input"
                        name="end_date"
                     //onChange={handleChange}
-                       defaultValue={props.props.end_date_time}
+                       defaultValue={changeUTCLOCAL(props.props.end_date_time)}
                        required
                 />
             </div>
