@@ -4,7 +4,7 @@ import AuthServices from '../../Services/AuthServices';
 import { AuthContext } from '../../Context/AuthContext';
 
 const LoggedOutDropdown = () => {
-    const { setIsAuthenticated } = useContext(AuthContext);
+    const { user, setIsAuthenticated } = useContext(AuthContext);
 
     const logOutHandler = () => {
         AuthServices.logout();
@@ -24,7 +24,7 @@ const LoggedOutDropdown = () => {
                     </span>
                 </button>
                 <div className="navbar-dropdown is-right is-boxed mt-1 mr-5" style={{width: "170px"}}>
-                    <a className="dropdown-item">
+                    <a className="dropdown-item" href={`/profile/${user.userID}`}>
                         Profile
                     </a>
                     <hr className="navbar-divider"></hr>
