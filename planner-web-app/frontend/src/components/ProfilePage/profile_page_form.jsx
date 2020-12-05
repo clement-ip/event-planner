@@ -14,7 +14,7 @@ function ProfileForm(props) {
         email:'',
         name: '',
         about: '',
-        location: {},
+        location: {country : '', city : '', lat:0, lon:0},
         interests: '',
         occupation: '',
         skills: '',
@@ -26,13 +26,13 @@ function ProfileForm(props) {
     });
 
     useEffect(()=>{
-        ProfileServices.getProfile(user.user_id)
+        ProfileServices.getProfile(user.userID)
             .then(res => {
                 if (!res.isAuthenticated) {
                     console.log("Cannot retrieve profile");
                 }
                 else {
-                    console.log(res.data)
+                    console.log(res)
                     setData({
                         userID: res.data.userID,
                         email: res.data.email,
@@ -93,7 +93,7 @@ function ProfileForm(props) {
             }
 
         } );
-        const path = `/profile/${user.user_id}`
+        const path = `/profile/${user.userID}`
         // props.history.push(path);
         window.location.replace(path);
     }
@@ -243,7 +243,7 @@ function ProfileForm(props) {
                             Submit
                     </p>
                 </button>
-                <Link to={() => "/profile/" + user.user_id}>
+                <Link to={() => "/profile/" + user.userID}>
                     <button
                         className="button is-outlined has-shadow py-5"
                         renderAs="Link"

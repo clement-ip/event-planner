@@ -35,10 +35,10 @@ const ContactCard = (props) => {
 
             {/* TODO: Portfolio needs to come back as a website link
                 {WARNING: THIS IS BREAKING B/C NEED TO PLAY AS ARRAY} */}
-            <h1>
+            {/* <h1>
                 <strong>Portfolio</strong>:<br/>
                 {portfolio_websites}
-            </h1>
+            </h1> */}
         </div>
     )
 }

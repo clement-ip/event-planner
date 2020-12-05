@@ -69,8 +69,13 @@ export default {
             if (res.status !== 400) {
                 if (res.status === 500) {
                     return res.json().then(({status, msg, error}) => {
-                        return { isAuthenticated : false, msg,
-                                 data : null, status, error};
+                        return { isAuthenticated : false,
+                                 message : { msgBody : error,
+                                    status : status,
+                                    extra_msg : msg,
+                                    msgError : true,
+                                 }, data : null,
+                                };
                     });
                 }
                 return res.json().then(({msg}) => {

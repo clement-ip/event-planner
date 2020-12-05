@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 
 import { AuthContext } from '../Context/AuthContext';
 
@@ -8,7 +8,7 @@ import Footer from './Footer';
 
 const Hero = (props) => {
 
-    const { isAuthenticated, setIsAuthenticated} = useContext(AuthContext);
+    const { user, isAuthenticated, setIsAuthenticated} = useContext(AuthContext);
     if(!isAuthenticated)
         return <Redirect to='/' />
 
@@ -20,4 +20,4 @@ const Hero = (props) => {
   );
 }
 
-export default Hero;
+export default withRouter(Hero);

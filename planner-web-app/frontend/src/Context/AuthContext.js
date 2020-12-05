@@ -7,10 +7,10 @@ import AuthServices from '../Services/AuthServices';
 */
 
 // returns a context api provider and consumer. Any component wrapped around provider has access
-// to AuthContext global state
+// to AuthContext global statez
 export const AuthContext = createContext();
 
-// Children are the components which will be wrapped 
+// Children are the components which will be wrapped
 export default ({ children }) => {
     // states
     const [user, setUser] = useState(null);
