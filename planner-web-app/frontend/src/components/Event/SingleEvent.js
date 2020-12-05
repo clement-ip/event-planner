@@ -6,10 +6,12 @@ import axios from "axios";
 import EventEditForm from './EventEditForm'
 
 import EventServices from '../../Services/EventServices';
+import EyesonServices from '../../Services/EyesonServices';
 
 function SingleEvent(props){
 
     const {user} = useContext(AuthContext);
+    const url = window.location.href;
     const [data, setData] = useState({
         dataBaseEvents: [],
         //dataBaseEventsFormatted:[],
@@ -111,6 +113,16 @@ function SingleEvent(props){
         })
     }
 
+    const joinConferenceHandler = () => {
+        const data = { exit_url : url, user : "user", eventID : props.match.params.id };
+        console.log("printing in here: ", data);
+        EyesonServices.join(data).then(res => {
+            const gui_link = res.links.gui;
+            console.log(gui_link);
+            window.location.replace(gui_link);
+        })
+    }
+
 
     if(data.editState === true){
         return(
@@ -145,6 +157,7 @@ function SingleEvent(props){
                 <strong>Tags</strong>: {data.tags}<br/>
                 <strong>Requirements</strong>: {data.requirements}
             </p>
+            <button onClick={joinConferenceHandler} class="button is-primary">Join Conference</button>
             <CommentBox eventID={props.match.params.id} user={user}/>
         </div>
     )
