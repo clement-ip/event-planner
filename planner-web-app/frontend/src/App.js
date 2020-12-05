@@ -17,6 +17,7 @@ import AuthService from './Services/AuthServices';
 import CommentServices from './Services/CommentServices';
 import EventServices from './Services/EventServices';
 import ProfileServices from './Services/ProfileServices';
+import EyesonServices from './Services/EyesonServices';
 
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
 //   CommentServices.createComment(commentData).then(data => console.log("Testing", data));
 
 //   EventServices.getAllEvents().then(({ eventsData }) => console.log('EventsData', eventsData));
+
+// EyesonServices.join("event");
 
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
