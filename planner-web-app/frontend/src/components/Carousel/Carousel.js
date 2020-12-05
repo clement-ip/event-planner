@@ -28,8 +28,8 @@ function Carousel(props) {
     bulmaCarousel.attach('#carousel-items', {
       slidesToScroll: 1,
       slidesToShow: 5,
-      pagination: false
-      // infinite: true
+      pagination: false,
+      infinite: true
     });
   },[]);
 
