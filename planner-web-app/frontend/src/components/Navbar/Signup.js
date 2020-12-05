@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useForm } from 'react-hook-form';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
 import FormError from './FormErrors';
 import { AuthContext } from '../../Context/AuthContext';
@@ -8,7 +8,7 @@ import AuthServices from '../../Services/AuthServices';
 
 const Signup = (props) => {
     const { register, handleSubmit, errors, setError, clearErrors } = useForm();
-    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+    const { user, setUser, isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
     const onSubmitHandler = (data) => {
         const { name, email, password, password2 } = data;
@@ -38,10 +38,27 @@ const Signup = (props) => {
                     console.log(msgBody);
                     clearErrors();
                     props.modalRef.current.classList.remove('is-active');
-                    setIsAuthenticated(true);
-                    props.history.push('/hero');
+
+                    AuthServices.login(user).then(res => {
+                        if(!(res.isAuthenticated)) {
+                            console.log("login unsuccessful")
+                        } else {
+                            clearErrors();
+                            console.log("login successful");
+                            props.modalRef.current.classList.remove('is-active');
+                            setIsAuthenticated(true);
+                            // props.history.push('/create_profile');
+                            AuthServices.isAuthenticated().then(data => {
+                                console.log(data)
+                                setUser(data.user);
+                                setIsAuthenticated(data.isAuthenticated);
+                                props.history.push('/create_profile');
+                            });
+                        }
+                    });
                 }
             });
+
         }
     }
 

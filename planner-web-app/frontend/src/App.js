@@ -11,6 +11,7 @@ import ListAllEvents from "./components/ListEvents/ListEvents";
 import SingleEvent from "./components/Event/SingleEvent";
 import ProfilePage from "./components/ProfilePage/profile_page"
 import EditProfilePage from "./components/ProfilePage/profile_page_form"
+import CreateProfilePage from "./components/ProfilePage/create_profile_page_form"
 import EventResults from "./components/EventResults/Results"
 
 import AuthService from './Services/AuthServices';
@@ -48,7 +49,7 @@ function App() {
 
   const {user} = useContext(AuthContext);
 //   console.log(user)
-//   ProfileServices.getProfile(user.user_id).then(({ ProfileData }) => console.log('ProfileData', ProfileData));
+//   ProfileServices.getProfile(user.userID).then(({ ProfileData }) => console.log('ProfileData', ProfileData));
 
 
   return (
@@ -62,6 +63,7 @@ function App() {
         <Route exact path="/SingleEvent/:id" component={SingleEvent}/>
         <Route exact path='/profile/:id' component={ProfilePage}/>
         <Route exact path="/profile/" component={EditProfilePage}/>
+        <Route exact path="/create_profile" component={CreateProfilePage}/>
         <Route exact path="/search/:id" component={EventResults}/>
       </div>
   );

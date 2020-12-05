@@ -52,12 +52,12 @@ module.exports.profile_create = (req,res) =>{
 
     newProfile.save((err, data) => {
         if (err) {
-            return res.status(500).json({status: "Error", 
+            return res.status(500).json({status: "Error",
                 msg: "Server error when attempting to create profile.",
                 error: err.message
             });
         }
-        return res.status(200).send(data);
+        return res.status(200).json({ status:"Success", data: data });
     });
 }
 
