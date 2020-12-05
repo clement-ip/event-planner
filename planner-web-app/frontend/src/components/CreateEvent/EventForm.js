@@ -51,7 +51,7 @@ function handleSubmit(e){
     EventServices.saveEvent(event)
         .then(({ message }) => {
             console.log(message.msgBody);
-            //window.location.reload(false);
+            window.location.reload(false);
         });
 
     // axios({
