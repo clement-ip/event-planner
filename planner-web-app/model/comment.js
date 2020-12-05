@@ -29,8 +29,8 @@ const commentSchema = new Schema({
         type: String,
         required: true
     },
-    time : { 
-        type : String, 
+    time : {
+        type : String,
         default: joinedDate
     },
     eventID : {

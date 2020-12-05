@@ -13,7 +13,6 @@ export const AuthContext = createContext();
 // Children are the components which will be wrapped 
 export default ({ children }) => {
     // states
-    // NEED TO ALSO TRACK NAME OF USER
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
