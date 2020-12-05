@@ -81,7 +81,7 @@ function IndividualProfile(props){
             <HostingAttendingEvents events_data={ { hostingEvents:profile_data.hostingEvents,
                                                     attendingEvents:profile_data.attendingEvents } }/>
             { user.userID === props.match.params.id &&
-                <Link to="/profile/">
+                <Link to="/editProfile/">
                     <button class="button is-danger is-outlined" renderAs="Link">
                         <span>Edit Profile</span>
                     </button>

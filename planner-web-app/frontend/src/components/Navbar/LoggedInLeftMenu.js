@@ -24,7 +24,7 @@ const LoggedOutDropdown = () => {
                     </span>
                 </button>
                 <div className="navbar-dropdown is-right is-boxed mt-1 mr-5" style={{width: "170px"}}>
-                    <a className="dropdown-item" href={`/profile/${user.userID}`}>
+                    <a className="dropdown-item" href={`/viewProfile/${user.userID}`}>
                         Profile
                     </a>
                     <hr className="navbar-divider"></hr>

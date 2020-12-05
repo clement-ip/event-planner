@@ -93,7 +93,7 @@ function ProfileForm(props) {
             }
 
         } );
-        const path = `/profile/${user.userID}`
+        const path = `/viewProfile/${user.userID}`
         // props.history.push(path);
         window.location.replace(path);
     }
@@ -243,7 +243,7 @@ function ProfileForm(props) {
                             Submit
                     </p>
                 </button>
-                <Link to={() => "/profile/" + user.userID}>
+                <Link to={() => "/viewProfile/" + user.userID}>
                     <button
                         className="button is-outlined has-shadow py-5"
                         renderAs="Link"

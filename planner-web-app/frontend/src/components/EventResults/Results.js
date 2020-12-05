@@ -101,8 +101,7 @@ function EventResults(props){
                 <div>
                     {/*<Results></Results>*/}
                 </div>
-                <div className="second">
-                    <p>hello:</p>
+                <div>
                     <SingleEventForList eventsProp={eventId.dataBaseEvents}/>
                 </div>
             </div>
