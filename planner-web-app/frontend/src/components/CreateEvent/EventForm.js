@@ -2,28 +2,30 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 
 import EventServices from '../../Services/EventServices';
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 function handleSubmit(e){
     e.preventDefault();
     console.log('does this one work?')
-    // console.log("good lord",e.target[14].value);
+    console.log("good lord",e);
 
     var host_name = e.target[0].value;
     var host_id= e.target[1].value;
     var host_email= e.target[2].value;
-    var host_phone_number= e.target[3].value;
-    var host_organization= e.target[4].value;
+    var host_phone_number= e.target[4].value;
+    var host_organization= e.target[5].value;
 
-    var name  = e.target[5].value;
-    var description= e.target[6].value;
-    var start_date_time= e.target[7].value;
-    var end_date_time= e.target[8].value;
-    var location_city= e.target[9].value;
-    var location_country= e.target[10].value;
-    var location_address= e.target[11].value;
+    var name  = e.target[6].value;
+    var description= e.target[7].value;
+    var start_date_time= e.target[8].value;
+    var end_date_time= e.target[9].value;
+    var location_city= e.target[10].value;
+    var location_country= e.target[11].value;
+    var location_address= e.target[12].value;
 
-    var requirements= e.target[12].value;
-    var tags = e.target[13].value;
+    var requirements= e.target[13].value;
+    var tags = e.target[14].value;
 
 
     var event = {
@@ -49,7 +51,7 @@ function handleSubmit(e){
     EventServices.saveEvent(event)
         .then(({ message }) => {
             console.log(message.msgBody);
-            window.location.reload(false);
+            //window.location.reload(false);
         });
 
     // axios({
@@ -67,6 +69,7 @@ function handleSubmit(e){
 }
 
 function EventForm(){
+    const [value, setValue] = useState()
     return(
         <form onSubmit={handleSubmit}>
             <h1 className="eventFormh1">Host info</h1>
@@ -96,9 +99,11 @@ function EventForm(){
             <br></br>
             <label className = "label"  htmlFor='event_host_number'>Phone Number:</label>
             <div className="control">
-                <input type="number"
+                <PhoneInput
                        className="input"
                        name="host_phone_number"
+                       value={value}
+                       onChange={setValue}
                 />
             </div>
             <br></br>
@@ -106,7 +111,7 @@ function EventForm(){
             <div className="control">
                 <input type="text"
                        className="input"
-                       name="host_phone_number"
+                       name="host_org"
                 />
             </div>
             <br></br>

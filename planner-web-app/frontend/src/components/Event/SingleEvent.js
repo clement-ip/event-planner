@@ -61,6 +61,14 @@ function SingleEvent(props){
             })
     }, [props.match.params.id]);
 
+    function convertTime(date){
+        var time = new Date(date);
+        console.log(time.toString())
+        var string = time.toLocaleDateString()+' '+time.toLocaleTimeString()
+        return string;
+    }
+
+
     function toggleEditOn(){
         console.log('toggle on ',data);
         setData({editState: true,
@@ -131,8 +139,8 @@ function SingleEvent(props){
             <br/><h2>Event Info</h2>
             <p>
                 <strong>Event Description</strong>: {data.description} <br/>
-                <strong>Start Time</strong>: {data.start_date_time} <br/>
-                <strong>End Time</strong>: {data.end_date_time}<br/>
+                <strong>Start Time</strong>: {convertTime(data.start_date_time)} <br/>
+                <strong>End Time</strong>: {convertTime(data.end_date_time)}<br/>
                 <strong>Address</strong>: {data.location_address} {data.location_city} {data.location_country}<br/>
                 <strong>Tags</strong>: {data.tags}<br/>
                 <strong>Requirements</strong>: {data.requirements}
