@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from "../Context/AuthContext";
 
 const Footer = () => {
-    // const {user} = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
     return (
         <footer className="footer">
             <div className="container">
