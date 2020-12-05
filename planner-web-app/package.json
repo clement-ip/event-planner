@@ -9,7 +9,6 @@
     "build": "cd frontend && react-scripts build",
     "test": "cd frontend && react-scripts test",
     "eject": "cd frontend && react-scripts eject"
-
   },
   "author": "",
   "license": "ISC",
@@ -23,7 +22,7 @@
     "@testing-library/user-event": "^12.2.2",
     "ajax": "0.0.4",
     "axios": "^0.21.0",
-    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^4.5.3",
     "bulma": "^0.9.1",
     "bulma-block-list": "^0.4.0",
