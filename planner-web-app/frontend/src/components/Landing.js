@@ -1,5 +1,6 @@
 import React from "react";
-import Carousel from "./Carousel";
+import Carousel from "./Carousel/Carousel";
+import ImageUpload from "./Uploader/ImageUpload"
 
 import Footer from './Footer';
 
@@ -7,8 +8,9 @@ const Landing = () => {
 
   return (
     <div>
-      Landing
+      <h1 class = "title">Landing</h1>
       <Carousel/>
+      {/* <ImageUpload/> */}
       <Footer />
     </div>
   );
