@@ -61,10 +61,10 @@ function App() {
         <Route exact path="/createEvent" component={CreateEvent}/>
         <Route exact path="/ListAllEvents" component={ListAllEvents}/>
         <Route exact path="/SingleEvent/:id" component={SingleEvent}/>
-        <Route exact path='/profile/:id' component={ProfilePage}/>
-        <Route exact path="/profile/" component={EditProfilePage}/>
-        <Route exact path="/create_profile" component={CreateProfilePage}/>
-        <Route exact path="/search/:id" component={EventResults}/>
+        <Route exact path='/viewProfile/:id' component={ProfilePage}/>
+        <Route exact path="/editProfile/" component={EditProfilePage}/>
+        <Route exact path="/createProfile" component={CreateProfilePage}/>
+        <Route exact path="/searchEvent/:id" component={EventResults}/>
       </div>
   );
 }

@@ -7,7 +7,7 @@ function SearchBar() {
     function navigateTo()
         {
             var name = document.getElementById("search").value;
-            history.push('/search/' + name);
+            history.push('/searchEvent/' + name);
             window.location.reload();
     }
 

@@ -4,9 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"nodemon server.js\" \"cd frontend && npm start\"",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "cd frontend && react-scripts build",
+    "test": "cd frontend && react-scripts test",
+    "eject": "cd frontend && react-scripts eject"
+
   },
   "author": "",
   "license": "ISC",

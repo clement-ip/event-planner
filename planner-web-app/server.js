@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const Event = require('./model/Event');
 const profileRoutes = require('./routes/profilePageRoutes');
-
+const path = require("path");
 const multer = require("multer");
 
 const GridFsStorage = require("multer-gridfs-storage");
@@ -20,6 +20,8 @@ const eventRoutes = require('./routes/eventRoutes');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
+
+app.use(express.static(path.join(__dirname, "frontend/build")));
 
 app.use(cookieParser());
 app.use(express.json());
@@ -47,6 +49,11 @@ app.use(authRoutes);
 app.use(commentRoutes);
 app.use(eventRoutes);
 app.use(profileRoutes);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/build/index.html"));
+})
+
 
 app.get('/test', (req, res) => {
     // res.json('pls work');
