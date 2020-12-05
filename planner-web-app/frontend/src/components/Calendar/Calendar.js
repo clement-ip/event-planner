@@ -25,7 +25,7 @@ function Calendar(props){
     var data = formatEventData(props.calendarProp);
 
     return(
-        <FullCalendar plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        <FullCalendar plugins={[dayGridPlugin, timeGridPlugin]}
                       headerToolbar={{
                           left: 'prev,next today',
                           center: 'title',
