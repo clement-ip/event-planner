@@ -1,44 +1,44 @@
 {
     "items": [
         {
-            "name": "Mon titre 1", 
-            "description": "Ici une petite description pour tester le slider",
+            "name": "Event 1", 
+            "description": "Here is a sample event!",
             "image": "https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
         },
         
         {
-            "name": "Mon titre 2", 
-            "description": "Ici une petite description pour tester le slider",
+            "name": "Event 2", 
+            "description": "Here is another sample event!",
             "image": "https://images.unsplash.com/photo-1550945771-515f118cef86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
         },
 
         {
-            "name": "Mon titre 3", 
-            "description": "Ici une petite description pour tester le slider",
+            "name": "Event 3", 
+            "description": "This one may be exciting!",
             "image": "https://images.unsplash.com/photo-1550971264-3f7e4a7bb349?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
         },
 
         {
-            "name": "Mon titre 4", 
-            "description": "Ici une petite description pour tester le slider",
+            "name": "Event 4", 
+            "description": "Or maybe you wanna fancy this event.",
             "image": "https://images.unsplash.com/photo-1550931937-2dfd45a40da0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
         },
 
         {
-            "name": "Mon titre 5", 
-            "description": "Ici une petite description pour tester le slider",
+            "name": "Event 5", 
+            "description": "Either way, you can click into these events soon.",
             "image": "https://images.unsplash.com/photo-1550930516-af8b8cc4f871?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
         },
 
         {
-            "name": "Mon titre 6", 
-            "description": "Ici une petite description pour tester le slider",
+            "name": "Event 6", 
+            "description": "Hopefully we'll get around to activating this.",
             "image": "https://images.unsplash.com/photo-1550921082-c282cdc432d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
         },
 
         {
-            "name": "Mon titre 7", 
-            "description": "Ici une petite description pour tester le slider",
+            "name": "Event 7", 
+            "description": "In the meantime, please enjoy this list of events!",
             "image": "https://images.unsplash.com/photo-1550930516-af8b8cc4f871?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
         }
     ]

@@ -16,9 +16,9 @@ function ImageUpload(){
       console.log(r);
     });
 
-    document
-      .getElementById("img")
-      .setAttribute("src", `http://localhost:5000/uploads/${file[0].name}`);
+    // document
+    //   .getElementById("img")
+    //   .setAttribute("src", `http://localhost:5000/uploads/${file[0].name}`);
     console.log(file[0]);
   };
 

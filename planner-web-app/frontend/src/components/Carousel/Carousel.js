@@ -11,57 +11,45 @@ function Carousel(props) {
     carouselData:[]
   });
 
-  // function startCarousel(){
-  //   // await fetchData();
-  //   bulmaCarousel.attach('#carousel-items', {
-  //     slidesToScroll: 1,
-  //     slidesToShow: 5,
-  //     pagination: false,
-  //     infinite: true
-  //   });
-  //   // fetchData();
-  // }
 
-  async function fetchData() {
-    EventServices.getAllEvents().then(({ message, eventsData }) => {
-      if(message.msgError)
-          console.log(message.msgBody);
-      else {
-          const carouselData = eventsData;
-          setData({carouselData : carouselData});
-          console.log("stuff", carouselData);
-          // console.log("events", data.carouselData);
-      }
-    });
-    // console.log("what dis", data.carouselData);
-    // await startCarousel();
-  }
 
   useEffect(() => {
-    fetchData();
+    // EventServices.getAllEvents().then(({ message, eventsData }) => {
+    //   if(message.msgError)
+    //       console.log(message.msgBody);
+    //   else {
+    //       const carouselData = eventsData;
+    //       setData({carouselData : carouselData});
+    //       console.log("stuff", carouselData);
+    //       console.log("events", data.carouselData);
+    //   }
+    // });
+
+    bulmaCarousel.attach('#carousel-items', {
+      slidesToScroll: 1,
+      slidesToShow: 5,
+      pagination: false
+      // infinite: true
+    });
   },[]);
 
-  useEffect(() => {
-    console.log("EVENTS", data);
-  },[data.carouselData]);
 
-  // startCarousel();
     return(
       <section className="section">
           <div className="carousel-container">
             <div id="carousel-items" className="carousel" >
               {
-                data.carouselData && data.carouselData.map((CarouselItem, index) =>{
-                // CarouselTestData.items.map((CarouselItem, index) =>{
+                // data.carouselData.map((CarouselItem, index) =>{
+                CarouselTestData.items.map((CarouselItem, index) =>{
                   return(
                   <div className="card" key={index}>
-                    {/* <div className="card-image">
+                    <div className="card-image">
                       <figure className="image is-16by9 is-covered">
                         <img
                           src={CarouselItem.image}
                           alt="" />
                       </figure>
-                    </div> */}
+                    </div>
                     <div className="card-content">
                       <div className="item__title">
                         {CarouselItem.name}
