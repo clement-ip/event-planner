@@ -7,14 +7,14 @@ export function changeUTCLOCAL(date){
     var splitStart = dateString.split("/")
     console.log("what",dateString)
     console.log("what2",timeString)
-    if(splitStart[0].length === 1){
+    if(splitStart[1].length === 1 && splitStart[0].length === 1){
+        var final = splitStart[2]+'-'+'0'+splitStart[0]+'-'+'0'+splitStart[1]+'T'+timeString.substring(0,5);
+    }
+    else if(splitStart[0].length === 1){
         var final = splitStart[2]+'-'+'0'+splitStart[0]+'-'+splitStart[1]+'T'+timeString.substring(0,5);
     }
     else if(splitStart[1].length === 1){
         var final = splitStart[2]+'-'+splitStart[0]+'-'+'0'+splitStart[1]+'T'+timeString.substring(0,5);
-    }
-    else if(splitStart[1].length === 1 && splitStart[0].length === 1){
-        var final = splitStart[2]+'-'+'0'+splitStart[0]+'-'+'0'+splitStart[1]+'T'+timeString.substring(0,5);
     }
     else{
         var final = splitStart[2]+'-'+splitStart[0]+'-'+splitStart[1]+'T'+timeString.substring(0,5);
