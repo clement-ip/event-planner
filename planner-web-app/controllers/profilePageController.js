@@ -76,3 +76,28 @@ module.exports.profile_delete = (req,res) =>{
         return res.status(200).send(data);
     });
 }
+
+module.exports.addEventToUserProfile = (req,res) =>{
+    console.log(req.body);
+    Profile.findOneAndUpdate({userID: req.body.user_id}, {$push: {attendingEvents : req.body.event_id} }, (err,result)=>{
+        if (err) {
+            return res.status(500).json({ status:'Error',
+                msg:"Unable to add profile info.",
+                error:err.message
+            });
+        }
+        else if (!result) {
+            console.log('Bad Request: Invalid Access.')
+            return res.status(401).json({ status:'Error',
+                msg:"Bad Request: Invalid Access.",
+            });
+        }
+        console.log('User successfully Added an Event to their page!')
+        return res.status(200).send({
+                status:'Succeeded',
+                msg: "Successfully gotten profile data",
+                data: result
+            }
+        );
+    })
+}
