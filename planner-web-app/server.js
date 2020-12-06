@@ -28,11 +28,11 @@ app.use(express.json());
 
 // Cors
 const corsOptions = {
-    origin : 'http://localhost:3000',
+    //origin : 'http://localhost:3000',
+    origin : 'http://35.247.19.51',
     credentials : true
 }
 app.use(cors(corsOptions));
-
 
 // Port
 const port = process.env.PORT || 5000;
@@ -176,3 +176,12 @@ app.delete("/files/:id", (req, res) => {
       // res.redirect("/")
   })
 })
+var session = require('express-session')
+app.set('trust proxy',1);
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
