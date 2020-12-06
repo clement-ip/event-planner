@@ -1,6 +1,11 @@
+const API_ADDR = process.env.NODE_ENV === 'production' ?
+                    process.env.REACT_APP_API_ADDR_PRODUCTION :
+                    process.env.REACT_APP_API_ADDR_DEV;
+
 export default {
     getAllEvents : () => {
-        return fetch('http://35.247.19.51/getAllEvents', {
+        // return fetch('http://35.247.19.51/getAllEvents', {
+        return fetch(`${API_ADDR}/getAllEvents`, {
             credentials : 'include'
         })
             .then(res => {
@@ -19,7 +24,8 @@ export default {
             });
     },
     saveEvent : eventData => {
-        return fetch('http://35.247.19.51/saveEvent', {
+        // return fetch('http://35.247.19.51/saveEvent', {
+        return fetch(`${API_ADDR}/saveEvent`, {
             credentials : 'include',
             method : 'post',
             body : JSON.stringify(eventData),
@@ -37,7 +43,8 @@ export default {
             });
     },
     getSingleEvent : eventID => {
-        return fetch('http://35.247.19.51/getSingleEvent/' + eventID, {
+        // return fetch('http://35.247.19.51/getSingleEvent/' + eventID, {
+        return fetch(`${API_ADDR}/getSingleEvent/${eventID}`, {
             credentials : 'include',
         })
             .then(res => {
@@ -56,7 +63,8 @@ export default {
             });
     },
     deleteEvent : eventID => {
-        return fetch('http://35.247.19.51/deleteEvent', {
+        // return fetch('http://35.247.19.51/deleteEvent', {
+        return fetch(`${API_ADDR}/deleteEvent`, {
             credentials : 'include',
             method : 'DELETE',
             body : JSON.stringify(eventID),
@@ -74,7 +82,8 @@ export default {
             });
     },
     editEvent : eventData => {
-        return fetch('http://35.247.19.51/editEvent', {
+        // return fetch('http://35.247.19.51/editEvent', {
+        return fetch(`${API_ADDR}/editEvent`, {
             credentials : 'include',
             method : 'put',
             body : JSON.stringify(eventData),
@@ -92,7 +101,8 @@ export default {
             });
     },
     searchEvent : eventName => {
-        return fetch('http://35.247.19.51/search/' + eventName, {
+        // return fetch('http://35.247.19.51/search/' + eventName, {
+        return fetch(`${API_ADDR}/search/${eventName}`, {
             credentials : 'include',
         })
             .then(res => {

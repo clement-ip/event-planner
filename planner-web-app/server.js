@@ -10,6 +10,7 @@ const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
 const crypto = require("crypto");
+const session = require('express-session')
 
 const authRoutes = require('./routes/authRoutes');
 const commentRoutes = require('./routes/commentRoutes');
@@ -26,10 +27,15 @@ app.use(express.static(path.join(__dirname, "frontend/build")));
 app.use(cookieParser());
 app.use(express.json());
 
+const API_ADDR = process.env.REACT_APP_NODE_ENV === 'production' ?
+                    process.env.REACT_APP_CORS_API_ADDR_PRODUCTION :
+                    process.env.REACT_APP_CORS_API_ADDR_DEV;
+
 // Cors
 const corsOptions = {
     //origin : 'http://localhost:3000',
-    origin : 'http://35.247.19.51',
+    // origin : 'http://35.247.19.51',
+    origin : `${API_ADDR}`,
     credentials : true
 }
 app.use(cors(corsOptions));
@@ -71,6 +77,15 @@ io.on('connection', (socket) => {
       });
 });
 
+// COOKIES SETTINGS
+app.set('trust proxy',1);
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {secure : false}
+}))
 
 
 let gfs;

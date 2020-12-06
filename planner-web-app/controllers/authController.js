@@ -4,6 +4,9 @@ const passportConfig = require('../config/passport');
 const JWT = require('jsonwebtoken');
 const { secretOrKey } = require('../config/keys');
 
+const API_ADDR = process.env.REACT_APP_NODE_ENV === 'production' ?
+                    process.env.REACT_APP_CORS_API_ADDR_PRODUCTION :
+                    process.env.REACT_APP_CORS_API_ADDR_DEV;
 
 const signToken = userID => {
     return JWT.sign({
@@ -46,7 +49,8 @@ module.exports.register_post = (req, res) => {
 module.exports.login_get = (req, res) => {
     // res.json("login_get");
     //res.redirect('http://localhost:5000/');
-    res.redirect('http://35.247.19.51');
+    // res.redirect('http://35.247.19.51');
+    res.redirect(`${API_ADDR}`)
 }
 
 module.exports.login_post = (req, res) => {
