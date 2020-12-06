@@ -42,7 +42,8 @@ const EventSchema = new Schema({
 
 EventSchema.plugin(mongoosastic, {
     hosts: [
-      'localhost:9200'
+    //   'localhost:9200'
+      `${process.env.REACT_APP_MONGOOSASTIC}`
     ]
   });
 

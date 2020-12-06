@@ -8,7 +8,11 @@ import { PromiseProvider } from 'mongoose';
 
 import CommentServices from '../../../../../Services/CommentServices';
 
-const SERVER = "http://35.247.19.51";
+const API_ADDR = process.env.NODE_ENV === 'production' ?
+                    process.env.REACT_APP_API_ADDR_PRODUCTION :
+                    process.env.REACT_APP_API_ADDR_DEV;
+
+const SERVER = `${API_ADDR}`;
 const socket = io(SERVER, {transports: ['websocket']});
 
 function Box(props) {
