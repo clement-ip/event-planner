@@ -1,6 +1,6 @@
 export default {
     getAllEvents : () => {
-        return fetch('http://localhost:5000/getAllEvents', {
+        return fetch('http://35.247.19.51/getAllEvents', {
             credentials : 'include'
         })
             .then(res => {
@@ -19,7 +19,7 @@ export default {
             });
     },
     saveEvent : eventData => {
-        return fetch('http://localhost:5000/saveEvent', {
+        return fetch('http://35.247.19.51/saveEvent', {
             credentials : 'include',
             method : 'post',
             body : JSON.stringify(eventData),
@@ -37,7 +37,7 @@ export default {
             });
     },
     getSingleEvent : eventID => {
-        return fetch('http://localhost:5000/getSingleEvent/' + eventID, {
+        return fetch('http://35.247.19.51/getSingleEvent/' + eventID, {
             credentials : 'include',
         })
             .then(res => {
@@ -56,7 +56,7 @@ export default {
             });
     },
     deleteEvent : eventID => {
-        return fetch('http://localhost:5000/deleteEvent', {
+        return fetch('http://35.247.19.51/deleteEvent', {
             credentials : 'include',
             method : 'DELETE',
             body : JSON.stringify(eventID),
@@ -74,7 +74,7 @@ export default {
             });
     },
     editEvent : eventData => {
-        return fetch('http://localhost:5000/editEvent', {
+        return fetch('http://35.247.19.51/editEvent', {
             credentials : 'include',
             method : 'put',
             body : JSON.stringify(eventData),
@@ -92,7 +92,7 @@ export default {
             });
     },
     searchEvent : eventName => {
-        return fetch('http://localhost:5000/search/' + eventName, {
+        return fetch('http://35.247.19.51/search/' + eventName, {
             credentials : 'include',
         })
             .then(res => {
