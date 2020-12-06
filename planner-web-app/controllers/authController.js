@@ -45,7 +45,8 @@ module.exports.register_post = (req, res) => {
 
 module.exports.login_get = (req, res) => {
     // res.json("login_get");
-    res.redirect('http://localhost:3000/');
+    //res.redirect('http://localhost:5000/');
+    res.redirect('http://35.247.19.51');
 }
 
 module.exports.login_post = (req, res) => {
