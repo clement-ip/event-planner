@@ -2,7 +2,7 @@
 
 export default {
     login : user => {
-        return fetch('http://localhost:5000/login', {
+        return fetch('http://35.247.19.51/login', {
             credentials : 'include',
             method : "post",
             body : JSON.stringify(user),
@@ -18,7 +18,7 @@ export default {
             });
     },
     register : user => {
-        return fetch('http://localhost:5000/register', {
+        return fetch('http://35.247.19.51/register', {
             method : "post",
             body : JSON.stringify(user),
             headers : {
@@ -29,7 +29,7 @@ export default {
             .then(data => data);
     },
     logout : () => {
-        return fetch('http://localhost:5000/logout', {
+        return fetch('http://35.247.19.51/logout', {
             credentials : 'include'
         })
             .then(res => {
@@ -40,7 +40,7 @@ export default {
             })
     },
     isAuthenticated : () => {
-        return fetch('http://localhost:5000/authenticated', {
+        return fetch('http://35.247.19.51/authenticated', {
             credentials : 'include'
         })
             .then(res => {
