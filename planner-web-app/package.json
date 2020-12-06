@@ -5,8 +5,12 @@
   "main": "server.js",
   "scripts": {
     "dev": "concurrently \"REACT_APP_NODE_ENV=\"development\" nodemon -r dotenv/config server.js\" \"cd frontend && npm start\"",
+<<<<<<< HEAD
     "win_dev": "concurrently \"nodemon -r dotenv/config server.js\" \"cd frontend && npm start\"",
     "start": "REACT_APP_NODE_ENV=\"production\" node -r dotenv/config server.js",
+=======
+    "start": "REACT_APP_NODE_ENV=\"production\" node server.js",
+>>>>>>> ea7756e... partially finish dotenv conversion
     "build": "cd frontend && react-scripts build",
     "test": "cd frontend && react-scripts test",
     "eject": "cd frontend && react-scripts eject"

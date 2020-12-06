@@ -140,7 +140,6 @@ function SingleEvent(props){
                     })
                 }
             })
-<<<<<<< HEAD
         EventServices.addAttendeeToEvent(body)
             .then(res => {
                 console.log('RES in Attendee addition to Event',res)
@@ -153,10 +152,6 @@ function SingleEvent(props){
                     window.alert("You have Successfully joined the event!")
                 }
             })
-=======
-
-        
->>>>>>> f74f6f3... add alert window for joining an event
     }
 
 
