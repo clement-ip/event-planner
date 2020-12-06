@@ -102,14 +102,18 @@ const storage = new GridFsStorage({
     });
   }
 });
-
 const upload = multer({ storage });
 
+// @route POST /upload
+// @desc  Uploads file to DB
 app.post("/upload", upload.single("img"), (req, res, err) => {
   res.send(req.files);
+  res.redirect("/");
 });
 
-app.get("/upload/:filename", (req, res) => {
+// @route GET /files/:filename
+// @desc  Display Image
+app.get("/image/:filename", (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
     if (!file || file.length === 0) {
