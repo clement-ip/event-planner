@@ -59,6 +59,8 @@ module.exports.login_post = (req, res) => {
         const token = signToken(_id);
         res.cookie('access_token', token, { httpOnly : true, sameSite : true });
         res.status(200).json({ isAuthenticated : true, user : { email: email, userID:_id, name: name } });
+
+
     }
 }
 
