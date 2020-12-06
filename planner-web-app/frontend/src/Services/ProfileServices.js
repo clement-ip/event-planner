@@ -1,7 +1,12 @@
 // Fetch requests for Profile Pages
+const API_ADDR = process.env.NODE_ENV === 'production' ?
+                    process.env.REACT_APP_API_ADDR_PRODUCTION :
+                    process.env.REACT_APP_API_ADDR_DEV;
+
 export default {
     getProfile : profileID => {
-        return fetch('http://35.247.19.51/profile/' + profileID, {
+        // return fetch('http://35.247.19.51/profile/' + profileID, {
+        return fetch(`${API_ADDR}/profile/${profileID}`, {
             credentials : 'include',
         }).then( res => {
             if (res.status !== 401) {
@@ -26,7 +31,8 @@ export default {
     },
 
     editProfile : profileData => {
-        return fetch('http://35.247.19.51/profile', {
+        // return fetch('http://35.247.19.51/profile', {
+        return fetch(`${API_ADDR}/profile`, {
             credentials : 'include',
             method : "post",
             body : JSON.stringify(profileData),
@@ -59,7 +65,8 @@ export default {
     },
 
     createProfile : createProfileData => {
-        return fetch('http://35.247.19.51/profile_create', {
+        // return fetch('http://35.247.19.51/profile_create', {
+        return fetch(`${API_ADDR}/profile_create`, {
             credentials : 'include',
             method : "post",
             body : JSON.stringify(createProfileData),
@@ -92,7 +99,8 @@ export default {
     },
 
     profileDelete : deleteProfileData => {
-        return fetch('http://35.247.19.51/profile_delete', {
+        // return fetch('http://35.247.19.51/profile_delete', {
+        return fetch(`${API_ADDR}/profile_delete`, {
             credentials : 'include',
             method : "post",
             body : JSON.stringify(deleteProfileData),

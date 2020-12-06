@@ -1,6 +1,11 @@
+const API_ADDR = process.env.NODE_ENV === 'production' ?
+                    process.env.REACT_APP_API_ADDR_PRODUCTION :
+                    process.env.REACT_APP_API_ADDR_DEV;
+
 export default {
     commentList : eventID => {
-        return fetch('http://35.247.19.51/comment/' + eventID, {
+        // return fetch('http://35.247.19.51/comment/' + eventID, {
+        return fetch(`${API_ADDR}/comment/${eventID}`, {
             credentials : 'include'
         })
             .then(res => {
@@ -19,7 +24,8 @@ export default {
             });
     },
     createComment : commentData => {
-        return fetch('http://35.247.19.51/comment', {
+        // return fetch('http://35.247.19.51/comment', {
+        return fetch(`${API_ADDR}/comment`, {
             credentials : 'include',
             method : "post",
             body : JSON.stringify(commentData),
@@ -37,7 +43,8 @@ export default {
             });
     },
     deleteComment : commentID => {
-        return fetch('http://35.247.19.51/comment/' + commentID, {
+        // return fetch('http://35.247.19.51/comment/' + commentID, {
+        return fetch(`${API_ADDR}/comment/${commentID}`, {
             credentials : 'include',
             method : "delete",
             headers : {
@@ -54,7 +61,8 @@ export default {
             });
     },
     replyList : topLevelID => {
-        return fetch('http://35.247.19.51/comment/' + topLevelID + '/replies', {
+        // return fetch('http://35.247.19.51/comment/' + topLevelID + '/replies', {
+        return fetch(`${API_ADDR}/comment/${topLevelID}/replies`, {
             credentials : 'include'
         })
             .then(res => {

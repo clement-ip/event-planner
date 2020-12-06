@@ -21,4 +21,5 @@ npm install --save -g \
     @fullcalendar/daygrid \
     @fullcalendar/interaction \
     @fullcalendar/react \
-    @fullcalendar/timegrid
+    @fullcalendar/timegrid \
+    dotenv
