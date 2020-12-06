@@ -1,6 +1,6 @@
 export default {
     commentList : eventID => {
-        return fetch('http://localhost:5000/comment/' + eventID, {
+        return fetch('http://35.247.19.51/comment/' + eventID, {
             credentials : 'include'
         })
             .then(res => {
@@ -19,7 +19,7 @@ export default {
             });
     },
     createComment : commentData => {
-        return fetch('http://localhost:5000/comment', {
+        return fetch('http://35.247.19.51/comment', {
             credentials : 'include',
             method : "post",
             body : JSON.stringify(commentData),
@@ -37,7 +37,7 @@ export default {
             });
     },
     deleteComment : commentID => {
-        return fetch('http://localhost:5000/comment/' + commentID, {
+        return fetch('http://35.247.19.51/comment/' + commentID, {
             credentials : 'include',
             method : "delete",
             headers : {
@@ -54,7 +54,7 @@ export default {
             });
     },
     replyList : topLevelID => {
-        return fetch('http://localhost:5000/comment/' + topLevelID + '/replies', {
+        return fetch('http://35.247.19.51/comment/' + topLevelID + '/replies', {
             credentials : 'include'
         })
             .then(res => {
