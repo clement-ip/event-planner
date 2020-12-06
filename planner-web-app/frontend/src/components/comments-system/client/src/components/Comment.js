@@ -5,7 +5,7 @@ import CommentServices from '../../../../../Services/CommentServices';
 import { AuthContext } from '../../../../../../src/Context/AuthContext';
 import io from 'socket.io-client'
 
-const SERVER = "http://localhost:5000";
+const SERVER = "http://35.247.19.51";
 const socket = io(SERVER, {transports: ['websocket']});
 
 function Comment(props) {

@@ -8,7 +8,7 @@ import { PromiseProvider } from 'mongoose';
 
 import CommentServices from '../../../../../Services/CommentServices';
 
-const SERVER = "http://localhost:5000";
+const SERVER = "http://35.247.19.51";
 const socket = io(SERVER, {transports: ['websocket']});
 
 function Box(props) {
