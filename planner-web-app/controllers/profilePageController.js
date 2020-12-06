@@ -79,7 +79,7 @@ module.exports.profile_delete = (req,res) =>{
 
 module.exports.addEventToUserProfile = (req,res) =>{
     console.log(req.body);
-    Profile.findOneAndUpdate({userID: req.body.user_id}, {$push: {attendingEvents : req.body.event_id} }, (err,result)=>{
+    Profile.findOneAndUpdate({userID: req.body.user_id}, {$addToSet: {attendingEvents : req.body.event_id} }, (err,result)=>{
         if (err) {
             return res.status(500).json({ status:'Error',
                 msg:"Unable to add profile info.",
