@@ -45,7 +45,8 @@ module.exports.register_post = (req, res) => {
 
 module.exports.login_get = (req, res) => {
     // res.json("login_get");
-    res.redirect('http://localhost:3000/');
+    //res.redirect('http://localhost:5000/');
+    res.redirect('http://35.247.19.51');
 }
 
 module.exports.login_post = (req, res) => {
@@ -56,8 +57,9 @@ module.exports.login_post = (req, res) => {
     if(req.isAuthenticated()) {
         const { _id, email } = req.user;
         const token = signToken(_id);
-        res.cookie('access_token', token, { httpOnly : true, sameSite : true });
-        res.status(200).json({ isAuthenticated : true, user: { email } });
+        //res.cookie('access_token', token, { httpOnly : true, sameSite : true, domain : '.35.247.19.51' });
+	res.cookie('access_token', token, { httpOnly : true, sameSite : true, domain : '.35.247.19.51' });
+	res.status(200).json({ isAuthenticated : true, user: { email } });
     }
 }
 
