@@ -13,7 +13,11 @@ const LoggedOutDropdown = () => {
 
     return (
         <div className="navbar-end">
-        {/* Signup/Login Dropdown */}
+            <a className="navbar-item">
+                Create an Event
+            </a>
+
+            {/* Signup/Login Dropdown */}
             <div className="navbar-item is-hoverable">
                 <button className="button is-rounded is-white mr-4">
                     <span className="icon">

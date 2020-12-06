@@ -1,22 +1,18 @@
 import React, { useContext } from "react";
-import { Redirect, withRouter } from "react-router-dom";
+import { Route, Redirect, withRouter } from "react-router-dom";
 
 import { AuthContext } from '../Context/AuthContext';
 import Carousel from "./Carousel/Carousel";
 import ImageUpload from "./Uploader/ImageUpload"
 
 import Footer from './Footer';
-
+import CreateEvent from "./CreateEvent/CreateEvent";
 
 const Hero = (props) => {
 
-    const { user, isAuthenticated, setIsAuthenticated} = useContext(AuthContext);
-    if(!isAuthenticated)
-        return <Redirect to='/' />
-
     return (
     <div>
-        <h1 class = "title">Welcome to Hero page</h1>
+        <h1 className = "title">Welcome to Hero page</h1>
         <Carousel/>
         {/* <ImageUpload/> */}
         <Footer />

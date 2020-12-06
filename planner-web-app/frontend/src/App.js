@@ -1,5 +1,5 @@
 import React, {useContext } from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { AuthContext } from './Context/AuthContext';
 import Navbar from "./components/Navbar/Navbar";
@@ -19,6 +19,9 @@ import CommentServices from './Services/CommentServices';
 import EventServices from './Services/EventServices';
 import ProfileServices from './Services/ProfileServices';
 import EyesonServices from './Services/EyesonServices';
+
+import PublicRoute from './components/Routes/PublicRoute';
+import PrivateRoute from './components/Routes/PrivateRoute';
 
 
 function App() {
@@ -56,15 +59,18 @@ function App() {
       <div className="App">
         <Navbar />
         {/* { isAuthenticated ? <Redirect to="/hero"/>  : null} */}
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/hero" component={Hero} />
-        <Route exact path="/createEvent" component={CreateEvent}/>
-        <Route exact path="/ListAllEvents" component={ListAllEvents}/>
-        <Route exact path="/SingleEvent/:id" component={SingleEvent}/>
-        <Route exact path='/viewProfile/:id' component={ProfilePage}/>
-        <Route exact path="/editProfile/" component={EditProfilePage}/>
-        <Route exact path="/createProfile" component={CreateProfilePage}/>
-        <Route exact path="/searchEvent/:id" component={EventResults}/>
+        <Switch>
+          {/* <Route exact path="/" component={Landing} /> */}
+          <PublicRoute restricted={true} component={Landing} path="/" exact />
+          <PrivateRoute component={Hero} path="/home" exact />
+          <PrivateRoute component={CreateEvent} path="/createEvent" exact />
+          <Route exact path="/ListAllEvents" component={ListAllEvents}/>
+          <Route exact path="/SingleEvent/:id" component={SingleEvent}/>
+          <Route exact path='/viewProfile/:id' component={ProfilePage}/>
+          <Route exact path="/editProfile/" component={EditProfilePage}/>
+          <Route exact path="/createProfile" component={CreateProfilePage}/>
+          <Route exact path="/searchEvent/:id" component={EventResults}/>
+        </Switch>
       </div>
   );
 }

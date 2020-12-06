@@ -186,7 +186,7 @@ function SingleEvent(props){
                 <strong>Tags</strong>: {data.tags}<br/>
                 <strong>Requirements</strong>: {data.requirements}
             </p>
-            <button onClick={joinConferenceHandler} class="button is-primary">Join Conference</button>
+            <button onClick={joinConferenceHandler} className="button is-primary">Join Conference</button>
             <button onClick={joinEvent} className="button is-primary">Join Event</button>
             <CommentBox eventID={props.match.params.id} user={user}/>
         </div>
