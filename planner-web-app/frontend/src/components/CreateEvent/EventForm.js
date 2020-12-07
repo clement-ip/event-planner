@@ -7,6 +7,7 @@ import PhoneInput from 'react-phone-number-input'
 import FormError from './FormErrors';
 import AuthServices from '../../Services/AuthServices';
 import { AuthContext } from "../../Context/AuthContext";
+import { useHistory } from "react-router-dom";
 
 // function handleSubmit(e){
 //     e.preventDefault();
@@ -63,7 +64,7 @@ import { AuthContext } from "../../Context/AuthContext";
 const EventForm = ({ formRefs, fullFormRef }) => {
     const { register, handleSubmit, errors, setError, clearErrors } = useForm();
     const { user } = useContext(AuthContext);
-
+    const history = useHistory();
     const onSubmitHandler = (data) => {
         const { title, startDate, endDate, description, contact } = data;
         console.log(user)
@@ -84,8 +85,8 @@ const EventForm = ({ formRefs, fullFormRef }) => {
         EventServices.saveEvent(eventData)
         .then(({ message }) => {
             console.log(message.msgBody);
+            history.push('/SingleEvent/'+message.newEvent_ID);
         });
-
     }
 
     return (
