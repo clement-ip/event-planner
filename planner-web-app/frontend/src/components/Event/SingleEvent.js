@@ -4,6 +4,7 @@ import CommentBox from "../comments-system/client/src/components/Box"
 import { AuthContext } from '../../Context/AuthContext';
 import axios from "axios";
 import EventEditForm from './EventEditForm'
+import SingleEventAttendees from './SingleEventAttendees';
 
 import SessionBox from './SessionBox';
 

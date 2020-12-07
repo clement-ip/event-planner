@@ -12,21 +12,14 @@ const EventSchema = new Schema({
       type: String,
       required: true,
     },
-    // location_city: String,
-    // location_country: String,
-    // location_address: String,
-    // requirements: String,
     host_email: {
       type: String,
     },
-    // host_phone_number: String,
-    // host_id: String,
     host_name: {
       type: String,
       required: true,
     },
-    // host_organization: String,
-    // tags: String,  //change to [String] and maybe implement react-tag-input
+    tags: String,  //change to [String] and maybe implement react-tag-input
     start_date_time: {
       type: Date,
       required: true,
@@ -37,6 +30,16 @@ const EventSchema = new Schema({
     },
     sessionAccessKey: {
       type: String
+    },
+    host_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        unique: false
+    },
+    attendee_IDs:{
+        type:Array,
+        required: false,
     }
 });
 
