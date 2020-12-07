@@ -28,7 +28,7 @@ const EventSchema = new Schema({
       type: Date,
       required: true,
     },
-    host_id: {
+    hostID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
