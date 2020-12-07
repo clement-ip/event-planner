@@ -1,4 +1,10 @@
 import React, {useEffect, useState, useRef } from "react";
+<<<<<<< HEAD
+=======
+import axios from "axios";
+
+import Calendar from '../Calendar/Calendar'
+>>>>>>> 6bd81e1... adding panel functionality
 import './EventForm.css';
 import './EventFormBulma.sass';
 import EventForm from "./EventForm";
