@@ -50,11 +50,17 @@ function Comment(props) {
     }, [props.commentID]);
 
     var replyNodes = replies.map(function (reply) {
+        function showDeleteReplies() {
+            if (user.email === reply.name) {
+                return true;
+            }
+            return false;
+        }
         return (
             <section className="reply-node" key={reply._id}>
                 <section className="reply-user-date">
                     <strong>{reply.name}</strong> <small>{reply.time}</small>
-                    {showDelete() ? <button className="delete-btn" onClick={() => handleDelete(reply._id)}><strong id="label">Delete</strong></button> : ''}
+                    {showDeleteReplies() ? <button className="delete-btn" onClick={() => handleDelete(reply._id)}><strong id="label">Delete</strong></button> : ''}
                 </section>
                 <li>
                     <p>{reply.message}</p>

@@ -21,4 +21,10 @@ router.post('/profile_create', passport.authenticate('jwt', { session : false })
 router.post('/profile_delete', passport.authenticate('jwt', { session : false }),
                 profileController.profile_delete);
 
+router.put('/addEventToUser', passport.authenticate('jwt', { session : false }),
+                    profileController.addEventToUserProfile);
+
+router.put('/deleteEventFromAttendees', passport.authenticate('jwt', { session : false }),
+                    profileController.deleteEventFromAttendees);
+
 module.exports = router;

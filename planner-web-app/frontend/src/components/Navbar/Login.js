@@ -42,7 +42,6 @@ const Login = (props) => {
                 console.log("login successful");
                 props.modalRef.current.classList.remove('is-active');
                 setIsAuthenticated(true);
-                props.history.push('/hero');
             }
         });
     }

@@ -4,6 +4,7 @@ import './ListEvents.css';
 import axios from "axios";
 
 import EventServices from '../../Services/EventServices';
+import ProfileServices from "../../Services/ProfileServices";
 
 function goToEvent(){
     console.log('okay');
@@ -20,6 +21,16 @@ const logDelete = e =>{
     console.log(eventID.id);
 
     EventServices.deleteEvent(eventID)
+        .then(({ message }) => {
+            if(message.msgError)
+                console.log(message.msgBody);
+            else {
+                console.log(message.msgBody);
+                window.location.reload(true);
+            }
+        });
+    //delete from each profile that has this event in attending event.
+    ProfileServices.deleteEventFromAttendees(eventID)
         .then(({ message }) => {
             if(message.msgError)
                 console.log(message.msgBody);
