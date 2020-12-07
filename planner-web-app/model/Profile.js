@@ -44,10 +44,6 @@ const profilePageSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    portfolio:{
-        type: Object,
-        required: false,
-    },
     attendingEvents:{
         type: Array,
         required: false,

@@ -74,7 +74,6 @@ const HostingAttendingEvents = (props) => {
                     if(message.msgError)
                         console.log(message.msgBody);
                     else {
-                        // console.log(eventData)
                         setData(Events => [... Events,eventData])
                     }
                 })
