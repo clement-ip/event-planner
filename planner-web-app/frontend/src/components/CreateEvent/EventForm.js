@@ -60,7 +60,7 @@ import { AuthContext } from "../../Context/AuthContext";
 // }
 
 
-const EventForm = (props) => {
+const EventForm = ({ formRefs, fullFormRef }) => {
     const { register, handleSubmit, errors, setError, clearErrors } = useForm();
     const { user } = useContext(AuthContext);
 
@@ -87,8 +87,8 @@ const EventForm = (props) => {
     }
 
     return (
-        <form className="pt-6" onSubmit={handleSubmit(onSubmitHandler)}>
-            <div className="field mx-5">
+        <form className="pt-6" onSubmit={handleSubmit(onSubmitHandler)} id="createEventForm">
+            <div className="field mx-5" ref={formRefs.title}>
                 <label className="label is-size-2 my-0">Title</label>
                 <label className="is-size-6">Give your event a name?</label>
                 <div className="control">
@@ -96,7 +96,7 @@ const EventForm = (props) => {
                     <FormError err={errors.title} />
                 </div>
             </div>
-            <div className="field mx-5">
+            <div className="field mx-5 is-hidden" ref={formRefs.duration}>
                 <label className="label is-size-2 my-0">Duration</label>
                 <label className="is-size-6">When will you be hosting your session?</label>
                 <label className="label">Starting</label>
@@ -110,7 +110,7 @@ const EventForm = (props) => {
                     <FormError err={errors.endDate} />
                 </div>
             </div>
-            <div className="field mx-5">
+            <div className="field mx-5 is-hidden" ref={formRefs.description}>
                 <label className="label is-size-2 my-0">Description</label>
                 <label className="is-size-6">What will your event be about?</label>
                 <div className="control my-3">
@@ -118,7 +118,7 @@ const EventForm = (props) => {
                     <FormError err={errors.description} />
                 </div>
             </div>
-            <div className="field mx-5">
+            <div className="field mx-5 is-hidden" ref={formRefs.contact}>
                 <label className="label is-size-2 my-0">Contact Information</label>
                 <label className="label is-size-6">Would you like to display your email?</label>
                 <div className="control">
@@ -127,11 +127,6 @@ const EventForm = (props) => {
                             Yes display my contact information
                     </label>
                 </div>
-            </div>
-            <div className="field mx-5">
-                <button className="button is-danger is-fullwidth has-shadow py-5">
-                    <p className="is-size-4">Submit</p>
-                </button>
             </div>
         </form>
     );
