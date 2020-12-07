@@ -3,7 +3,6 @@ import './EventForm.css';
 import './EventFormBulma.sass';
 import EventForm from "./EventForm";
 
-
 function EventCalendar(){
 
     const formRefs = {
