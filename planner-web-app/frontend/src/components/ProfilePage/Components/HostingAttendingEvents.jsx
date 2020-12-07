@@ -1,99 +1,112 @@
 import { use } from 'passport';
 import React, { useEffect, useState } from 'react';
 import EventServices from '../../../Services/EventServices';
-import ProfileCalendar from './ProfileCalendar';
+import Calendar from '../../Calendar/Calendar'
+import EventCard from './EventCard'
+
 
 const HostingAttendingEvents = (props) => {
-    const [allEvents, setData] = useState([]);
+    const [Events, setData] = useState([]);
+    const [lengths, setLength] = useState([]);
 
-    // const getEventsData = (events) => {
-    //     var event_data = events.map((event) => { // event is ID -> find by ID
-    //                             return EventServices.getSingleEvent(event.eventID)
-    //                                 .then(({ message, eventData}) => {
-    //                                     if(message.msgError)
-    //                                         console.log(message.msgBody);
-    //                                     else {
-    //                                         return {
-    //                                             eventID: event.eventID,
-    //                                             // host_or_not: event.host_or_not,
-    //                                             name: eventData.name,
-    //                                             start_date_time: eventData.start_date_time,
-    //                                             end_date_time: eventData.end_date_time,
-    //                                         }
-    //                                     }
-    //                                 })
-    //                             });
-    //     return event_data;
-    // };
+    const combinedEvents = (data) => data.attendingEvents.concat(data.hostingEvents);
 
-    // const combinedEvents = (data) => {
-    //     var attendingEvents = data.attendingEvents;
-    //     var hostingEvents = data.hostingEvents;
-    //     // if (attendingEvents.length != 0) {
-    //     //     attendingEvents = attendingEvents.map((event) => {
-    //     //         return {eventID: event, host_or_not: 0}
-    //     //     })
-    //     // }
-    //     // if (hostingEvents.length != 0) {
-    //     //     hostingEvents = hostingEvents.map((event) => {
-    //     //         return {eventID: event, host_or_not: 1}
-    //     //     })
-    //     // }
-    //     return attendingEvents.concat(hostingEvents);
-    // };
+    useEffect(() => {
+        const concat_data = combinedEvents(props.events_data);
+        console.log('hosting events length',props.events_data.hostingEvents.length)
+        console.log('attending events length',props.events_data.attendingEvents.length)
+        setLength([props.events_data.hostingEvents.length, props.events_data.attendingEvents.length])
+        concat_data.map((event) => { // event is ID -> find by ID
+            return EventServices.getSingleEvent(event)
+                .then(({ message, eventData}) => {
+                    if(message.msgError)
+                        console.log(message.msgBody);
+                    else {
+                        // console.log(eventData)
+                        setData([... Events, eventData])
+                    }
+                })
+        });
+    },[props.events_data])
 
-    // const CalendarData
-
-    // useEffect(() => {
-    //     const concat_data = combinedEvents(props.events_data);
-    //     setData( getEventsData(concat_data) );
-
-    // },[props.events_data])
-
-    // const returnEventsRender = (events) => {
-    //     const eventsData = getEventsData(events);
-    //     // console.log('Events Data:',eventsData)
-        
-
-    //     // DISPLAY EVENT CARD
-    //     var retString = ""
-    //     // for(var x=0; x<eventsData.length;x++){
-    //     //     console.log(events[x])
-    //     //     retString+=""
-    //     //     retString+="<link>THE EVENT: " +events[x]+ "</link><br/>"
-    //     // }
-    //     // console.log(retString);
-    //     // return retString;
-    // }
-
-
-    function returnEvents(events){
-        // console.log(events.length)
-        var retString = ""
-        for(var x=0; x<events.length;x++){
-            // console.log(events[x])
-            retString+="<link>THE EVENT: " +events[x]+ "</link><br/>"
+    const checkPastEvents = (events) => {
+        const today = ((new Date()).getDate() - 1);
+        for (let i = 0; i < events.length; i++) {
+            const compare_date = new Date(events[i].start_date_time).getTime();
+            if (compare_date < today) {
+                return true;
+            }
         }
-        // console.log(retString);
-        return retString;
+        return false;
     }
 
+    const PastEvents = (events) => {
+        return events.map((event) => {
+                    const compare_date = new Date(event.start_date_time).getTime();
+                    const today = ((new Date()).getDate() - 1);
+                    if (compare_date < today) {
+                        return (
+                            <EventCard data={event}></EventCard>
+                        )
+                    }
+        })
+    };
 
+    const AttendingEvents = (events) => {
+        const data = events.map((event) => {
+                    const compare_date = new Date(event.start_date_time).getTime();
+                    const today = ((new Date()).getDate() - 1);
+                    if (compare_date >= today) {
+                        if (props.events_data.attendingEvents.includes(event._id)) {
+                            return (
+                                <div>
+                                    <EventCard data={event}></EventCard>
+                                </div>
+                            );
+                        }
+                    }
+        })
 
+    };
+
+    const HostingEvents = (events) => {
+        return events.map((event) => {
+                    const compare_date = new Date(event.start_date_time).getTime();
+                    const today = ((new Date()).getDate() - 1);
+                    if (compare_date >= today) {
+                        if (props.events_data.hostingEvents.includes(event._id)) {
+                            return (
+                                <EventCard data={event}></EventCard>
+                            );
+                        }
+                    }
+        })
+    };
 
 {/* <p className="is-size-7"><a href={`/viewProfile/${user.userID}`} className="has-text-grey">`${events[x]}` </a></p> */}
     // console.log('ATTENDING EVENTS:',props.events_data.attendingEvents);
     // console.log('ATTENDING EVENTS:',returnEventsRender(props.events_data.attendingEvents));
     return (
-        <div className="ProfileUserEvents">
-            <div className="Profile_Events_Card">
-                <h1><strong>Events</strong>: </h1>
-                {/* NOTE: Not working b/c need to populate fields */}
-                {/* <p>{props.events_data.hostingEvents}</p> */}
-                {/* <div>{ returnEventsRender(props.events_data.attendingEvents) }</div> */}
+        <div className="ProfileEventsDisplay">
+            { props.events_data.hostingEvents.length > 0 &&
+                (<h1><strong>Hosting Events</strong>: </h1>)
+            }
+            {HostingEvents(Events)}
+
+            { props.events_data.attendingEvents.length > 0 &&
+                (<h1><strong>Attending Events</strong>: </h1>)
+            }
+            {AttendingEvents(Events)}
+
+            { checkPastEvents(Events) === true &&
+                (<h1><strong>Past Events</strong>: </h1>)
+            }
+            {PastEvents(Events)}
+            {/* <p>{props.events_data.hostingEvents}</p> */}
+
+            <div className="ProfileCalendar">
+                <Calendar calendarProp={Events}></Calendar>
             </div>
-            <ProfileCalendar events_data={{ attendingEvents : props.events_data.attendingEvents,
-                                            hostingEvents : props.events_data.hostingEvents }}/>
         </div>
 
 

@@ -14,7 +14,8 @@ function ProfileForm(props) {
         email:'',
         name: '',
         about: '',
-        location: {country : '', city : '', lat:0, lon:0},
+        country: '',
+        city: '',
         interests: '',
         occupation: '',
         skills: '',
@@ -38,7 +39,8 @@ function ProfileForm(props) {
                         email: res.data.email,
                         name: res.data.name,
                         about: res.data.about,
-                        location: res.data.location,
+                        country: res.data.country,
+                        city: res.data.city,
                         interests: res.data.interests,
                         occupation: res.data.occupation,
                         skills: res.data.skills,
@@ -58,8 +60,8 @@ function ProfileForm(props) {
             email: profile_data.email,
             name: profile_data.name,
             about: profile_data.about,
-            country: profile_data.location.country,
-            city: profile_data.location.city,
+            country: profile_data.country,
+            city: profile_data.city,
             location: profile_data.location,
             interests: profile_data.interests,
             occupation: profile_data.occupation,
@@ -82,7 +84,8 @@ function ProfileForm(props) {
             console.log('RESULT: ', res)
             if (!(res.status === 'Error')){
                 profile_data.about = res.data.about;
-                profile_data.location = res.data.location;
+                profile_data.country = res.data.country;
+                profile_data.city = res.data.city;
                 profile_data.interests = res.data.interests;
                 profile_data.occupation = res.data.occupation;
                 profile_data.skills = res.data.skills;
@@ -152,7 +155,7 @@ function ProfileForm(props) {
                         type="text"
                         placeholder=""
                         name="profile_data[country]"
-                        defaultValue={profile_data.location.country}
+                        defaultValue={profile_data.country}
                         ref={register}
                     />
                 </div>
@@ -167,7 +170,7 @@ function ProfileForm(props) {
                         type="text"
                         placeholder=""
                         name="profile_data[city]"
-                        defaultValue={profile_data.location.city}
+                        defaultValue={profile_data.city}
                         ref={register}
                     />
                 </div>

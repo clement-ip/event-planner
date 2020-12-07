@@ -5,7 +5,6 @@ import ProfileServices from '../../Services/ProfileServices'
 import About from './Components/About';
 import ContactCard from './Components/ContactCard';
 import Interests from './Components/Interests';
-import LocationMap from './Components/Location_Map';
 import Skills from './Components/Skills';
 import HostingAttendingEvents from './Components/HostingAttendingEvents';
 import { Link } from 'react-router-dom';
@@ -17,7 +16,8 @@ function IndividualProfile(props){
         email:'',
         name: '',
         about: '',
-        location: {},
+        country: '',
+        city: '',
         interests: '',
         occupation: '',
         skills: '',
@@ -43,13 +43,14 @@ function IndividualProfile(props){
                     console.log("Cannot retrieve profile");
                 }
                 else {
-                    // console.log('Result Data: ',res.data)
+                    console.log('Result Data: ',res.data)
                     setData({
                         userID:res.data.userID,
                         email:res.data.email,
                         name: res.data.name,
                         about: res.data.about,
-                        location: res.data.location,
+                        country: res.data.country,
+                        city: res.data.city,
                         interests: res.data.interests,
                         occupation: res.data.occupation,
                         skills: res.data.skills,
@@ -78,11 +79,10 @@ function IndividualProfile(props){
                                               organization:profile_data.organization,
                                               portfolio:profile_data.portfolio,
                                               profilePicture:profile_data.profilePicture,
-                                              country:profile_data.location.country,
-                                              city:profile_data.location.city,
+                                              country:profile_data.country,
+                                              city:profile_data.city,
                                     } } />
             <About about_data={ profile_data.about }/>
-            {/* <LocationMap location_data={ profile_data.location }/> */}
             <Interests interests_data={ profile_data.interests }/>
             <Skills skills_data={ profile_data.skills }/>
             <HostingAttendingEvents events_data={ { hostingEvents:profile_data.hostingEvents,
