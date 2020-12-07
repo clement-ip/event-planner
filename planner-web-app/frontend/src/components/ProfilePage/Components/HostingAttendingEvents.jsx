@@ -28,7 +28,7 @@ const HostingAttendingEvents = (props) => {
                     const today = ((new Date()).getDate() - 1);
                     if (compare_date < today) {
                         return (
-                            <EventCard data={event} key={index}></EventCard>
+                            <EventCard data={event} key={event._id}/>
                         )
                     }
         })
@@ -55,7 +55,7 @@ const HostingAttendingEvents = (props) => {
             if (compare_date >= today) {
                 if (props.events_data.hostingEvents.includes(event._id)) {
                     return (
-                        <EventCard data={event} key={index}/>
+                        <EventCard data={event} key={event._id}/>
                     );
                 }
             }
@@ -63,7 +63,6 @@ const HostingAttendingEvents = (props) => {
     };
     const today = ((new Date()).getDate() - 1);
 
-    
     useEffect(() => {
         const concat_data = combinedEvents(props.events_data);
         console.log('hosting events length',props.events_data.hostingEvents.length)
@@ -82,29 +81,86 @@ const HostingAttendingEvents = (props) => {
         });
     },[props.events_data])
 
-{/* <p className="is-size-7"><a href={`/viewProfile/${user.userID}`} className="has-text-grey">`${events[x]}` </a></p> */}
-    // console.log('ATTENDING EVENTS:',props.events_data.attendingEvents);
-    // console.log('ATTENDING EVENTS:',returnEventsRender(props.events_data.attendingEvents));
     return (
         <div className="ProfileEventsDisplay">
-            { props.events_data.hostingEvents.length > 0 &&
-                (<h1><strong>Hosting Events</strong>: </h1>)
-            }
-            {HostingEvents(Events)}
+            <div className="card">
+                <header className="card-header">
+                    <p className="card-header-title">
+                    { props.events_data.hostingEvents.length > 0 &&
+                        (<p className="title is-4">Hosting Events</p>)
+                    }
+                    </p>
+                    {/* <a href="#" className="card-header-icon">
+                        <a className="card-header-icon card-toggle">
+                            <i className="fas fa-angle-down" aria-hidden="true"></i>
+                        </a>
+                    </a> */}
+                </header>
+                <div className="card-content">
+                    <div className="content">
+                        {HostingEvents(Events)}
+                    </div>
+                </div>
+            </div>
 
-            { props.events_data.attendingEvents.length > 0 &&
-                (<h1><strong>Attending Events</strong>: </h1>)
-            }
-            {/* <EventCard data={Events} key={Events}/> */}
-            {AttendingEvents(Events)}
+            <div className="card">
+                <header className="card-header">
+                    <p className="card-header-title">
+                    { props.events_data.attendingEvents.length > 0 &&
+                        (<p className="title is-4">Attending Events</p>)
+                    }
+                    </p>
+                    {/* <a href="#" className="card-header-icon">
+                        <a className="card-header-icon card-toggle">
+                            <i className="fas fa-angle-down" aria-hidden="true"></i>
+                        </a>
+                    </a> */}
+                </header>
+                <div className="card-content">
+                    <div className="content">
+                        {AttendingEvents(Events)}
+                    </div>
+                </div>
+            </div>
 
-            { checkPastEvents(Events) === true &&
-                (<h1><strong>Past Events</strong>: </h1>)
-            }
-            {PastEvents(Events)}
+            <div className="card">
+                <header className="card-header">
+                    <p className="card-header-title">
+                    { checkPastEvents(Events) === true &&
+                        (<p className="title is-4">Past Events</p>)
+                    }
+                    </p>
+                    {/* <a href="#" className="card-header-icon">
+                        <a className="card-header-icon card-toggle">
+                            <i className="fas fa-angle-down" aria-hidden="true"></i>
+                        </a>
+                    </a> */}
+                </header>
+                <div className="card-content">
+                    <div className="content">
+                        {PastEvents(Events)}
+                    </div>
+                </div>
+            </div>
 
-            <div className="ProfileCalendar">
-                <Calendar calendarProp={Events}></Calendar>
+            <div className="card">
+                <header className="card-header">
+                    <p className="card-header-title">
+                        <p className="title is-2">Schedule</p>
+                    </p>
+                    {/* <a href="#" className="card-header-icon">
+                        <a className="card-header-icon card-toggle">
+                            <i className="fas fa-angle-down" aria-hidden="true"></i>
+                        </a>
+                    </a> */}
+                </header>
+                <div className="card-content">
+                    <div className="content">
+                        <div className="ProfileCalendar">
+                            <Calendar calendarProp={Events}></Calendar>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
