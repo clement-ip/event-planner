@@ -21,7 +21,6 @@ const CreateProfileForm = (props) => {
         occupation: '',
         skills: '',
         organization: '',
-        portfolio: {},
         attendingEvents:[],
         hostingEvents:[],
         profilePicture:''
@@ -39,7 +38,6 @@ const CreateProfileForm = (props) => {
             occupation: '',
             skills: '',
             organization: '',
-            portfolio: {},
             attendingEvents:[],
             hostingEvents:[],
             profilePicture:''

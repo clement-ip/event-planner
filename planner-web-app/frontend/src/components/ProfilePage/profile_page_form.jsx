@@ -20,7 +20,6 @@ function ProfileForm(props) {
         occupation: '',
         skills: '',
         organization: '',
-        portfolio: {},
         attendingEvents:[],
         hostingEvents:[],
         profilePicture:''
@@ -45,7 +44,6 @@ function ProfileForm(props) {
                         occupation: res.data.occupation,
                         skills: res.data.skills,
                         organization: res.data.organization,
-                        portfolio: res.data.portfolio,
                         attendingEvents: res.data.attendingEvents,
                         hostingEvents: res.data.hostingEvents,
                         profilePicture: res.data.profilePicture
@@ -67,7 +65,6 @@ function ProfileForm(props) {
             occupation: profile_data.occupation,
             skills: profile_data.skills,
             organization: profile_data.organization,
-            portfolio: profile_data.portfolio,
             attendingEvents: profile_data.attendingEvents,
             hostingEvents: profile_data.hostingEvents,
             profilePicture: profile_data.profilePicture
@@ -90,7 +87,6 @@ function ProfileForm(props) {
                 profile_data.occupation = res.data.occupation;
                 profile_data.skills = res.data.skills;
                 profile_data.organization = res.data.organization;
-                profile_data.portfolio = res.data.portfolio;
                 profile_data.profilePicture = res.data.profilePicture;
                 console.log('CHECK POST! :',profile_data)
             }
@@ -176,38 +172,6 @@ function ProfileForm(props) {
                 </div>
                 <p className="help">E.g. New York City, Toronto, San Francisco, Vancouver, etc.</p>
             </div>
-
-
-            {/* <div className="field">
-                <label className="label">Portfolio and Social Media</label>
-                <p className="control has-icons-left">
-                    <span className="select">
-                    <select name="profile_data[portfolio]">
-                        <option defaultValue="Personal">Personal</option>
-                        <option defaultValue="LinkedIn">LinkedIn</option>
-                        <option defaultValue="GitHub">GitHub</option>
-                        <option defaultValue="YouTube">YouTube</option>
-                        <option defaultValue="Instagram">Instagram</option>
-                        <option defaultValue="Twitter">Twitter</option>
-                        <option defaultValue="Other">Other</option>
-                    </select>
-                    </span>
-                    <span className="icon is-small is-left">
-                    <i className="fas fa-globe"></i>
-                    </span>
-                </p>
-                <div className="control">
-                    <input
-                        className="input"
-                        type="text"
-                        placeholder="Link"
-                        name="profile_data[portfolio]"
-                        defaultValue={profile_data.portfolio}
-                        ref={register}
-                    />
-                </div>
-                <p className="help">E.g. https://Github.com/Torvalds </p>
-            </div> */}
 
             <div className="field">
                 <label className="label">Interests</label>

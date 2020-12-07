@@ -23,7 +23,6 @@ function IndividualProfile(props){
         occupation: '',
         skills: '',
         organization: '',
-        portfolio: {},
         attendingEvents:[],
         hostingEvents:[],
         profilePicture:''
@@ -56,7 +55,6 @@ function IndividualProfile(props){
                         occupation: res.data.occupation,
                         skills: res.data.skills,
                         organization: res.data.organization,
-                        portfolio: res.data.portfolio,
                         attendingEvents: res.data.attendingEvents,
                         hostingEvents: res.data.hostingEvents,
                         profilePicture: res.data.profilePicture
@@ -78,7 +76,6 @@ function IndividualProfile(props){
                                               name:profile_data.name,
                                               occupation:profile_data.occupation,
                                               organization:profile_data.organization,
-                                              portfolio:profile_data.portfolio,
                                               profilePicture:profile_data.profilePicture,
                                               country:profile_data.country,
                                               city:profile_data.city,
