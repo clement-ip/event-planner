@@ -59,7 +59,6 @@ function SingleEvent(props){
                         end_date_time: eventData.end_date_time
                     });
                 }
-                // console.log('this the data',res.data);
                 // console.log("data has been fetched");
             })
     }, [props.match.params.id]);
@@ -188,6 +187,7 @@ function SingleEvent(props){
             </p>
             <button onClick={joinConferenceHandler} className="button is-primary">Join Conference</button>
             <button onClick={joinEvent} className="button is-primary">Join Event</button>
+            <button onClick={()=> console.log(data)} className="button is-primary">Test</button>
             <CommentBox eventID={props.match.params.id} user={user}/>
         </div>
     )
