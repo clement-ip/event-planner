@@ -246,7 +246,6 @@ function ProfileForm(props) {
                 <Link to={() => "/viewProfile/" + user.userID}>
                     <button
                         className="button is-outlined has-shadow py-5"
-                        renderAs="Link"
                     >
                         <p className="is-size-4">
                             <span>Cancel</span>
