@@ -2,11 +2,12 @@ import React, {useEffect, useState, useContext} from 'react';
 import { Route, Redirect, withRouter } from "react-router-dom";
 import { AuthContext } from '../../Context/AuthContext';
 import ProfileServices from '../../Services/ProfileServices'
-import About from './Components/About';
+// import About from './Components/About';
 import ContactCard from './Components/ContactCard';
-import Interests from './Components/Interests';
-import Skills from './Components/Skills';
+// import Interests from './Components/Interests';
+// import Skills from './Components/Skills';
 import HostingAttendingEvents from './Components/HostingAttendingEvents';
+import GenericProfileSection from './Components/GenericProfileSection';
 import { Link } from 'react-router-dom';
 
 function IndividualProfile(props){
@@ -82,9 +83,9 @@ function IndividualProfile(props){
                                               country:profile_data.country,
                                               city:profile_data.city,
                                     } } />
-            <About about_data={ profile_data.about }/>
-            <Interests interests_data={ profile_data.interests }/>
-            <Skills skills_data={ profile_data.skills }/>
+            <GenericProfileSection section_data={{name:'About', data_body: profile_data.about}}/>
+            <GenericProfileSection section_data={{name:'Interests', data_body: profile_data.interests}}/>
+            <GenericProfileSection section_data={{name:'Skills', data_body: profile_data.skills}}/>
             <HostingAttendingEvents events_data={ { hostingEvents:profile_data.hostingEvents,
                                                     attendingEvents:profile_data.attendingEvents } }/>
         </div>
