@@ -1,12 +1,7 @@
 import React, {useEffect, useState, useRef } from "react";
-import axios from "axios";
-
-import Calendar from '../Calendar/Calendar'
 import './EventForm.css';
 import './EventFormBulma.sass';
 import EventForm from "./EventForm";
-
-import EventServices from '../../Services/EventServices';
 
 function EventCalendar(){
 
