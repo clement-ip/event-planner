@@ -20,8 +20,12 @@ const profilePageSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    location:{
-        type: Object,
+    country:{
+        type:String,
+        require: false
+    },
+    city:{
+        type:String,
         require: false
     },
     interests:{
@@ -39,10 +43,6 @@ const profilePageSchema = new mongoose.Schema({
     organization:{
         type: String,
         required: false
-    },
-    portfolio:{
-        type: Object,
-        required: false,
     },
     attendingEvents:{
         type: Array,

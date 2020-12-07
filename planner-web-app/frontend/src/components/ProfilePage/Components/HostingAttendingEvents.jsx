@@ -1,83 +1,84 @@
 import { use } from 'passport';
 import React, { useEffect, useState } from 'react';
 import EventServices from '../../../Services/EventServices';
-import ProfileCalendar from './ProfileCalendar';
+import Calendar from '../../Calendar/Calendar'
+import EventCard from './EventCard'
+
 
 const HostingAttendingEvents = (props) => {
-    const [allEvents, setData] = useState([]);
+    const [Events, setData] = useState([]);
+    const [lengths, setLength] = useState([]);
 
-    // const getEventsData = (events) => {
-    //     var event_data = events.map((event) => { // event is ID -> find by ID
-    //                             return EventServices.getSingleEvent(event.eventID)
-    //                                 .then(({ message, eventData}) => {
-    //                                     if(message.msgError)
-    //                                         console.log(message.msgBody);
-    //                                     else {
-    //                                         return {
-    //                                             eventID: event.eventID,
-    //                                             // host_or_not: event.host_or_not,
-    //                                             name: eventData.name,
-    //                                             start_date_time: eventData.start_date_time,
-    //                                             end_date_time: eventData.end_date_time,
-    //                                         }
-    //                                     }
-    //                                 })
-    //                             });
-    //     return event_data;
-    // };
+    const combinedEvents = (data) => data.attendingEvents.concat(data.hostingEvents);
 
-    // const combinedEvents = (data) => {
-    //     var attendingEvents = data.attendingEvents;
-    //     var hostingEvents = data.hostingEvents;
-    //     // if (attendingEvents.length != 0) {
-    //     //     attendingEvents = attendingEvents.map((event) => {
-    //     //         return {eventID: event, host_or_not: 0}
-    //     //     })
-    //     // }
-    //     // if (hostingEvents.length != 0) {
-    //     //     hostingEvents = hostingEvents.map((event) => {
-    //     //         return {eventID: event, host_or_not: 1}
-    //     //     })
-    //     // }
-    //     return attendingEvents.concat(hostingEvents);
-    // };
-
-    // const CalendarData
-
-    // useEffect(() => {
-    //     const concat_data = combinedEvents(props.events_data);
-    //     setData( getEventsData(concat_data) );
-
-    // },[props.events_data])
-
-    // const returnEventsRender = (events) => {
-    //     const eventsData = getEventsData(events);
-    //     // console.log('Events Data:',eventsData)
-        
-
-    //     // DISPLAY EVENT CARD
-    //     var retString = ""
-    //     // for(var x=0; x<eventsData.length;x++){
-    //     //     console.log(events[x])
-    //     //     retString+=""
-    //     //     retString+="<link>THE EVENT: " +events[x]+ "</link><br/>"
-    //     // }
-    //     // console.log(retString);
-    //     // return retString;
-    // }
-
-
-    function returnEvents(events){
-        // console.log(events.length)
-        var retString = ""
-        for(var x=0; x<events.length;x++){
-            // console.log(events[x])
-            retString+="<link>THE EVENT: " +events[x]+ "</link><br/>"
+    const checkPastEvents = (events) => {
+        const today = ((new Date()).getDate() - 1);
+        for (let i = 0; i < events.length; i++) {
+            const compare_date = new Date(events[i].start_date_time).getTime();
+            if (compare_date < today) {
+                return true;
+            }
         }
-        // console.log(retString);
-        return retString;
+        return false;
     }
 
+    const PastEvents = (events) => {
+        return events.map((event, index) => {
+                    const compare_date = new Date(event.start_date_time).getTime();
+                    const today = ((new Date()).getDate() - 1);
+                    if (compare_date < today) {
+                        return (
+                            <EventCard data={event} key={event._id}/>
+                        )
+                    }
+        })
+    };
+
+    const AttendingEvents = (events) => {
+        return events.map((event, index) => {
+            const compare_date = new Date(event.start_date_time).getTime();
+            const today = ((new Date()).getDate() - 1);
+            if (compare_date >= today) {
+                if (props.events_data.attendingEvents.includes(event._id)) {
+                    return (
+                        <EventCard data={event} key={event._id}/>
+                    );
+                }
+            }
+        })
+    };
+
+    const HostingEvents = (events) => {
+        return events.map((event, index) => {
+            const compare_date = new Date(event.start_date_time).getTime();
+            const today = ((new Date()).getDate() - 1);
+            if (compare_date >= today) {
+                if (props.events_data.hostingEvents.includes(event._id)) {
+                    return (
+                        <EventCard data={event} key={event._id}/>
+                    );
+                }
+            }
+        })
+    };
+    const today = ((new Date()).getDate() - 1);
+
+    useEffect(() => {
+        const concat_data = combinedEvents(props.events_data);
+        console.log('hosting events length',props.events_data.hostingEvents.length)
+        console.log('attending events length',props.events_data.attendingEvents.length)
+        setLength([props.events_data.hostingEvents.length, props.events_data.attendingEvents.length])
+        concat_data.map((event) => { // event is ID -> find by ID
+            return EventServices.getSingleEvent(event)
+                .then(({ message, eventData}) => {
+                    if(message.msgError)
+                        console.log(message.msgBody);
+                    else {
+                        setData(Events => [... Events,eventData])
+                    }
+                })
+        });
+    },[props.events_data])
 
 
 
@@ -85,18 +86,87 @@ const HostingAttendingEvents = (props) => {
     // console.log('ATTENDING EVENTS:',props.events_data.attendingEvents);
     // console.log('ATTENDING EVENTS:',returnEventsRender(props.events_data.attendingEvents));
     return (
-        <div className="ProfileUserEvents">
-            <div className="Profile_Events_Card">
-                <h1><strong>Events</strong>: </h1>
-                {/* NOTE: Not working b/c need to populate fields */}
-                {/* <p>{props.events_data.hostingEvents}</p> */}
-                {/* <div>{ returnEventsRender(props.events_data.attendingEvents) }</div> */}
+        <div className="ProfileEventsDisplay">
+            <div className="card">
+                <header className="card-header">
+                    <p className="card-header-title">
+                    { props.events_data.hostingEvents.length > 0 &&
+                        (<p className="title is-4">Hosting Events</p>)
+                    }
+                    </p>
+                    {/* <a href="#" className="card-header-icon">
+                        <a className="card-header-icon card-toggle">
+                            <i className="fas fa-angle-down" aria-hidden="true"></i>
+                        </a>
+                    </a> */}
+                </header>
+                <div className="card-content">
+                    <div className="content">
+                        {HostingEvents(Events)}
+                    </div>
+                </div>
             </div>
-            <ProfileCalendar events_data={{ attendingEvents : props.events_data.attendingEvents,
-                                            hostingEvents : props.events_data.hostingEvents }}/>
+
+            <div className="card">
+                <header className="card-header">
+                    <p className="card-header-title">
+                    { props.events_data.attendingEvents.length > 0 &&
+                        (<p className="title is-4">Attending Events</p>)
+                    }
+                    </p>
+                    {/* <a href="#" className="card-header-icon">
+                        <a className="card-header-icon card-toggle">
+                            <i className="fas fa-angle-down" aria-hidden="true"></i>
+                        </a>
+                    </a> */}
+                </header>
+                <div className="card-content">
+                    <div className="content">
+                        {AttendingEvents(Events)}
+                    </div>
+                </div>
+            </div>
+
+            <div className="card">
+                <header className="card-header">
+                    <p className="card-header-title">
+                    { checkPastEvents(Events) === true &&
+                        (<p className="title is-4">Past Events</p>)
+                    }
+                    </p>
+                    {/* <a href="#" className="card-header-icon">
+                        <a className="card-header-icon card-toggle">
+                            <i className="fas fa-angle-down" aria-hidden="true"></i>
+                        </a>
+                    </a> */}
+                </header>
+                <div className="card-content">
+                    <div className="content">
+                        {PastEvents(Events)}
+                    </div>
+                </div>
+            </div>
+
+            <div className="card">
+                <header className="card-header">
+                    <p className="card-header-title">
+                        <p className="title is-2">Schedule</p>
+                    </p>
+                    {/* <a href="#" className="card-header-icon">
+                        <a className="card-header-icon card-toggle">
+                            <i className="fas fa-angle-down" aria-hidden="true"></i>
+                        </a>
+                    </a> */}
+                </header>
+                <div className="card-content">
+                    <div className="content">
+                        <div className="ProfileCalendar">
+                            <Calendar calendarProp={Events}></Calendar>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-
     )
 }
 
