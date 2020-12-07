@@ -81,7 +81,6 @@ const EventForm = (props) => {
         EventServices.saveEvent(eventData)
         .then(({ message }) => {
             console.log(message.msgBody);
-            // window.location.reload(false);
         });
 
     
