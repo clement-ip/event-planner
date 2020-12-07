@@ -5,8 +5,11 @@ import { AuthContext } from '../../Context/AuthContext';
 import axios from "axios";
 import EventEditForm from './EventEditForm'
 import SingleEventAttendees from './SingleEventAttendees';
+<<<<<<< HEAD
 
 import SessionBox from './SessionBox';
+=======
+>>>>>>> c632b0c... change event db schema & start on linking profile
 
 import EventServices from '../../Services/EventServices';
 import EyesonServices from '../../Services/EyesonServices';

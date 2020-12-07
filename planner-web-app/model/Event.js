@@ -19,7 +19,6 @@ const EventSchema = new Schema({
       type: String,
       required: true,
     },
-    // tags: String,  //change to [String] and maybe implement react-tag-input
     start_date_time: {
       type: Date,
       required: true,

@@ -13,7 +13,6 @@ const EventCard = (props) => {
                                 <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image"></img> :
                                 <div></div>
                                 // <img src="src" alt="Placeholder image"></img>
-                                // {props.data.profilePicture}
                             }
                         </figure>
                     </div>
