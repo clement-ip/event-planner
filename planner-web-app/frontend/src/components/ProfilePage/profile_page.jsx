@@ -43,7 +43,7 @@ function IndividualProfile(props){
                     console.log("Cannot retrieve profile");
                 }
                 else {
-                    console.log('Result Data: ',res.data)
+                    // console.log('Result Data: ',res.data)
                     setData({
                         userID:res.data.userID,
                         email:res.data.email,
@@ -65,6 +65,13 @@ function IndividualProfile(props){
 
     return(
         <div className="Profile">
+            { user.userID === props.match.params.id &&
+                <Link to="/editProfile/">
+                    <button className="button is-danger is-outlined">
+                        <span>Edit Profile</span>
+                    </button>
+                </Link>
+            }
             <ContactCard card_data={ { email:profile_data.email,
                                               name:profile_data.name,
                                               occupation:profile_data.occupation,
@@ -75,19 +82,11 @@ function IndividualProfile(props){
                                               city:profile_data.location.city,
                                     } } />
             <About about_data={ profile_data.about }/>
-            <LocationMap location_data={ profile_data.location }/>
+            {/* <LocationMap location_data={ profile_data.location }/> */}
             <Interests interests_data={ profile_data.interests }/>
             <Skills skills_data={ profile_data.skills }/>
             <HostingAttendingEvents events_data={ { hostingEvents:profile_data.hostingEvents,
                                                     attendingEvents:profile_data.attendingEvents } }/>
-            { user.userID === props.match.params.id &&
-                <Link to="/editProfile/">
-                    <button class="button is-danger is-outlined" renderAs="Link">
-                        <span>Edit Profile</span>
-                    </button>
-                </Link>
-            }
-
         </div>
     )
 }
