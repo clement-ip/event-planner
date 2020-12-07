@@ -10,6 +10,7 @@ import SessionBox from './SessionBox';
 import EventServices from '../../Services/EventServices';
 import EyesonServices from '../../Services/EyesonServices';
 import ProfileServices from "../../Services/ProfileServices";
+import Footer from '../Footer';
 
 function SingleEvent(props){
 
@@ -226,7 +227,6 @@ function SingleEvent(props){
                             </div>
                         </div>
                     </div>
-                
                     {/* Description Tiles */}
                     <div className="tile is-ancestor">
                         <div className="tile is-vertical">
@@ -235,7 +235,7 @@ function SingleEvent(props){
                                     <div className="tile content is-child">
                                         <p className="title is-4">Details</p>
                                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                    </div>     
+                                    </div>
                                 </div>
                                 <div className="tile is-parent">
                                     <SessionBox data={data} eventID={props.match.params.id} exit_url={url} user={{ id : user.userID, name: user.name}}/>
@@ -274,6 +274,7 @@ function SingleEvent(props){
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }

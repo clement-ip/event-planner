@@ -3,6 +3,7 @@ import axios from "axios";
 import SingleEventForList from "./SingleEventForList";
 
 import EventServices from '../../Services/EventServices';
+import Footer from '../Footer'
 
 function ListAllEvents(){
 
@@ -128,6 +129,7 @@ function ListAllEvents(){
             <div className="second">
                 <SingleEventForList eventsProp={data.dataBaseEvents}/>
             </div>
+            <Footer/>
         </div>
 
 
