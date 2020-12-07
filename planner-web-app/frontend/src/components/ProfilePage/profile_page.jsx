@@ -9,6 +9,8 @@ import ContactCard from './Components/ContactCard';
 import HostingAttendingEvents from './Components/HostingAttendingEvents';
 import GenericProfileSection from './Components/GenericProfileSection';
 import { Link } from 'react-router-dom';
+import Footer from '../Footer';
+
 
 function IndividualProfile(props){
     const {user} = useContext(AuthContext);
@@ -85,6 +87,7 @@ function IndividualProfile(props){
             <GenericProfileSection section_data={{name:'Skills', data_body: profile_data.skills}}/>
             <HostingAttendingEvents events_data={ { hostingEvents:profile_data.hostingEvents,
                                                     attendingEvents:profile_data.attendingEvents } }/>
+            <Footer />
         </div>
     )
 }
