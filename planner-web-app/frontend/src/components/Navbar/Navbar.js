@@ -18,7 +18,7 @@ const Navbar = () => {
       <nav className="navbar is-dark" role="navigation" aria-label="main navigation" style={{maxHeight: "60px"}}>
           {/* Need to replace icon with one of our own */}
           <div className="navbar-brand">
-            <a className="navbar-item">
+            <a className="navbar-item" href = "/">
               <img src="https://i.ibb.co/B4cHdC6/logo2.png" style={{maxHeight: "50px"}} className="py-2 px-2"/>
             </a>
             {/* Burger menu shown during mobile */}
