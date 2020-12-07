@@ -8,6 +8,7 @@ import EventEditForm from './EventEditForm'
 import EventServices from '../../Services/EventServices';
 import EyesonServices from '../../Services/EyesonServices';
 import ProfileServices from "../../Services/ProfileServices";
+import Footer from '../Footer';
 
 function SingleEvent(props){
 
@@ -189,6 +190,8 @@ function SingleEvent(props){
             <button onClick={joinEvent} className="button is-primary">Join Event</button>
             <button onClick={()=> console.log(data)} className="button is-primary">Test</button>
             <CommentBox eventID={props.match.params.id} user={user}/>
+
+            <Footer/>
         </div>
     )
 }
