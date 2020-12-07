@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 import Calendar from '../Calendar/Calendar'
@@ -27,6 +27,10 @@ function EventCalendar(){
     //     })
     // }, []);
 
+    const panelHandler = event => {
+        console.log(event.target.name)
+    }
+
 
     return(
         <div className="columns" style={{minHeight : "100vh"}}>
@@ -34,7 +38,7 @@ function EventCalendar(){
                 <div className="menu px-3">
                     <p className="menu-label my-0 is-size-3">Create Event</p>
                     <ul className="menu-list ml-4">
-                        <li><a>Title</a></li>
+                        <li><a onClick={panelHandler} name="Title">Title</a></li>
                         <li><a>Duration</a></li>
                         <li>
                             <a>Details</a>
