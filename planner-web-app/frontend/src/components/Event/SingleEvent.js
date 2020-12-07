@@ -7,6 +7,7 @@ import EventEditForm from './EventEditForm'
 
 import EventServices from '../../Services/EventServices';
 import EyesonServices from '../../Services/EyesonServices';
+import ProfileServices from "../../Services/ProfileServices";
 
 function SingleEvent(props){
 
@@ -123,6 +124,34 @@ function SingleEvent(props){
         })
     }
 
+    function joinEvent(){
+        console.log("Event id ", data.eventID);
+        console.log("User id ",user.userID);
+        var body = {
+            user_id: user.userID,
+            event_id: data.eventID
+        }
+        console.log(body);
+        ProfileServices.addEventToUserProfile(body)
+            .then(res => {
+                console.log('RES in event addition to profile',res)
+                if (res.status === "Error") {
+                    console.log("event cannot be added")
+                }
+                else {
+                    console.log("Successfully added event to profile :", res.data)
+                    // window.location.replace('/profile')
+                }
+            })
+    }
+
+    if(user.email !== ""){
+        console.log(user)
+    }
+    else{
+        console.log("not logged in")
+    }
+
 
     if(data.editState === true){
         return(
@@ -158,6 +187,7 @@ function SingleEvent(props){
                 <strong>Requirements</strong>: {data.requirements}
             </p>
             <button onClick={joinConferenceHandler} className="button is-primary">Join Conference</button>
+            <button onClick={joinEvent} className="button is-primary">Join Event</button>
             <CommentBox eventID={props.match.params.id} user={user}/>
         </div>
     )
