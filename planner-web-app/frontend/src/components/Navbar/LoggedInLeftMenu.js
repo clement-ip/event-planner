@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
+import { useHistory } from 'react-router-dom';
 
 import AuthServices from '../../Services/AuthServices';
 import { AuthContext } from '../../Context/AuthContext';
 
 const LoggedOutDropdown = () => {
+    const history = useHistory();
+
     const { user, setIsAuthenticated } = useContext(AuthContext);
 
     const logOutHandler = () => {
@@ -11,9 +14,13 @@ const LoggedOutDropdown = () => {
         setIsAuthenticated(false);
     }
 
+    const createEventHandler = () => {
+        history.push(`/createEvent`);
+    }
+
     return (
         <div className="navbar-end">
-            <a className="navbar-item">
+            <a onClick={createEventHandler} className="navbar-item">
                 Create an Event
             </a>
 
