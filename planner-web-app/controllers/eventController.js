@@ -41,7 +41,7 @@ module.exports.saveEvent = (req, res) => {
                 });
         else
             res.status(200).json({ message : {
-                    msgBody : "Event successfully saved", msgError : false }
+                    msgBody : "Event successfully saved,"+ newEvent._id, msgError : false, newEvent_ID: newEvent._id}
                 });
     })
 }
