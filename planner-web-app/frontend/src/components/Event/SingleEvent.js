@@ -4,6 +4,7 @@ import CommentBox from "../comments-system/client/src/components/Box"
 import { AuthContext } from '../../Context/AuthContext';
 import axios from "axios";
 import EventEditForm from './EventEditForm'
+import SingleEventAttendees from './SingleEventAttendees';
 
 import EventServices from '../../Services/EventServices';
 import EyesonServices from '../../Services/EyesonServices';
@@ -189,6 +190,7 @@ function SingleEvent(props){
             <button onClick={joinConferenceHandler} className="button is-primary">Join Conference</button>
             <button onClick={joinEvent} className="button is-primary">Join Event</button>
             <button onClick={()=> console.log(data)} className="button is-primary">Test</button>
+            <SingleEventAttendees profileData/>
             <CommentBox eventID={props.match.params.id} user={user}/>
 
             <Footer/>
