@@ -105,8 +105,6 @@ const EventForm = ({ formRefs, fullFormRef }) => {
             history.push('/SingleEvent/'+message.newEvent_ID);
         });
 
-
-
     }
 
     return (
