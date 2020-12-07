@@ -154,7 +154,7 @@ const EventForm = ({ formRefs, fullFormRef }) => {
         </form>
     );
 }
- 
+
 export default EventForm;
 
 
