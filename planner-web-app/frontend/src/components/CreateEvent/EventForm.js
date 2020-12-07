@@ -66,16 +66,19 @@ const EventForm = ({ formRefs, fullFormRef }) => {
 
     const onSubmitHandler = (data) => {
         const { title, startDate, endDate, description, contact } = data;
-    
+        console.log(user)
         const eventData = {
             name : title,
             description : description,
             host_name : user.name,
+            host_email : user.email,
+            hostID: user.userID,
             start_date_time : startDate,
-            end_date_time : endDate 
+            end_date_time : endDate,
+            attendee_IDs : '',
         }
         contact && (eventData.host_email = user.email);
-    
+
         console.log(eventData);
 
         EventServices.saveEvent(eventData)
@@ -83,7 +86,6 @@ const EventForm = ({ formRefs, fullFormRef }) => {
             console.log(message.msgBody);
         });
 
-    
     }
 
     return (
