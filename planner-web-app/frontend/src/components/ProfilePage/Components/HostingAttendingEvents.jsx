@@ -11,24 +11,6 @@ const HostingAttendingEvents = (props) => {
 
     const combinedEvents = (data) => data.attendingEvents.concat(data.hostingEvents);
 
-    useEffect(() => {
-        const concat_data = combinedEvents(props.events_data);
-        console.log('hosting events length',props.events_data.hostingEvents.length)
-        console.log('attending events length',props.events_data.attendingEvents.length)
-        setLength([props.events_data.hostingEvents.length, props.events_data.attendingEvents.length])
-        concat_data.map((event) => { // event is ID -> find by ID
-            return EventServices.getSingleEvent(event)
-                .then(({ message, eventData}) => {
-                    if(message.msgError)
-                        console.log(message.msgBody);
-                    else {
-                        // console.log(eventData)
-                        setData([... Events, eventData])
-                    }
-                })
-        });
-    },[props.events_data])
-
     const checkPastEvents = (events) => {
         const today = ((new Date()).getDate() - 1);
         for (let i = 0; i < events.length; i++) {
@@ -41,47 +23,64 @@ const HostingAttendingEvents = (props) => {
     }
 
     const PastEvents = (events) => {
-        return events.map((event) => {
+        return events.map((event, index) => {
                     const compare_date = new Date(event.start_date_time).getTime();
                     const today = ((new Date()).getDate() - 1);
                     if (compare_date < today) {
                         return (
-                            <EventCard data={event}></EventCard>
+                            <EventCard data={event} key={index}></EventCard>
                         )
                     }
         })
     };
 
     const AttendingEvents = (events) => {
-        const data = events.map((event) => {
-                    const compare_date = new Date(event.start_date_time).getTime();
-                    const today = ((new Date()).getDate() - 1);
-                    if (compare_date >= today) {
-                        if (props.events_data.attendingEvents.includes(event._id)) {
-                            return (
-                                <div>
-                                    <EventCard data={event}></EventCard>
-                                </div>
-                            );
-                        }
-                    }
+        return events.map((event, index) => {
+            const compare_date = new Date(event.start_date_time).getTime();
+            const today = ((new Date()).getDate() - 1);
+            if (compare_date >= today) {
+                if (props.events_data.attendingEvents.includes(event._id)) {
+                    return (
+                        <EventCard data={event} key={event._id}/>
+                    );
+                }
+            }
         })
-
     };
 
     const HostingEvents = (events) => {
-        return events.map((event) => {
-                    const compare_date = new Date(event.start_date_time).getTime();
-                    const today = ((new Date()).getDate() - 1);
-                    if (compare_date >= today) {
-                        if (props.events_data.hostingEvents.includes(event._id)) {
-                            return (
-                                <EventCard data={event}></EventCard>
-                            );
-                        }
-                    }
+        return events.map((event, index) => {
+            const compare_date = new Date(event.start_date_time).getTime();
+            const today = ((new Date()).getDate() - 1);
+            if (compare_date >= today) {
+                if (props.events_data.hostingEvents.includes(event._id)) {
+                    return (
+                        <EventCard data={event} key={index}/>
+                    );
+                }
+            }
         })
     };
+    const today = ((new Date()).getDate() - 1);
+
+    
+    useEffect(() => {
+        const concat_data = combinedEvents(props.events_data);
+        console.log('hosting events length',props.events_data.hostingEvents.length)
+        console.log('attending events length',props.events_data.attendingEvents.length)
+        setLength([props.events_data.hostingEvents.length, props.events_data.attendingEvents.length])
+        concat_data.map((event) => { // event is ID -> find by ID
+            return EventServices.getSingleEvent(event)
+                .then(({ message, eventData}) => {
+                    if(message.msgError)
+                        console.log(message.msgBody);
+                    else {
+                        // console.log(eventData)
+                        setData(Events => [... Events,eventData])
+                    }
+                })
+        });
+    },[props.events_data])
 
 {/* <p className="is-size-7"><a href={`/viewProfile/${user.userID}`} className="has-text-grey">`${events[x]}` </a></p> */}
     // console.log('ATTENDING EVENTS:',props.events_data.attendingEvents);
@@ -96,20 +95,18 @@ const HostingAttendingEvents = (props) => {
             { props.events_data.attendingEvents.length > 0 &&
                 (<h1><strong>Attending Events</strong>: </h1>)
             }
+            {/* <EventCard data={Events} key={Events}/> */}
             {AttendingEvents(Events)}
 
             { checkPastEvents(Events) === true &&
                 (<h1><strong>Past Events</strong>: </h1>)
             }
             {PastEvents(Events)}
-            {/* <p>{props.events_data.hostingEvents}</p> */}
 
             <div className="ProfileCalendar">
                 <Calendar calendarProp={Events}></Calendar>
             </div>
         </div>
-
-
     )
 }
 

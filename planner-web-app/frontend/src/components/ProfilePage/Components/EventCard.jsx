@@ -2,8 +2,9 @@ import { use } from 'passport';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 const EventCard = (props) => {
+    console.log('EVENT CARD PROPS :', props.data)
     return (
-        <div className="card">
+        <div className="card" key={props.data._id}>
             <div className="card-content">
                 <div className="media">
                     <div className="media-left">
