@@ -99,5 +99,30 @@ module.exports.addEventToUserProfile = (req,res) =>{
                 data: result
             }
         );
-    })
+    });
+}
+
+module.exports.deleteEventFromAttendees = (req,res) =>{
+    console.log(req.body);
+    Profile.updateMany({},{$pull: {attendingEvents : req.body.id}}, (err,result)=>{
+        if (err) {
+            return res.status(500).json({ status:'Error',
+                msg:"Unable to delete from attendees list.",
+                error:err.message
+            });
+        }
+        else if (!result) {
+            console.log('Bad Request: Invalid Access.')
+            return res.status(401).json({ status:'Error',
+                msg:"Bad Request: Invalid Access.",
+            });
+        }
+        console.log('User successfully deleted event from list')
+        return res.status(200).send({
+                status:'Succeeded',
+                msg: "Successful",
+                data: result
+            }
+        );
+    });
 }
