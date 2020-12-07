@@ -1,0 +1,110 @@
+import { use } from 'passport';
+import React, { useEffect, useState } from 'react';
+import ProfileServices from '../../Services/EventServices';
+import ProfileCard from './ProfileCard'
+
+
+const SingleEventAttendees = (props) => {
+    // const [Events, setData] = useState([]);
+    // const [lengths, setLength] = useState([]);
+
+    // const combinedEvents = (data) => data.attendingEvents.concat(data.hostingEvents);
+
+    // const AttendeeProfiles = (events) => {
+    //     return events.map((event, index) => {
+    //         const compare_date = new Date(event.start_date_time).getTime();
+    //         const today = ((new Date()).getDate() - 1);
+    //         if (compare_date >= today) {
+    //             if (props.events_data.attendingEvents.includes(event._id)) {
+    //                 return (
+    //                     <EventCard data={event} key={event._id}/>
+    //                 );
+    //             }
+    //         }
+    //     })
+    // };
+
+    // const HostProfile = (events) => {
+    //     return events.map((event, index) => {
+    //         const compare_date = new Date(event.start_date_time).getTime();
+    //         const today = ((new Date()).getDate() - 1);
+    //         if (compare_date >= today) {
+    //             if (props.events_data.hostingEvents.includes(event._id)) {
+    //                 return (
+    //                     <EventCard data={event} key={event._id}/>
+    //                 );
+    //             }
+    //         }
+    //     })
+    // };
+    // const today = ((new Date()).getDate() - 1);
+
+    // useEffect(() => {
+    //     const concat_data = combinedEvents(props.events_data);
+    //     console.log('hosting events length',props.events_data.hostingEvents.length)
+    //     console.log('attending events length',props.events_data.attendingEvents.length)
+    //     setLength([props.events_data.hostingEvents.length, props.events_data.attendingEvents.length])
+    //     concat_data.map((event) => { // event is ID -> find by ID
+    //         return EventServices.getSingleEvent(event)
+    //             .then(({ message, eventData}) => {
+    //                 if(message.msgError)
+    //                     console.log(message.msgBody);
+    //                 else {
+    //                     setData(Events => [... Events,eventData])
+    //                 }
+    //             })
+    //     });
+    // },[props.events_data])
+
+
+
+{/* <p className="is-size-7"><a href={`/viewProfile/${user.userID}`} className="has-text-grey">`${events[x]}` </a></p> */}
+    // console.log('ATTENDING EVENTS:',props.events_data.attendingEvents);
+    // console.log('ATTENDING EVENTS:',returnEventsRender(props.events_data.attendingEvents));
+    return (
+        // <div className="ProfileEventsDisplay">
+        //     <div className="card">
+        //         <header className="card-header">
+        //             <p className="card-header-title">
+        //             { props.events_data.hostingEvents.length > 0 &&
+        //                 (<p className="title is-4">Hosting Events</p>)
+        //             }
+        //             </p>
+        //             {/* <a href="#" className="card-header-icon">
+        //                 <a className="card-header-icon card-toggle">
+        //                     <i className="fas fa-angle-down" aria-hidden="true"></i>
+        //                 </a>
+        //             </a> */}
+        //         </header>
+        //         <div className="card-content">
+        //             <div className="content">
+        //                 {HostProfile(Events)}
+        //             </div>
+        //         </div>
+        //     </div>
+
+        //     <div className="card">
+        //         <header className="card-header">
+        //             <p className="card-header-title">
+        //             { props.events_data.attendingEvents.length > 0 &&
+        //                 (<p className="title is-4">Attending Events</p>)
+        //             }
+        //             </p>
+        //             {/* <a href="#" className="card-header-icon">
+        //                 <a className="card-header-icon card-toggle">
+        //                     <i className="fas fa-angle-down" aria-hidden="true"></i>
+        //                 </a>
+        //             </a> */}
+        //         </header>
+        //         <div className="card-content">
+        //             <div className="content">
+        //                 {AttendeeProfiles(Events)}
+        //             </div>
+        //         </div>
+        //     </div>
+        // </div>
+        <div></div>
+    )
+}
+
+export default SingleEventAttendees;
