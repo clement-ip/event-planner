@@ -173,9 +173,7 @@ function SingleEvent(props){
             <h2>Host Info</h2>
             <p>
                 <strong>Name</strong>: {data.host_name} <br/>
-                <strong>id</strong>: {data.host_id} <br/>
                 <strong>Email</strong>: {data.host_email}<br/>
-                <strong>Phone Number</strong>: {data.host_phone_number}<br/>
                 <strong>Organization</strong>: {data.host_organization}
             </p>
             <br/><h2>Event Info</h2>
@@ -185,7 +183,6 @@ function SingleEvent(props){
                 <strong>End Time</strong>: {convertTime(data.end_date_time)}<br/>
                 <strong>Address</strong>: {data.location_address} {data.location_city} {data.location_country}<br/>
                 <strong>Tags</strong>: {data.tags}<br/>
-                <strong>Requirements</strong>: {data.requirements}
             </p>
             <button onClick={joinConferenceHandler} className="button is-primary">Join Conference</button>
             <button onClick={joinEvent} className="button is-primary">Join Event</button>
