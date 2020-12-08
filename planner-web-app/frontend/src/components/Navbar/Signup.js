@@ -52,7 +52,7 @@ const Signup = (props) => {
                                 console.log(data)
                                 setUser(data.user);
                                 setIsAuthenticated(data.isAuthenticated);
-                                props.history.push('/create_profile');
+                                props.history.push('/createProfile');
                             });
                         }
                     });
