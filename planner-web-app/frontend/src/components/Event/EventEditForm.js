@@ -13,6 +13,7 @@ function handleSubmit(eventID,hostID){
 
         var host_id= hostID;
         var host_name = e.target[0].value;
+<<<<<<< HEAD
         var host_email= e.target[1].value;
         var name  = e.target[2].value;
         var description= e.target[3].value;
@@ -21,6 +22,28 @@ function handleSubmit(eventID,hostID){
 
         var event = {
             host_email: host_email,
+=======
+        var host_id= e.target[1].value;
+        var host_email= e.target[2].value;
+        var host_phone_number= e.target[4].value;
+        var host_organization= e.target[5].value;
+
+        var name  = e.target[6].value;
+        var description= e.target[7].value;
+        var start_date_time= e.target[8].value;
+        var end_date_time= e.target[9].value;
+        var location_city= e.target[10].value;
+        var location_country= e.target[11].value;
+        var location_address= e.target[12].value;
+
+        var requirements= e.target[13].value;
+        var tags = e.target[14].value;
+
+
+        var event = {
+            host_email: host_email,
+            host_phone_number: host_phone_number,
+>>>>>>> faa52c0... add ability to add user to events schema
             host_id: host_id,
             host_name: host_name,
             name: name,
@@ -59,7 +82,20 @@ function EventEditForm(props){
                 />
             </div>
             <br></br>
+<<<<<<< HEAD
 {/*//                       defaultValue={props.props.host_id}*/}
+=======
+            <label className = "label"  htmlFor='event_host_id'>ID Number:</label>
+            <div className="control">
+                <input type="text"
+                       className="input"
+                       name="host_id"
+                    //onChange={handleChange}
+                       defaultValue={props.props.host_id}
+                />
+            </div>
+            <br></br>
+>>>>>>> faa52c0... add ability to add user to events schema
             <label className = "label"  htmlFor='event_host_email'>Email:</label>
             <div className="control">
                 <input type="email"
