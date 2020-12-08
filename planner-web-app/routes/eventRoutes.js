@@ -41,6 +41,4 @@ router.get('/search/:name', passport.authenticate('jwt', { session : false }), e
 
 router.put('/addAttendeeToEvent', passport.authenticate('jwt', { session : false }), eventController.addAttendeeToEventList);
 
-router.put('/addAttendeeToEvent', eventController.addAttendeeToEvent);
-
 module.exports = router;
