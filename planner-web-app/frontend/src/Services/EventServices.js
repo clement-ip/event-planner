@@ -105,4 +105,37 @@ export default {
                     return { isAuthenticated : false, message : { msgBody : "Not Authenticated", msgError : true}};
             });
     },
+
+    addAttendeeToEvent : body =>{
+        return fetch('http://localhost:5000/addAttendeeToEvent', {
+            credentials : 'include',
+            method : "put",
+            body : JSON.stringify(body),
+            headers : { 'Content-Type' : 'application/json' }
+        })
+            .then(res => {
+                if (res.status !== 401) {
+                    if (res.status === 500) {
+                        return res.json().then(({status, msg, err}) => {
+                            return { isAuthenticated : false, msg,
+                                data : null, status, err
+                            };
+                        });
+                    }
+                    else{
+                        return res.json().then(({msg, data, status}) => {
+                            return { isAuthenticated : true, msg, data, status };
+                        });
+                    }
+                }
+                else {
+                    return res.json().then((status, msg, error)=> {
+                        return { isAuthenticated : false, message : {
+                                msgBody : msg, msgError : true,
+                                status, error }, data : null
+                        };
+                    })
+                }
+            });
+    },
 }

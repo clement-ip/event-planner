@@ -39,4 +39,6 @@ router.put('/editEvent', eventController.editEvent);
 
 router.get('/search/:name', eventController.searchEvent);
 
+router.put('/addAttendeeToEvent', eventController.addAttendeeToEvent);
+
 module.exports = router;

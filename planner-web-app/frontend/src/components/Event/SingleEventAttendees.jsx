@@ -18,7 +18,7 @@ const SingleEventAttendees = (props) => {
     };
 
     useEffect(() => {
-        ProfileServices.getProfile(props.hostID)
+        ProfileServices.getProfile(props.host_id)
             .then(res => {
                 if (!res.isAuthenticated) {
                     console.log("Cannot retrieve profile");
