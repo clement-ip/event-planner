@@ -117,7 +117,8 @@ export default {
     },
 
     addAttendeeToEvent : body =>{
-        return fetch('http://localhost:5000/addAttendeeToEvent', {
+        // return fetch('http://35.247.19.51/addAttendeeToEvent', {
+        return fetch(`${API_ADDR}/addAttendeeToEvent`, {
             credentials : 'include',
             method : "put",
             body : JSON.stringify(body),

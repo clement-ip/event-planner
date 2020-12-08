@@ -128,7 +128,8 @@ export default {
     },
 
     addEventToUserProfile : body =>{
-        return fetch('http://localhost:5000/addEventToUser', {
+        // return fetch('http://35.247.19.51/addEventToUser', {
+        return fetch(`${API_ADDR}/addEventToUser`, {
             credentials : 'include',
             method : "put",
             body : JSON.stringify(body),
@@ -162,7 +163,8 @@ export default {
 
     addEventToHostProfile : body =>{
         console.log("HOST EVENT", body)
-        return fetch('http://localhost:5000/addEventToHost', {
+        // return fetch('http://35.247.19.51/addEventToHost', {
+        return fetch(`${API_ADDR}/addEventToHost`, {
             credentials : 'include',
             method : "put",
             body : JSON.stringify(body),
@@ -195,7 +197,8 @@ export default {
     },
 
     deleteEventFromAttendeesHost : body =>{
-        return fetch('http://localhost:5000/deleteEventFromAttendees', {
+        // return fetch('http://35.247.19.51/deleteEventFromAttendees', {
+        return fetch(`${API_ADDR}/deleteEventFromAttendees`, {
             credentials : 'include',
             method : "put",
             body : JSON.stringify(body),
