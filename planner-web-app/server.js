@@ -111,7 +111,7 @@ app.post("/upload", upload.single("img"), (req, res, err) => {
   // if (err) throw err
   // res.status(201).send()
   res.send(req.files);
-  res.redirect("/");
+  // res.redirect("/");
   console.log("success!");
 });
 
@@ -173,6 +173,6 @@ app.delete("/files/:id", (req, res) => {
       if (err) {
           return res.status(404).json({ err: err })
       }
-      res.redirect("/")
+      // res.redirect("/")
   })
 })
