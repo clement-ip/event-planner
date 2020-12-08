@@ -78,14 +78,16 @@ io.on('connection', (socket) => {
 });
 
 // COOKIES SETTINGS
-app.set('trust proxy',1);
+if (process.env.REACT_APP_NODE_ENV === 'production') {
+    app.set('trust proxy',1);
 
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: {secure : false}
-}))
+    app.use(session({
+      secret: 'keyboard cat',
+      resave: false,
+      saveUninitialized: true,
+      cookie: {secure : false}
+    }))
+}
 
 
 let gfs;
