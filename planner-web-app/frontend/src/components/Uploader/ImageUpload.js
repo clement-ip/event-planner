@@ -9,17 +9,17 @@ function ImageUpload(){
 
     formData.append("img", file[0]);
 
-    fetch('/upload', {
+    fetch('http://localhost:5000/upload/', {
       method: "POST",
       body: formData
     }).then(r => {
       console.log(r);
     });
 
-    // document
-    //   .getElementById("img")
-    //   .setAttribute("src", `http://localhost:5000/${file[0].name}`);
-    // console.log(file[0]);
+    document
+      .getElementById("img")
+      .setAttribute("src", `http://localhost:5000/image/${file[0].name}`);
+    console.log(file[0]);
   };
 
 
