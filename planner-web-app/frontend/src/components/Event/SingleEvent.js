@@ -59,34 +59,22 @@ function SingleEvent(props){
                 if(message.msgError)
                     console.log(message.msgBody);
                 else {
-                    console.log(eventData);
                     setData({
                         eventID: eventID,
                         name: eventData.name,
                         description: eventData.description,
-                        // location_city: eventData.location_city,
-                        // location_country: eventData.location_country,
-                        // location_address: eventData.location_address,
-                        // requirements: eventData.requirements,
                         host_email: eventData.host_email,
-<<<<<<< HEAD
-                        // host_phone_number: eventData.host_phone_number,
                         host_id: eventData.host_id,
-=======
-                        host_phone_number: eventData.host_phone_number,
-                        host_id: eventData.hostID,
->>>>>>> 3bc5691... add created events into hosts hosting events array, fix delete event, only hosts can edit their event.
                         host_name: eventData.host_name,
-                        // host_organization: eventData.host_organization,
-                        // tags: eventData.tags,  //change to [String] and maybe implement react-tag-input
                         start_date_time: eventData.start_date_time,
                         end_date_time: eventData.end_date_time
                     });
                     console.log("eventdata", eventData);
                 }
-                console.log("data has been fetched", data);
+                // console.log("data has been fetched");
             })
     }, [props.match.params.id]);
+
 
     function convertTime(date){
         var time = new Date(date);
