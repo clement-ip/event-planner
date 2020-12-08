@@ -7,7 +7,7 @@ const About = (props) => {
 
     return (
     <div>
-        <h1 className="title">Welcome to Hero page</h1>
+        <h1 className="title">About Us</h1>
         <Carousel/>
         {/* <ImageUpload/> */}
         <Footer />
