@@ -5,6 +5,7 @@ import { AuthContext } from './Context/AuthContext';
 import Navbar from "./components/Navbar/Navbar";
 import Landing from "./components/Landing";
 import Hero from "./components/Hero";
+import Hero from "./components/About";
 import CreateEvent from "./components/CreateEvent/CreateEvent";
 import CommentBox from './components/comments-system/client/src/components/Box';
 import ListAllEvents from "./components/ListEvents/ListEvents";
@@ -62,6 +63,7 @@ function App() {
         <Switch>
           {/* <Route exact path="/" component={Landing} /> */}
           <PublicRoute restricted={true} component={Landing} path="/" exact />
+          <PublicRoute restricted={true} path="/About" exact />
           <PrivateRoute component={Hero} path="/home" exact />
           <PrivateRoute component={CreateEvent} path="/createEvent" exact />
           <Route exact path="/ListAllEvents" component={ListAllEvents}/>
