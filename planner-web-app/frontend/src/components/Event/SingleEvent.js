@@ -27,9 +27,10 @@ function SingleEvent(props){
         requirements: '',
         host_email: '',
         host_phone_number: '',
-        host_id: '',
+        hostID: '',
         host_organization: '',
         tags: '',  //change to [String] and maybe implement react-tag-input
+        attendee_id: [],
         start_date_time: '',
         end_date_time: '',
         editState: false
@@ -59,7 +60,8 @@ function SingleEvent(props){
                         host_organization: eventData.host_organization,
                         tags: eventData.tags,  //change to [String] and maybe implement react-tag-input
                         start_date_time: eventData.start_date_time,
-                        end_date_time: eventData.end_date_time
+                        end_date_time: eventData.end_date_time,
+                        attendee_id: eventData.attendee_id
                     });
                 }
                 console.log("data has been fetched", data);
@@ -86,7 +88,7 @@ function SingleEvent(props){
             requirements: data.requirements,
             host_email: data.host_email,
             host_phone_number: data.host_phone_number,
-            host_id: data.host_id,
+            hostID: data.hostID,
             host_name: data.host_name,
             host_organization: data.host_organization,
             tags: data.tags,
@@ -107,7 +109,7 @@ function SingleEvent(props){
             requirements: data.requirements,
             host_email: data.host_email,
             host_phone_number: data.host_phone_number,
-            host_id: data.host_id,
+            hostID: data.hostID,
             host_name: data.host_name,
             host_organization: data.host_organization,
             tags: data.tags,
@@ -257,8 +259,7 @@ function SingleEvent(props){
             {joinButton()}
             {deleteButton()}
             <button onClick={()=> console.log(data)} className="button is-primary">Test</button>
-
-            <SingleEventAttendees profileData/>
+            <SingleEventAttendees hostID={data.hostID} attendee_id={data.attendee_id}/>
             <CommentBox eventID={props.match.params.id} user={user}/>
 
             <Footer/>

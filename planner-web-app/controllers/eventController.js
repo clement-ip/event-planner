@@ -102,7 +102,7 @@ module.exports.editEvent = (req, res) => {
                 requirements: req.body.requirements,
                 host_email: req.body.host_email,
                 host_phone_number: req.body.host_phone_number,
-                host_id: req.body.host_id,
+                hostID: req.body.hostID,
                 host_organization: req.body.host_organization,
                 tags: req.body.tags,
                 start_date_time: req.body.start_date_time,

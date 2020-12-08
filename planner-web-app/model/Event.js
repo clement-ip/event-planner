@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const EventSchema = new Schema({
     name: {
       type: String,
-      required: true, 
+      required: true,
       es_indexed: true
     },
     description: {
@@ -34,7 +34,7 @@ const EventSchema = new Schema({
         required: true,
         unique: false
     },
-    attendee_IDs:{
+    attendee_id:{
         type:Array,
         required: false,
     }
