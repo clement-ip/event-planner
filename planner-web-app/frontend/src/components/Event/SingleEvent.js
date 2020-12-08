@@ -147,6 +147,44 @@ function SingleEvent(props){
             })
     }
 
+
+
+    //var toDelete;
+    const logDelete = e =>{
+        console.log(e)//
+        //GO DELETE e WHICH IS THE ID TO DELETE;
+        //AXIOS
+        var eventID = {
+            id: e
+        }
+        console.log(eventID.id);
+
+        EventServices.deleteEvent(eventID)
+            .then(({ message }) => {
+                if(message.msgError)
+                    console.log(message.msgBody);
+                else {
+                    console.log(message.msgBody);
+                    //window.location.reload(true);
+                }
+            });
+        //delete from each profile that has this event in attending event.
+        ProfileServices.deleteEventFromAttendeesHost(eventID)
+            .then(res => {
+                console.log('RES in event delete from both hosting / attending',res)
+                if (res.status === "Error") {
+                    console.log("event cannot be deleted")
+                }
+                else {
+                    console.log("Successfully deleted event to :", res.data)
+                    // window.location.replace('/profile')
+                }
+                window.location.replace('/ListAllEvents')
+            });
+
+    }
+
+
     if(user.email !== ""){
         console.log(user)
     }
@@ -175,6 +213,14 @@ function SingleEvent(props){
         }
     }
 
+    function deleteButton(){
+        if(user.userID === data.host_id)
+            return(
+                <button className="button is-danger is-light" id= "goToEventButton" onClick={()=>logDelete(data.eventID)} >
+                    Delete
+                </button>
+            )
+    }
 
 
     if(data.editState === true){
@@ -209,7 +255,9 @@ function SingleEvent(props){
             </p>
             <button onClick={joinConferenceHandler} className="button is-primary">Join Conference</button>
             {joinButton()}
+            {deleteButton()}
             <button onClick={()=> console.log(data)} className="button is-primary">Test</button>
+
             <SingleEventAttendees profileData/>
             <CommentBox eventID={props.match.params.id} user={user}/>
 

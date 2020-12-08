@@ -10,36 +10,7 @@ function goToEvent(){
     console.log('okay');
 }
 
-//var toDelete;
-const logDelete = e =>{
-    console.log(e)//
-    //GO DELETE e WHICH IS THE ID TO DELETE;
-    //AXIOS
-    var eventID = {
-        id: e
-    }
-    console.log(eventID.id);
 
-    EventServices.deleteEvent(eventID)
-        .then(({ message }) => {
-            if(message.msgError)
-                console.log(message.msgBody);
-            else {
-                console.log(message.msgBody);
-                window.location.reload(true);
-            }
-        });
-    //delete from each profile that has this event in attending event.
-    ProfileServices.deleteEventFromAttendeesHost(eventID)
-        .then(({ message }) => {
-            if(message.msgError)
-                console.log(message.msgBody);
-            else {
-                console.log(message.msgBody);
-                window.location.reload(true);
-            }
-        });
-}
 
 function convertTime(date){
     var time = new Date(date);
@@ -72,9 +43,6 @@ const SingleEventForList = props => (
                                     event_id: event._id
                                 },
                             }} >See More</Link>
-                        </button>
-                        <button className="button is-danger is-light" id= "goToEventButton" onClick={()=>logDelete(event._id)} >
-                            Delete
                         </button>
                     </div>
                 </div>
