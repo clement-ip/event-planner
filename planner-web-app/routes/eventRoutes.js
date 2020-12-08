@@ -27,18 +27,18 @@ stream.on('error', function (err) {
     console.log(err);
 });
 
-router.get('/getSingleEvent/:id', eventController.getSingleEvent);
+router.get('/getSingleEvent/:id', passport.authenticate('jwt', { session : false }), eventController.getSingleEvent);
 
-router.get('/getAllEvents', eventController.getAllEvents);
+router.get('/getAllEvents', passport.authenticate('jwt', { session : false }), eventController.getAllEvents);
 
-router.post('/saveEvent', eventController.saveEvent);
+router.post('/saveEvent', passport.authenticate('jwt', { session : false }), eventController.saveEvent);
 
-router.delete('/deleteEvent', eventController.deleteEvent);
+router.delete('/deleteEvent', passport.authenticate('jwt', { session : false }), eventController.deleteEvent);
 
-router.put('/editEvent', eventController.editEvent);
+router.put('/editEvent', passport.authenticate('jwt', { session : false }), eventController.editEvent);
 
-router.get('/search/:name', eventController.searchEvent);
+router.get('/search/:name', passport.authenticate('jwt', { session : false }), eventController.searchEvent);
 
-router.put('/addAttendeeToEvent', eventController.addAttendeeToEvent);
+router.put('/addAttendeeToEvent', passport.authenticate('jwt', { session : false }), eventController.addAttendeeToEventList);
 
 module.exports = router;

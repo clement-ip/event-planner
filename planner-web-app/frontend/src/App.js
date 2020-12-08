@@ -66,12 +66,12 @@ function App() {
           <PublicRoute component={About} path="/About" exact />
           <PrivateRoute component={Hero} path="/home" exact />
           <PrivateRoute component={CreateEvent} path="/createEvent" exact />
-          <Route exact path="/ListAllEvents" component={ListAllEvents}/>
-          <Route exact path="/SingleEvent/:id" component={SingleEvent}/>
-          <Route exact path='/viewProfile/:id' component={ProfilePage}/>
-          <Route exact path="/editProfile/" component={EditProfilePage}/>
-          <Route exact path="/createProfile" component={CreateProfilePage}/>
-          <Route exact path="/searchEvent/:id" component={EventResults}/>
+          <PrivateRoute exact path="/ListAllEvents" component={ListAllEvents}/>
+          <PrivateRoute exact path="/SingleEvent/:id" component={SingleEvent}/>
+          <PrivateRoute exact path='/viewProfile/:id' component={ProfilePage}/>
+          <PrivateRoute exact path="/editProfile/" component={EditProfilePage}/>
+          <PrivateRoute exact path="/createProfile" component={CreateProfilePage}/>
+          <PrivateRoute exact path="/searchEvent/:id" component={EventResults}/>
         </Switch>
       </div>
   );

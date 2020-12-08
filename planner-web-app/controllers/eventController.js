@@ -125,7 +125,7 @@ module.exports.editEvent = (req, res) => {
         })
 }
 
-module.exports.addAttendeeToEvent = (req, res) =>{
+module.exports.addAttendeeToEventList = (req, res) =>{
     console.log(req.body);
     Event.findOneAndUpdate({_id: req.body.eventID}, {$addToSet: {attendee_id : req.body.user_id} }, (err,result)=>{
         if (err) {
