@@ -51,7 +51,7 @@ function Comment(props) {
 
     var replyNodes = replies.map(function (reply) {
         function showDeleteReplies() {
-            if (user.email === reply.name) {
+            if (user.email === reply.name || user.email === "admin@email.com") {
                 return true;
             }
             return false;
@@ -103,7 +103,7 @@ function Comment(props) {
     )
 
     function showDelete() {
-        if (user.email === props.user) {
+        if (user.email === props.user || user.email === "admin@email.com") {
             return true;
         }
         return false;
