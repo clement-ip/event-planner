@@ -27,7 +27,7 @@ function SingleEvent(props){
         requirements: '',
         host_email: '',
         host_phone_number: '',
-        hostID: '',
+        host_id: '',
         host_organization: '',
         tags: '',  //change to [String] and maybe implement react-tag-input
         attendee_id: [],
@@ -88,7 +88,7 @@ function SingleEvent(props){
             requirements: data.requirements,
             host_email: data.host_email,
             host_phone_number: data.host_phone_number,
-            hostID: data.hostID,
+            host_id: data.host_id,
             host_name: data.host_name,
             host_organization: data.host_organization,
             tags: data.tags,
@@ -109,7 +109,7 @@ function SingleEvent(props){
             requirements: data.requirements,
             host_email: data.host_email,
             host_phone_number: data.host_phone_number,
-            hostID: data.hostID,
+            host_id: data.host_id,
             host_name: data.host_name,
             host_organization: data.host_organization,
             tags: data.tags,
@@ -144,6 +144,17 @@ function SingleEvent(props){
                 }
                 else {
                     console.log("Successfully added event to profile :", res.data)
+                    // window.location.replace('/profile')
+                }
+            })
+        EventServices.addAttendeeToEvent(body)
+            .then(res => {
+                console.log('RES in Attendee addition to Event',res)
+                if (res.status === "Error") {
+                    console.log("User & event cannot be added")
+                }
+                else {
+                    console.log("Successfully added attendee to event :", res.data)
                     // window.location.replace('/profile')
                 }
             })
@@ -259,7 +270,7 @@ function SingleEvent(props){
             {joinButton()}
             {deleteButton()}
             <button onClick={()=> console.log(data)} className="button is-primary">Test</button>
-            <SingleEventAttendees hostID={data.hostID} attendee_id={data.attendee_id}/>
+            <SingleEventAttendees host_id={data.host_id} attendee_id={data.attendee_id}/>
             <CommentBox eventID={props.match.params.id} user={user}/>
 
             <Footer/>
