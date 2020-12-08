@@ -106,7 +106,8 @@ module.exports.editEvent = (req, res) => {
                 host_organization: req.body.host_organization,
                 tags: req.body.tags,
                 start_date_time: req.body.start_date_time,
-                end_date_time: req.body.end_date_time
+                end_date_time: req.body.end_date_time,
+                sessionAccessKey: req.body.sessionAccessKey
             }
         }, (err, response) => {
             if (err)

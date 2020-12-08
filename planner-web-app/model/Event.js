@@ -35,6 +35,9 @@ const EventSchema = new Schema({
       type: Date,
       required: true,
     },
+    sessionAccessKey: {
+      type: String
+    }
 });
 
 EventSchema.plugin(mongoosastic, {

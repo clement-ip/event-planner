@@ -7,6 +7,14 @@ export default {
             }
         })
         .then(res => res.json());
-        // .then(data => console.log(data)));
+    },
+    get : data => {
+        return fetch(`https://api.eyeson.team/rooms/${data.sessionAccessKey}?user[name]=${data.user}`, {
+            method : 'GET',
+            headers : {
+                Authorization : 'ZaaVD7oZaOXi55cNtSBmwRV0NJxJWRgLJnQUJOTddt'
+            }
+        })
+        .then(res => res.json());
     }
 }

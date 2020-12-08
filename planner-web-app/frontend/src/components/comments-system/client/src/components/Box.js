@@ -84,7 +84,7 @@ function Box(props) {
 
     const css = `.hide { position:absolute; top:-1px; left:-1px; width:1px; height:1px; }`
     return (
-      <section className="column is-5-desktop" id="box">
+      <section className="column" id="box">
                 <iframe title="hiddenFrame" name="hiddenFrame" className="hide"></iframe>
               <form method="POST" id="form" target="hiddenFrame" onSubmit={handleSubmit}>
                   <input className="input" type="text" id="name" name="name" value={props.user.email} disabled></input>
