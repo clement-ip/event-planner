@@ -137,19 +137,22 @@ function SingleEvent(props){
                 else {
                     console.log("Successfully added event to profile :", res.data)
                     // window.location.replace('/profile')
+                    EventServices.addAttendeeToEvent(body)
+                    .then(res => {
+                        console.log('RES in Attendee addition to Event',res)
+                        if (res.status === "Error") {
+                            console.log("User & event cannot be added")
+                        }
+                        else {
+                            console.log("Successfully added attendee to event :", res.data)
+                            // window.location.replace('/profile')
+                            window.alert("You have Succesfully joined the event!")
+                        }
+                    })
                 }
             })
-        EventServices.addAttendeeToEvent(body)
-            .then(res => {
-                console.log('RES in Attendee addition to Event',res)
-                if (res.status === "Error") {
-                    console.log("User & event cannot be added")
-                }
-                else {
-                    console.log("Successfully added attendee to event :", res.data)
-                    // window.location.replace('/profile')
-                }
-            })
+
+        
     }
 
 
@@ -364,7 +367,9 @@ function SingleEvent(props){
             {joinButton()}
             {deleteButton()}
             <button onClick={()=> console.log(data)} className="button is-primary">Test</button>
+
             <SingleEventAttendees host_id={data.host_id} attendee_id={data.attendee_id}/>
+
             <CommentBox eventID={props.match.params.id} user={user}/>
 
 >>>>>>> 5e5ec49... add display event host and attendees in events page
