@@ -54,7 +54,7 @@ function SingleEvent(props){
                         requirements: eventData.requirements,
                         host_email: eventData.host_email,
                         host_phone_number: eventData.host_phone_number,
-                        host_id: eventData.hostID,
+                        host_id: eventData.host_id,
                         host_name: eventData.host_name,
                         host_organization: eventData.host_organization,
                         tags: eventData.tags,  //change to [String] and maybe implement react-tag-input
