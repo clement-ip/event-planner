@@ -58,12 +58,7 @@ function SingleEvent(props){
                         name: eventData.name,
                         description: eventData.description,
                         host_email: eventData.host_email,
-<<<<<<< HEAD
                         host_id: eventData.host_id,
-=======
-                        host_phone_number: eventData.host_phone_number,
-                        host_id: eventData.hostID,
->>>>>>> 3bc5691... add created events into hosts hosting events array, fix delete event, only hosts can edit their event.
                         host_name: eventData.host_name,
                         start_date_time: eventData.start_date_time,
                         end_date_time: eventData.end_date_time,
@@ -185,6 +180,46 @@ function SingleEvent(props){
     }
 
 
+<<<<<<< HEAD
+=======
+
+    //var toDelete;
+    const logDelete = e =>{
+        console.log(e)//
+        //GO DELETE e WHICH IS THE ID TO DELETE;
+        //AXIOS
+        var eventID = {
+            id: e
+        }
+        console.log(eventID.id);
+
+        EventServices.deleteEvent(eventID)
+            .then(({ message }) => {
+                if(message.msgError)
+                    console.log(message.msgBody);
+                else {
+                    console.log(message.msgBody);
+                    //window.location.reload(true);
+                }
+            });
+        //delete from each profile that has this event in attending event.
+        ProfileServices.deleteEventFromAttendeesHost(eventID)
+            .then(res => {
+                console.log('RES in event delete from both hosting / attending',res)
+                if (res.status === "Error") {
+                    console.log("event cannot be deleted")
+                }
+                else {
+                    console.log("Successfully deleted event to :", res.data)
+                    // window.location.replace('/profile')
+                }
+                window.location.replace('/ListAllEvents')
+            });
+
+    }
+
+
+>>>>>>> eee8de6... Move delete button to individual event pages, events can only be deleted by host
     if(user.email !== ""){
         console.log(user)
     }
@@ -214,6 +249,9 @@ function SingleEvent(props){
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> eee8de6... Move delete button to individual event pages, events can only be deleted by host
     function deleteButton(){
         if(user.userID === data.host_id)
             return(
@@ -222,7 +260,10 @@ function SingleEvent(props){
                 </button>
             )
     }
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eee8de6... Move delete button to individual event pages, events can only be deleted by host
 
 >>>>>>> 3bc5691... add created events into hosts hosting events array, fix delete event, only hosts can edit their event.
 
@@ -358,7 +399,9 @@ function SingleEvent(props){
             </p>
             <button onClick={joinConferenceHandler} className="button is-primary">Join Conference</button>
             {joinButton()}
+            {deleteButton()}
             <button onClick={()=> console.log(data)} className="button is-primary">Test</button>
+
             <SingleEventAttendees profileData/>
             <CommentBox eventID={props.match.params.id} user={user}/>
 
