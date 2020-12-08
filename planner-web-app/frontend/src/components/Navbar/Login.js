@@ -8,7 +8,7 @@ import AuthServices from '../../Services/AuthServices';
 
 const Login = (props) => {
     const { register, handleSubmit, errors, setError, clearErrors } = useForm();
-    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated, setIsAuthenticated, setUser } = useContext(AuthContext);
 
     const onSubmitHandler = (data) => {
         const { email, password } = data;
@@ -41,6 +41,7 @@ const Login = (props) => {
                 clearErrors();
                 console.log("login successful");
                 props.modalRef.current.classList.remove('is-active');
+                setUser(res.user);
                 setIsAuthenticated(true);
             }
         });

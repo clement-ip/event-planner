@@ -5,6 +5,8 @@ import { AuthContext } from '../../Context/AuthContext';
 import axios from "axios";
 import EventEditForm from './EventEditForm'
 
+import SessionBox from './SessionBox';
+
 import EventServices from '../../Services/EventServices';
 import EyesonServices from '../../Services/EyesonServices';
 import ProfileServices from "../../Services/ProfileServices";
@@ -14,20 +16,20 @@ function SingleEvent(props){
     const {user} = useContext(AuthContext);
     const url = window.location.href;
     const [data, setData] = useState({
-        dataBaseEvents: [],
+        // dataBaseEvents: [],
         //dataBaseEventsFormatted:[],
         eventID:'',
         name: '',
         description: '',
-        location_city: '',
-        location_country: '',
-        location_address: '',
-        requirements: '',
+        // location_city: '',
+        // // location_country: '',
+        // location_address: '',
+        // requirements: '',
         host_email: '',
-        host_phone_number: '',
-        host_id: '',
-        host_organization: '',
-        tags: '',  //change to [String] and maybe implement react-tag-input
+        // host_phone_number: '',
+        // host_id: '',
+        // host_organization: '',
+        // tags: '',  //change to [String] and maybe implement react-tag-input
         start_date_time: '',
         end_date_time: '',
         editState: false
@@ -45,19 +47,20 @@ function SingleEvent(props){
                         eventID: eventID,
                         name: eventData.name,
                         description: eventData.description,
-                        location_city: eventData.location_city,
-                        location_country: eventData.location_country,
-                        location_address: eventData.location_address,
-                        requirements: eventData.requirements,
+                        // location_city: eventData.location_city,
+                        // location_country: eventData.location_country,
+                        // location_address: eventData.location_address,
+                        // requirements: eventData.requirements,
                         host_email: eventData.host_email,
-                        host_phone_number: eventData.host_phone_number,
+                        // host_phone_number: eventData.host_phone_number,
                         host_id: eventData.host_id,
                         host_name: eventData.host_name,
-                        host_organization: eventData.host_organization,
-                        tags: eventData.tags,  //change to [String] and maybe implement react-tag-input
+                        // host_organization: eventData.host_organization,
+                        // tags: eventData.tags,  //change to [String] and maybe implement react-tag-input
                         start_date_time: eventData.start_date_time,
                         end_date_time: eventData.end_date_time
                     });
+                    console.log("eventdata", eventData);
                 }
                 // console.log("data has been fetched");
             })
@@ -166,6 +169,89 @@ function SingleEvent(props){
 
     return(
         <div>
+            <div className="columns mt-6">
+                <div className="column is-6 is-offset-3">
+                    {/* Header tiles */}
+                    <div className="tile is-ancestor mb-0">
+                        <div className="tile is-vertical">
+                            <div className="tile is-parent">
+                                <article className="tile box is-child">
+                                    Images
+                                </article>
+                            </div>
+                            <div className="tile is-parent">
+                                <article className="tile notification is-child is-white">
+                                    <div>
+                                        <p className="subtitle is-6">
+                                            {convertTime(data.start_date_time)}
+                                        </p>
+                                        <p className="title is-1 is-spaced">
+                                            <b>{data.name}</b>
+                                        </p>
+                                    </div>
+                                    <div className="columns pt-3 mb-0">
+                                        <div className="column is-2 pb-0">
+                                            <a>
+                                                <figure className="image is-square">
+                                                    <img className="is-rounded" src="https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg"/>
+                                                </figure>
+                                            </a>
+                                        </div>
+                                        <div className="column pb-0">
+                                            <article className="tile notification is-child is-white pl-0">
+                                                <p className="title is-5 mb-0">Hosted By {data.host_name}</p>
+                                                { data.host_email && (
+                                                    <div className="level">
+                                                        <div className="level-left">
+                                                            <div className="level-item mx-0">
+                                                                <span className="icon is-large has-text-info">
+                                                                    <i className="far fa-envelope fa-lg"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div className="level-item">
+                                                                <p>{data.host_email}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </article>
+                                        </div>
+                                    </div>
+                                    <hr className="my-0"></hr>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                
+                    {/* Description Tiles */}
+                    <div className="tile is-ancestor">
+                        <div className="tile is-vertical">
+                            <div className="tile">
+                                <div className="tile is-8 is-parent">
+                                    <div className="tile content is-child">
+                                        <p className="title is-4">Details</p>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                    </div>     
+                                </div>
+                                <div className="tile is-parent">
+                                    <SessionBox data={data} eventID={props.match.params.id} exit_url={url} user={user.name}/>
+                                </div>
+                            </div>
+                            <div className="tile is-parent">
+                                <article className="tile box is-child">
+                                    Attendees
+                                </article>
+                            </div>
+                            <div className="tile is-parent">
+                                <article className="tile box is-child">
+                                    Comments
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <h1 className="title is-1">Single Event Comp for: {data.name}</h1>
             <button onClick={toggleEditOn}>EDIT</button>
             <h2>Host Info</h2>
@@ -187,7 +273,7 @@ function SingleEvent(props){
             </p>
             <button onClick={joinConferenceHandler} className="button is-primary">Join Conference</button>
             <button onClick={joinEvent} className="button is-primary">Join Event</button>
-            <button onClick={()=> console.log(data)} className="button is-primary">Test</button>
+            <button onClick={()=> console.log(user)} className="button is-primary">Test</button>
             <CommentBox eventID={props.match.params.id} user={user}/>
         </div>
     )
