@@ -33,7 +33,6 @@ module.exports.getAllEvents = (req, res) => {
 module.exports.saveEvent = (req, res) => {
     const eventData = req.body;
     const newEvent = new Event(eventData);
-
     newEvent.save((err, data) => {
         if(err)
             res.status(500).json({ message : {
@@ -91,20 +90,15 @@ module.exports.getAllEvents = (req, res) => {
 }
 
 module.exports.editEvent = (req, res) => {
+    console.log("new event", req.body);
     Event.updateOne({_id: req.body.eventID},
         {
             $set: {
                 host_name: req.body.host_name,
                 description: req.body.description,
-                location_city: req.body.location_city,
-                location_country: req.body.location_country,
-                location_address: req.body.location_address,
-                requirements: req.body.requirements,
                 host_email: req.body.host_email,
-                host_phone_number: req.body.host_phone_number,
                 host_id: req.body.host_id,
-                host_organization: req.body.host_organization,
-                tags: req.body.tags,
+                name: req.body.name,
                 start_date_time: req.body.start_date_time,
                 end_date_time: req.body.end_date_time,
                 sessionAccessKey: req.body.sessionAccessKey
@@ -122,12 +116,12 @@ module.exports.editEvent = (req, res) => {
                         msgBody: "Event successfully updated", msgError: false
                     }
                 });
-        })
+        });
 }
 
 module.exports.addAttendeeToEventList = (req, res) =>{
     console.log(req.body);
-    Event.findOneAndUpdate({_id: req.body.eventID}, {$addToSet: {attendee_id : req.body.user_id} }, (err,result)=>{
+    Event.findOneAndUpdate({_id: req.body.event_id}, {$addToSet: {attendee_id : req.body.user_id} }, (err,result)=>{
         if (err) {
             return res.status(500).json({ status:'Error',
                 msg:"Unable to add attendee to event.",
