@@ -30,7 +30,7 @@ const logDelete = e =>{
             }
         });
     //delete from each profile that has this event in attending event.
-    ProfileServices.deleteEventFromAttendees(eventID)
+    ProfileServices.deleteEventFromAttendeesHost(eventID)
         .then(({ message }) => {
             if(message.msgError)
                 console.log(message.msgBody);
