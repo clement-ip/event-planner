@@ -13,7 +13,7 @@ function handleSubmit(eventID){
 
 
         var host_name = e.target[0].value;
-        var host_id= e.target[1].value;
+        var hostID= e.target[1].value;
         var host_email= e.target[2].value;
         var host_phone_number= e.target[4].value;
         var host_organization= e.target[5].value;
@@ -33,7 +33,7 @@ function handleSubmit(eventID){
         var event = {
             host_email: host_email,
             host_phone_number: host_phone_number,
-            host_id: host_id,
+            hostID: hostID,
             host_name: host_name,
             host_organization: host_organization,
 
@@ -116,13 +116,13 @@ function EventEditForm(props){
                 />
             </div>
             <br></br>
-            <label className = "label"  htmlFor='event_host_id'>ID Number:</label>
+            <label className = "label"  htmlFor='event_hostID'>ID Number:</label>
             <div className="control">
                 <input type="text"
                        className="input"
-                       name="host_id"
+                       name="hostID"
                     //onChange={handleChange}
-                       defaultValue={props.props.host_id}
+                       defaultValue={props.props.hostID}
                 />
             </div>
             <br></br>
