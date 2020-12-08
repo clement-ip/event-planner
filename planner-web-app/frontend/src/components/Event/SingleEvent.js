@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext } from "react";
+import React, {useEffect, useState, useContext, useRef} from "react";
 import "./Event.css"
 import CommentBox from "../comments-system/client/src/components/Box"
 import { AuthContext } from '../../Context/AuthContext';
@@ -15,6 +15,8 @@ function SingleEvent(props){
 
     const {user} = useContext(AuthContext);
     const url = window.location.href;
+    const attendBtnRef = useRef(null);
+    const editBtnRef = useRef(null);
     const [data, setData] = useState({
         // dataBaseEvents: [],
         //dataBaseEventsFormatted:[],
@@ -34,6 +36,18 @@ function SingleEvent(props){
         end_date_time: '',
         editState: false
     });
+
+    useEffect(()=> {
+        console.log('UseEffect', user.userID)
+        console.log('UseEffect', data.host_id)
+        if(data.host_id === user.userID) {
+            editBtnRef.current.classList.remove('is-hidden');
+            attendBtnRef.current.classList.add('is-hidden');
+        } else {
+            editBtnRef.current.classList.add('is-hidden');
+            attendBtnRef.current.classList.remove('is-hidden');
+        }
+    }, [data.host_id])
 
 
     useEffect(()=> {
@@ -113,16 +127,6 @@ function SingleEvent(props){
             tags: data.tags,
             start_date_time: data.start_date_time,
             end_date_time: data.end_date_time,
-        })
-    }
-
-    const joinConferenceHandler = () => {
-        const data = { exit_url : url, user : "user", eventID : props.match.params.id };
-        console.log("printing in here: ", data);
-        EyesonServices.join(data).then(res => {
-            const gui_link = res.links.gui;
-            console.log(gui_link);
-            window.location.replace(gui_link);
         })
     }
 
@@ -234,7 +238,7 @@ function SingleEvent(props){
                                     </div>     
                                 </div>
                                 <div className="tile is-parent">
-                                    <SessionBox data={data} eventID={props.match.params.id} exit_url={url} user={user.name}/>
+                                    <SessionBox data={data} eventID={props.match.params.id} exit_url={url} user={{ id : user.userID, name: user.name}}/>
                                 </div>
                             </div>
                             <div className="tile is-parent">
@@ -244,37 +248,32 @@ function SingleEvent(props){
                             </div>
                             <div className="tile is-parent">
                                 <article className="tile box is-child">
-                                    Comments
+                                    <p className="title is-4">Discussion</p>
+                                    <div className="columns">
+                                        <CommentBox eventID={props.match.params.id} user={user}/>
+                                    </div>
                                 </article>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <h1 className="title is-1">Single Event Comp for: {data.name}</h1>
-            <button onClick={toggleEditOn}>EDIT</button>
-            <h2>Host Info</h2>
-            <p>
-                <strong>Name</strong>: {data.host_name} <br/>
-                <strong>id</strong>: {data.host_id} <br/>
-                <strong>Email</strong>: {data.host_email}<br/>
-                <strong>Phone Number</strong>: {data.host_phone_number}<br/>
-                <strong>Organization</strong>: {data.host_organization}
-            </p>
-            <br/><h2>Event Info</h2>
-            <p>
-                <strong>Event Description</strong>: {data.description} <br/>
-                <strong>Start Time</strong>: {convertTime(data.start_date_time)} <br/>
-                <strong>End Time</strong>: {convertTime(data.end_date_time)}<br/>
-                <strong>Address</strong>: {data.location_address} {data.location_city} {data.location_country}<br/>
-                <strong>Tags</strong>: {data.tags}<br/>
-                <strong>Requirements</strong>: {data.requirements}
-            </p>
-            <button onClick={joinConferenceHandler} className="button is-primary">Join Conference</button>
-            <button onClick={joinEvent} className="button is-primary">Join Event</button>
-            <button onClick={()=> console.log(user)} className="button is-primary">Test</button>
-            <CommentBox eventID={props.match.params.id} user={user}/>
+            <div className="navbar is-fixed-bottom has-shadow">
+                <div className="navbar-menu is-active">
+                    <div className="navbar-end">
+                        <div className="navbar-item">
+                            <a onClick={joinEvent} className="button is-primary" ref={attendBtnRef}>
+                                Attend
+                            </a>
+                        </div>
+                        <div className="navbar-item">
+                            <a onClick={toggleEditOn} className="button is-primary" ref={editBtnRef}>
+                                Edit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
