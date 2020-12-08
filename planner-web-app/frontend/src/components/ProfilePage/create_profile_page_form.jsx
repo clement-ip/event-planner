@@ -16,7 +16,8 @@ const CreateProfileForm = (props) => {
         email:'',
         name: '',
         about: '',
-        location: {country:'', city:'', lat:0, lon:0},
+        city: '',
+        country:'',
         interests: '',
         occupation: '',
         skills: '',
@@ -33,7 +34,8 @@ const CreateProfileForm = (props) => {
             email: user.email,
             name: user.name,
             about: '',
-            location: {country : '', city:'', lat:0, lon:0},
+            country:'',
+            city:'',
             interests: '',
             occupation: '',
             skills: '',
@@ -52,20 +54,19 @@ const CreateProfileForm = (props) => {
                 else {
                     console.log("Successfully Created Profile :", res.data)
                     // window.location.replace('/profile')
-                    props.history.push('/profile');
+                    props.history.push('/editProfile');
                 }
         })
     },[user]);
 
     return (
         <div>
-            {}
+            {/* <profile_page_form/> */}
             {/* <Redirect to='/profile' /> */}
         </div>
     );
 //     return(
 //         <div>
-//             <profile_page_form/>
 //         </div>
 //    )
 }
