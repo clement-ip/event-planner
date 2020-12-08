@@ -126,8 +126,21 @@ function SingleEvent(props){
                 else {
                     console.log("Successfully added event to profile :", res.data)
                     // window.location.replace('/profile')
+                    EventServices.addAttendeeToEvent(body)
+                    .then(res => {
+                        console.log('RES in Attendee addition to Event',res)
+                        if (res.status === "Error") {
+                            console.log("User & event cannot be added")
+                        }
+                        else {
+                            console.log("Successfully added attendee to event :", res.data)
+                            // window.location.replace('/profile')
+                            window.alert("You have Succesfully joined the event!")
+                        }
+                    })
                 }
             })
+<<<<<<< HEAD
         EventServices.addAttendeeToEvent(body)
             .then(res => {
                 console.log('RES in Attendee addition to Event',res)
@@ -140,6 +153,10 @@ function SingleEvent(props){
                     window.alert("You have Successfully joined the event!")
                 }
             })
+=======
+
+        
+>>>>>>> f74f6f3... add alert window for joining an event
     }
 
 
