@@ -216,7 +216,6 @@ function SingleEvent(props){
             )
     }
 
-
     if(data.editState === true){
         return(
             <div>
@@ -300,11 +299,6 @@ function SingleEvent(props){
                             </div>
                             <div className="tile is-parent">
                                 <article className="tile box is-child">
-                                    Attendees
-                                </article>
-                            </div>
-                            <div className="tile is-parent">
-                                <article className="tile box is-child">
                                     <p className="title is-4">Discussion</p>
                                     <div className="columns">
                                         <CommentBox eventID={props.match.params.id} user={user}/>
@@ -327,6 +321,9 @@ function SingleEvent(props){
                             <a onClick={toggleEditOn} className="button is-primary" ref={editBtnRef}>
                                 Edit
                             </a>
+                        </div>
+                        <div className="navbar-item">
+                            {deleteButton()}
                         </div>
                     </div>
                 </div>
