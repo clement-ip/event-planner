@@ -142,7 +142,7 @@ module.exports.deleteEventFromAttendeesHost = (req,res) =>{
                 msg:"Bad Request: Invalid Access.",
             });
         }
-        console.log('User successfully deleted event from list')
+        console.log('Event successfully deleted event from list')
         return res.status(200).send({
                 status:'Succeeded',
                 msg: "Successful",
