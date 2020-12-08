@@ -10,8 +10,6 @@ function goToEvent(){
     console.log('okay');
 }
 
-
-
 function convertTime(date){
     var time = new Date(date);
     console.log(time.toString())

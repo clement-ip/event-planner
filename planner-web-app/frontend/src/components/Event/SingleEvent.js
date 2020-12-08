@@ -52,12 +52,18 @@ function SingleEvent(props){
                 if(message.msgError)
                     console.log(message.msgBody);
                 else {
+                    console.log(eventData);
                     setData({
                         eventID: eventID,
                         name: eventData.name,
                         description: eventData.description,
                         host_email: eventData.host_email,
+<<<<<<< HEAD
                         host_id: eventData.host_id,
+=======
+                        host_phone_number: eventData.host_phone_number,
+                        host_id: eventData.hostID,
+>>>>>>> 3bc5691... add created events into hosts hosting events array, fix delete event, only hosts can edit their event.
                         host_name: eventData.host_name,
                         start_date_time: eventData.start_date_time,
                         end_date_time: eventData.end_date_time,
@@ -65,7 +71,7 @@ function SingleEvent(props){
                     });
                     console.log("eventdata", eventData);
                 }
-                // console.log("data has been fetched");
+                console.log("data has been fetched", data);
             })
     }, [props.match.params.id]);
 
@@ -207,6 +213,7 @@ function SingleEvent(props){
         }
     }
 
+<<<<<<< HEAD
     function deleteButton(){
         if(user.userID === data.host_id)
             return(
@@ -215,6 +222,9 @@ function SingleEvent(props){
                 </button>
             )
     }
+=======
+
+>>>>>>> 3bc5691... add created events into hosts hosting events array, fix delete event, only hosts can edit their event.
 
     if(data.editState === true){
         return(
@@ -230,6 +240,7 @@ function SingleEvent(props){
 
     return(
         <div>
+<<<<<<< HEAD
             <div className="columns mt-6">
                 <div className="column is-6 is-offset-3">
                     {/* Header tiles */}
@@ -328,6 +339,30 @@ function SingleEvent(props){
                     </div>
                 </div>
             </div>
+=======
+            <h1 className="title is-1">Single Event Comp for: {data.name}</h1>
+            {editButton()}
+            <h2>Host Info</h2>
+            <p>
+                <strong>Name</strong>: {data.host_name} <br/>
+                <strong>Email</strong>: {data.host_email}<br/>
+                <strong>Organization</strong>: {data.host_organization}
+            </p>
+            <br/><h2>Event Info</h2>
+            <p>
+                <strong>Event Description</strong>: {data.description} <br/>
+                <strong>Start Time</strong>: {convertTime(data.start_date_time)} <br/>
+                <strong>End Time</strong>: {convertTime(data.end_date_time)}<br/>
+                <strong>Address</strong>: {data.location_address} {data.location_city} {data.location_country}<br/>
+                <strong>Tags</strong>: {data.tags}<br/>
+            </p>
+            <button onClick={joinConferenceHandler} className="button is-primary">Join Conference</button>
+            {joinButton()}
+            <button onClick={()=> console.log(data)} className="button is-primary">Test</button>
+            <SingleEventAttendees profileData/>
+            <CommentBox eventID={props.match.params.id} user={user}/>
+
+>>>>>>> 3bc5691... add created events into hosts hosting events array, fix delete event, only hosts can edit their event.
             <Footer/>
         </div>
     )
