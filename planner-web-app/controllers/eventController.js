@@ -97,15 +97,8 @@ module.exports.editEvent = (req, res) => {
                 host_name: req.body.host_name,
                 description: req.body.description,
                 host_email: req.body.host_email,
-<<<<<<< HEAD
                 host_id: req.body.host_id,
                 name: req.body.name,
-=======
-                host_phone_number: req.body.host_phone_number,
-                host_id: req.body.host_id,
-                host_organization: req.body.host_organization,
-                tags: req.body.tags,
->>>>>>> 5e5ec49... add display event host and attendees in events page
                 start_date_time: req.body.start_date_time,
                 end_date_time: req.body.end_date_time,
                 sessionAccessKey: req.body.sessionAccessKey
@@ -123,21 +116,12 @@ module.exports.editEvent = (req, res) => {
                         msgBody: "Event successfully updated", msgError: false
                     }
                 });
-<<<<<<< HEAD
         });
 }
 
 module.exports.addAttendeeToEventList = (req, res) =>{
     console.log(req.body);
     Event.findOneAndUpdate({_id: req.body.event_id}, {$addToSet: {attendee_id : req.body.user_id} }, (err,result)=>{
-=======
-        })
-}
-
-module.exports.addAttendeeToEvent = (req, res) =>{
-    console.log(req.body);
-    Event.findOneAndUpdate({_id: req.body.eventID}, {$addToSet: {attendee_id : req.body.user_id} }, (err,result)=>{
->>>>>>> faa52c0... add ability to add user to events schema
         if (err) {
             return res.status(500).json({ status:'Error',
                 msg:"Unable to add attendee to event.",
