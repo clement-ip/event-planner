@@ -97,8 +97,15 @@ module.exports.editEvent = (req, res) => {
                 host_name: req.body.host_name,
                 description: req.body.description,
                 host_email: req.body.host_email,
+<<<<<<< HEAD
                 host_id: req.body.host_id,
                 name: req.body.name,
+=======
+                host_phone_number: req.body.host_phone_number,
+                hostID: req.body.hostID,
+                host_organization: req.body.host_organization,
+                tags: req.body.tags,
+>>>>>>> 5e5ec49... add display event host and attendees in events page
                 start_date_time: req.body.start_date_time,
                 end_date_time: req.body.end_date_time,
                 sessionAccessKey: req.body.sessionAccessKey

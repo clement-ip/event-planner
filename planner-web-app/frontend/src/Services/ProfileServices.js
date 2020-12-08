@@ -197,12 +197,8 @@ export default {
     },
 
     deleteEventFromAttendeesHost : body =>{
-<<<<<<< HEAD
         // return fetch('http://35.247.19.51/deleteEventFromAttendees', {
         return fetch(`${API_ADDR}/deleteEventFromAttendees`, {
-=======
-        return fetch('http://localhost:5000/deleteEventFromAttendees', {
->>>>>>> 3bc5691... add created events into hosts hosting events array, fix delete event, only hosts can edit their event.
             credentials : 'include',
             method : "put",
             body : JSON.stringify(body),

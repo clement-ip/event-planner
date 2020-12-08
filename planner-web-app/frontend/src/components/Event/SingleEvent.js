@@ -180,46 +180,6 @@ function SingleEvent(props){
     }
 
 
-<<<<<<< HEAD
-=======
-
-    //var toDelete;
-    const logDelete = e =>{
-        console.log(e)//
-        //GO DELETE e WHICH IS THE ID TO DELETE;
-        //AXIOS
-        var eventID = {
-            id: e
-        }
-        console.log(eventID.id);
-
-        EventServices.deleteEvent(eventID)
-            .then(({ message }) => {
-                if(message.msgError)
-                    console.log(message.msgBody);
-                else {
-                    console.log(message.msgBody);
-                    //window.location.reload(true);
-                }
-            });
-        //delete from each profile that has this event in attending event.
-        ProfileServices.deleteEventFromAttendeesHost(eventID)
-            .then(res => {
-                console.log('RES in event delete from both hosting / attending',res)
-                if (res.status === "Error") {
-                    console.log("event cannot be deleted")
-                }
-                else {
-                    console.log("Successfully deleted event to :", res.data)
-                    // window.location.replace('/profile')
-                }
-                window.location.replace('/ListAllEvents')
-            });
-
-    }
-
-
->>>>>>> eee8de6... Move delete button to individual event pages, events can only be deleted by host
     if(user.email !== ""){
         console.log(user)
     }
@@ -248,10 +208,6 @@ function SingleEvent(props){
         }
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> eee8de6... Move delete button to individual event pages, events can only be deleted by host
     function deleteButton(){
         if(user.userID === data.host_id)
             return(
@@ -260,12 +216,6 @@ function SingleEvent(props){
                 </button>
             )
     }
-<<<<<<< HEAD
-=======
-=======
->>>>>>> eee8de6... Move delete button to individual event pages, events can only be deleted by host
-
->>>>>>> 3bc5691... add created events into hosts hosting events array, fix delete event, only hosts can edit their event.
 
     if(data.editState === true){
         return(
@@ -281,7 +231,6 @@ function SingleEvent(props){
 
     return(
         <div>
-<<<<<<< HEAD
             <div className="columns mt-6">
                 <div className="column is-6 is-offset-3">
                     {/* Header tiles */}
@@ -380,32 +329,6 @@ function SingleEvent(props){
                     </div>
                 </div>
             </div>
-=======
-            <h1 className="title is-1">Single Event Comp for: {data.name}</h1>
-            {editButton()}
-            <h2>Host Info</h2>
-            <p>
-                <strong>Name</strong>: {data.host_name} <br/>
-                <strong>Email</strong>: {data.host_email}<br/>
-                <strong>Organization</strong>: {data.host_organization}
-            </p>
-            <br/><h2>Event Info</h2>
-            <p>
-                <strong>Event Description</strong>: {data.description} <br/>
-                <strong>Start Time</strong>: {convertTime(data.start_date_time)} <br/>
-                <strong>End Time</strong>: {convertTime(data.end_date_time)}<br/>
-                <strong>Address</strong>: {data.location_address} {data.location_city} {data.location_country}<br/>
-                <strong>Tags</strong>: {data.tags}<br/>
-            </p>
-            <button onClick={joinConferenceHandler} className="button is-primary">Join Conference</button>
-            {joinButton()}
-            {deleteButton()}
-            <button onClick={()=> console.log(data)} className="button is-primary">Test</button>
-
-            <SingleEventAttendees profileData/>
-            <CommentBox eventID={props.match.params.id} user={user}/>
-
->>>>>>> 3bc5691... add created events into hosts hosting events array, fix delete event, only hosts can edit their event.
             <Footer/>
         </div>
     )
