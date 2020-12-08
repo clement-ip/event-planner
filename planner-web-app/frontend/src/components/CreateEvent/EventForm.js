@@ -8,6 +8,7 @@ import FormError from './FormErrors';
 import AuthServices from '../../Services/AuthServices';
 import { AuthContext } from "../../Context/AuthContext";
 import { useHistory } from "react-router-dom";
+import ProfileServices from "../../Services/ProfileServices";
 
 // function handleSubmit(e){
 //     e.preventDefault();
@@ -85,8 +86,27 @@ const EventForm = ({ formRefs, fullFormRef }) => {
         EventServices.saveEvent(eventData)
         .then(({ message }) => {
             console.log(message.msgBody);
+            //add here to push to profile event_hostings
+            var body = {
+                user_id: user.userID,
+                event_id: message.newEvent_ID
+            }
+            ProfileServices.addEventToHostProfile(body)
+                .then(res => {
+                    console.log('RES in event addition to profile',res)
+                    if (res.status === "Error") {
+                        console.log("event cannot be added")
+                    }
+                    else {
+                        console.log("Successfully added event to profile :", res.data)
+                        // window.location.replace('/profile')
+                    }
+                });
             history.push('/SingleEvent/'+message.newEvent_ID);
         });
+
+
+
     }
 
     return (

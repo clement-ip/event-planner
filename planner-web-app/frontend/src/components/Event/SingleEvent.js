@@ -43,6 +43,7 @@ function SingleEvent(props){
                 if(message.msgError)
                     console.log(message.msgBody);
                 else {
+                    console.log(eventData);
                     setData({
                         eventID: eventID,
                         name: eventData.name,
@@ -53,7 +54,7 @@ function SingleEvent(props){
                         requirements: eventData.requirements,
                         host_email: eventData.host_email,
                         host_phone_number: eventData.host_phone_number,
-                        host_id: eventData.host_id,
+                        host_id: eventData.hostID,
                         host_name: eventData.host_name,
                         host_organization: eventData.host_organization,
                         tags: eventData.tags,  //change to [String] and maybe implement react-tag-input
@@ -61,7 +62,7 @@ function SingleEvent(props){
                         end_date_time: eventData.end_date_time
                     });
                 }
-                // console.log("data has been fetched");
+                console.log("data has been fetched", data);
             })
     }, [props.match.params.id]);
 
@@ -153,6 +154,28 @@ function SingleEvent(props){
         console.log("not logged in")
     }
 
+    function joinButton(){
+        console.log("does id exist",data);
+        console.log(user.userID);
+        console.log(data.host_id);
+        if(user.userID !== data.host_id){
+            return(
+                <button onClick={joinEvent} className="button is-primary">Join Event</button>
+            )
+        }
+    }
+
+    function editButton(){
+        console.log(user.userID);
+        console.log(data.host_id);
+        if(user.userID === data.host_id){
+            return(
+                <button onClick={toggleEditOn} className="button is-primary">EDIT</button>
+            )
+        }
+    }
+
+
 
     if(data.editState === true){
         return(
@@ -169,7 +192,7 @@ function SingleEvent(props){
     return(
         <div>
             <h1 className="title is-1">Single Event Comp for: {data.name}</h1>
-            <button onClick={toggleEditOn}>EDIT</button>
+            {editButton()}
             <h2>Host Info</h2>
             <p>
                 <strong>Name</strong>: {data.host_name} <br/>
@@ -185,7 +208,7 @@ function SingleEvent(props){
                 <strong>Tags</strong>: {data.tags}<br/>
             </p>
             <button onClick={joinConferenceHandler} className="button is-primary">Join Conference</button>
-            <button onClick={joinEvent} className="button is-primary">Join Event</button>
+            {joinButton()}
             <button onClick={()=> console.log(data)} className="button is-primary">Test</button>
             <SingleEventAttendees profileData/>
             <CommentBox eventID={props.match.params.id} user={user}/>

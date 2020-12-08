@@ -101,10 +101,35 @@ module.exports.addEventToUserProfile = (req,res) =>{
         );
     });
 }
-
-module.exports.deleteEventFromAttendees = (req,res) =>{
+module.exports.addEventToHostProfile = (req, res) =>{
     console.log(req.body);
-    Profile.updateMany({},{$pull: {attendingEvents : req.body.id}}, (err,result)=>{
+    Profile.findOneAndUpdate({userID: req.body.user_id}, {$addToSet: {hostingEvents : req.body.event_id} }, (err,result)=>{
+        if (err) {
+            return res.status(500).json({ status:'Error',
+                msg:"Unable to add host event info.",
+                error:err.message
+            });
+        }
+        else if (!result) {
+            console.log('Bad Request: Invalid Access.')
+            return res.status(401).json({ status:'Error',
+                msg:"Bad Request: Invalid Access.",
+            });
+        }
+        console.log('User successfully Added an Event to host page!')
+        return res.status(200).send({
+                status:'Succeeded',
+                msg: "Successfully added host event data",
+                data: result
+            }
+        );
+    });
+}
+
+
+module.exports.deleteEventFromAttendeesHost = (req,res) =>{
+    console.log(req.body);
+    Profile.updateMany({},{$pull: {attendingEvents : req.body.id, hostingEvents: req.body.id}}, (err,result)=>{
         if (err) {
             return res.status(500).json({ status:'Error',
                 msg:"Unable to delete from attendees list.",
