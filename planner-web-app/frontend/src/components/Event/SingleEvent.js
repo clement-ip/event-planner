@@ -84,18 +84,12 @@ function SingleEvent(props){
             eventID: data.eventID,
             name:data.name,
             description: data.description,
-            location_city: data.location_city,
-            location_country: data.location_country,
-            location_address: data.location_address,
-            requirements: data.requirements,
             host_email: data.host_email,
-            host_phone_number: data.host_phone_number,
             host_id: data.host_id,
             host_name: data.host_name,
-            host_organization: data.host_organization,
-            tags: data.tags,
             start_date_time: data.start_date_time,
             end_date_time: data.end_date_time,
+            attendee_id: data.attendee_id
         })
     }
 
@@ -105,18 +99,12 @@ function SingleEvent(props){
             eventID: data.eventID,
             name:data.name,
             description: data.description,
-            location_city: data.location_city,
-            location_country: data.location_country,
-            location_address: data.location_address,
-            requirements: data.requirements,
             host_email: data.host_email,
-            host_phone_number: data.host_phone_number,
             host_id: data.host_id,
             host_name: data.host_name,
-            host_organization: data.host_organization,
-            tags: data.tags,
             start_date_time: data.start_date_time,
             end_date_time: data.end_date_time,
+            attendee_id: data.attendee_id
         })
     }
 
