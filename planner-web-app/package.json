@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "concurrently \"REACT_APP_NODE_ENV=\"development\" nodemon -r dotenv/config server.js\" \"cd frontend && npm start\"",
+    "win_dev": "concurrently \"$REACT_APP_NODE_ENV=\"development\" nodemon -r dotenv/config server.js\" \"cd frontend && npm start\"",
     "start": "REACT_APP_NODE_ENV=\"production\" node -r dotenv/config server.js",
     "build": "cd frontend && react-scripts build",
     "test": "cd frontend && react-scripts test",
