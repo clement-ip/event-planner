@@ -16,23 +16,15 @@ function ImageUpload(){
       console.log(r);
     });
 
-    document
-      .getElementById("img")
-      .setAttribute("src", `http://localhost:3000/${file[0].name}`);
-    console.log(file[0]);
+    // document
+    //   .getElementById("img")
+    //   .setAttribute("src", `http://localhost:5000/${file[0].name}`);
+    // console.log(file[0]);
   };
 
 
     return (
       <div className="container">
-        {/* <div className="jumbotron">
-          <h1 className="display-4">Image Uplaoder</h1>
-          <p className="lead">
-            This is a simple application to upload and retrieve images from a
-            database
-          </p>
-          <hr className="my-4" />
-        </div> */}
         <div className="input-group mb-3">
           <div className="custom-file">
             <input
@@ -47,7 +39,7 @@ function ImageUpload(){
           Upload
         </button>
         <img
-          id="img" alt=""
+          id="img" src={window.location.pathname} alt=""
           style={{
             display: "block"
           }}

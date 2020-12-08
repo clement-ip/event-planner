@@ -10,7 +10,7 @@ const Landing = () => {
     <div>
       <h1 className = "title">Landing</h1>
       <Carousel/>
-      {/* <ImageUpload/> */}
+      <ImageUpload/>
       <Footer />
     </div>
   );
