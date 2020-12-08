@@ -24,6 +24,8 @@ function SingleEvent(props){
         name: '',
         description: '',
         host_email: '',
+        attendee_id: [],
+        host_id: '',
         start_date_time: '',
         end_date_time: '',
         editState: false
@@ -88,7 +90,7 @@ function SingleEvent(props){
             requirements: data.requirements,
             host_email: data.host_email,
             host_phone_number: data.host_phone_number,
-            hostID: data.hostID,
+            host_id: data.host_id,
             host_name: data.host_name,
             host_organization: data.host_organization,
             tags: data.tags,
@@ -109,7 +111,7 @@ function SingleEvent(props){
             requirements: data.requirements,
             host_email: data.host_email,
             host_phone_number: data.host_phone_number,
-            hostID: data.hostID,
+            host_id: data.host_id,
             host_name: data.host_name,
             host_organization: data.host_organization,
             tags: data.tags,
@@ -134,6 +136,17 @@ function SingleEvent(props){
                 }
                 else {
                     console.log("Successfully added event to profile :", res.data)
+                    // window.location.replace('/profile')
+                }
+            })
+        EventServices.addAttendeeToEvent(body)
+            .then(res => {
+                console.log('RES in Attendee addition to Event',res)
+                if (res.status === "Error") {
+                    console.log("User & event cannot be added")
+                }
+                else {
+                    console.log("Successfully added attendee to event :", res.data)
                     // window.location.replace('/profile')
                 }
             })
@@ -351,7 +364,7 @@ function SingleEvent(props){
             {joinButton()}
             {deleteButton()}
             <button onClick={()=> console.log(data)} className="button is-primary">Test</button>
-            <SingleEventAttendees hostID={data.hostID} attendee_id={data.attendee_id}/>
+            <SingleEventAttendees host_id={data.host_id} attendee_id={data.attendee_id}/>
             <CommentBox eventID={props.match.params.id} user={user}/>
 
 >>>>>>> 5e5ec49... add display event host and attendees in events page

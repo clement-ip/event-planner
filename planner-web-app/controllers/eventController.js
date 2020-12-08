@@ -102,7 +102,7 @@ module.exports.editEvent = (req, res) => {
                 requirements: req.body.requirements,
                 host_email: req.body.host_email,
                 host_phone_number: req.body.host_phone_number,
-                hostID: req.body.hostID,
+                host_id: req.body.host_id,
                 host_organization: req.body.host_organization,
                 tags: req.body.tags,
                 start_date_time: req.body.start_date_time,
@@ -123,4 +123,29 @@ module.exports.editEvent = (req, res) => {
                     }
                 });
         })
+}
+
+module.exports.addAttendeeToEvent = (req, res) =>{
+    console.log(req.body);
+    Event.findOneAndUpdate({_id: req.body.eventID}, {$addToSet: {attendee_id : req.body.user_id} }, (err,result)=>{
+        if (err) {
+            return res.status(500).json({ status:'Error',
+                msg:"Unable to add attendee to event.",
+                error:err.message
+            });
+        }
+        else if (!result) {
+            console.log('Bad Request: Invalid Access.')
+            return res.status(401).json({ status:'Error',
+                msg:"Bad Request: Invalid Access.",
+            });
+        }
+        console.log('Attendee successfully Added to an Event!')
+        return res.status(200).send({
+                status:'Succeeded',
+                msg: "Successfully added Attendee to event data",
+                data: result
+            }
+        );
+    });
 }
