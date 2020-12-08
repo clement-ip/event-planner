@@ -49,16 +49,9 @@ function SingleEvent(props){
                         eventID: eventID,
                         name: eventData.name,
                         description: eventData.description,
-                        location_city: eventData.location_city,
-                        location_country: eventData.location_country,
-                        location_address: eventData.location_address,
-                        requirements: eventData.requirements,
                         host_email: eventData.host_email,
-                        host_phone_number: eventData.host_phone_number,
                         host_id: eventData.host_id,
                         host_name: eventData.host_name,
-                        host_organization: eventData.host_organization,
-                        tags: eventData.tags,  //change to [String] and maybe implement react-tag-input
                         start_date_time: eventData.start_date_time,
                         end_date_time: eventData.end_date_time,
                         attendee_id: eventData.attendee_id
@@ -82,18 +75,12 @@ function SingleEvent(props){
             eventID: data.eventID,
             name:data.name,
             description: data.description,
-            location_city: data.location_city,
-            location_country: data.location_country,
-            location_address: data.location_address,
-            requirements: data.requirements,
             host_email: data.host_email,
-            host_phone_number: data.host_phone_number,
             host_id: data.host_id,
             host_name: data.host_name,
-            host_organization: data.host_organization,
-            tags: data.tags,
             start_date_time: data.start_date_time,
             end_date_time: data.end_date_time,
+            attendee_id: data.attendee_id
         })
     }
 
@@ -103,18 +90,12 @@ function SingleEvent(props){
             eventID: data.eventID,
             name:data.name,
             description: data.description,
-            location_city: data.location_city,
-            location_country: data.location_country,
-            location_address: data.location_address,
-            requirements: data.requirements,
             host_email: data.host_email,
-            host_phone_number: data.host_phone_number,
             host_id: data.host_id,
             host_name: data.host_name,
-            host_organization: data.host_organization,
-            tags: data.tags,
             start_date_time: data.start_date_time,
             end_date_time: data.end_date_time,
+            attendee_id: data.attendee_id
         })
     }
 
@@ -259,15 +240,12 @@ function SingleEvent(props){
             <p>
                 <strong>Name</strong>: {data.host_name} <br/>
                 <strong>Email</strong>: {data.host_email}<br/>
-                <strong>Organization</strong>: {data.host_organization}
             </p>
             <br/><h2>Event Info</h2>
             <p>
                 <strong>Event Description</strong>: {data.description} <br/>
                 <strong>Start Time</strong>: {convertTime(data.start_date_time)} <br/>
                 <strong>End Time</strong>: {convertTime(data.end_date_time)}<br/>
-                <strong>Address</strong>: {data.location_address} {data.location_city} {data.location_country}<br/>
-                <strong>Tags</strong>: {data.tags}<br/>
             </p>
             <button onClick={joinConferenceHandler} className="button is-primary">Join Conference</button>
             {joinButton()}
