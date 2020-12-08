@@ -245,7 +245,6 @@ function SingleEvent(props){
 
     return(
         <div>
-<<<<<<< HEAD
             <div className="columns mt-6">
                 <div className="column is-6 is-offset-3">
                     {/* Header tiles */}
@@ -346,33 +345,6 @@ function SingleEvent(props){
                     </div>
                 </div>
             </div>
-=======
-            <h1 className="title is-1">Single Event Comp for: {data.name}</h1>
-            {editButton()}
-            <h2>Host Info</h2>
-            <p>
-                <strong>Name</strong>: {data.host_name} <br/>
-                <strong>Email</strong>: {data.host_email}<br/>
-                <strong>Organization</strong>: {data.host_organization}
-            </p>
-            <br/><h2>Event Info</h2>
-            <p>
-                <strong>Event Description</strong>: {data.description} <br/>
-                <strong>Start Time</strong>: {convertTime(data.start_date_time)} <br/>
-                <strong>End Time</strong>: {convertTime(data.end_date_time)}<br/>
-                <strong>Address</strong>: {data.location_address} {data.location_city} {data.location_country}<br/>
-                <strong>Tags</strong>: {data.tags}<br/>
-            </p>
-            <button onClick={joinConferenceHandler} className="button is-primary">Join Conference</button>
-            {joinButton()}
-            {deleteButton()}
-            <button onClick={()=> console.log(data)} className="button is-primary">Test</button>
-
-            <SingleEventAttendees host_id={data.host_id} attendee_id={data.attendee_id}/>
-
-            <CommentBox eventID={props.match.params.id} user={user}/>
-
->>>>>>> 5e5ec49... add display event host and attendees in events page
             <Footer/>
         </div>
     )
