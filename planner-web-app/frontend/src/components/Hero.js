@@ -12,10 +12,10 @@ const Hero = (props) => {
 
     return (
     <div>
-        <section class="hero is-primary">
-        <div class="hero-body">
-            <div class="container">
-            <h1 class="title">
+        <section className="hero is-primary">
+        <div className="hero-body">
+            <div className="container">
+            <h1 className="title">
                 Timinar <br></br>
             </h1>
             </div>
