@@ -107,13 +107,16 @@ const upload = multer({ storage });
 // @route POST /upload
 // @desc  Uploads file to DB
 app.post("/upload", upload.single("img"), (req, res, err) => {
+  // if (err) throw err
+  // res.status(201).send()
   res.send(req.files);
   res.redirect("/");
+  console.log("success!");
 });
 
-// @route GET /files/:filename
+// @route GET /image/:filename
 // @desc  Display Image
-app.get("/image/:filename", (req, res) => {
+app.get("image/:filename", (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
     if (!file || file.length === 0) {
@@ -137,7 +140,7 @@ app.get("/image/:filename", (req, res) => {
 
 // @route DELETE /files/:id
 // @desc  Delete file
-app.delete('/files/:id', (req, res) => {
+app.delete('/image/:id', (req, res) => {
   gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
     if (err) {
       return res.status(404).json({ err: err });
