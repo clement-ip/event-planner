@@ -15,7 +15,7 @@ const session = require('express-session')
 const authRoutes = require('./routes/authRoutes');
 const commentRoutes = require('./routes/commentRoutes');
 const eventRoutes = require('./routes/eventRoutes');
-
+require('dotenv')
 
 // App
 const app = express();

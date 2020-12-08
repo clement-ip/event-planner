@@ -12,8 +12,16 @@ const Hero = (props) => {
 
     return (
     <div>
-        <h1 className="title">Welcome to Hero page</h1>
+        <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+            <h1 class="title">
+                Timinar <br></br>
+            </h1>
+            </div>
+        </div>
         <Carousel/>
+        </section>
         {/* <ImageUpload/> */}
         <Footer />
     </div>
