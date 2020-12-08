@@ -17,11 +17,18 @@ const LoggedOutDropdown = () => {
     const createEventHandler = () => {
         history.push(`/createEvent`);
     }
+    
+    const listAllEventsHandler = () => {
+        history.push('/listAllEvents');
+    }
 
     return (
         <div className="navbar-end">
             <a onClick={createEventHandler} className="navbar-item">
                 Create an Event
+            </a>
+            <a onClick={listAllEventsHandler} className="navbar-item">
+                Events
             </a>
 
             {/* Signup/Login Dropdown */}
