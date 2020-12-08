@@ -1,5 +1,10 @@
 import React from "react";
 
+const API_ADDR = process.env.NODE_ENV === 'production' ?
+                    process.env.REACT_APP_IMG_API_ADDR_PRODUCTION :
+                    process.env.REACT_APP_IMG_API_ADDR_DEV;
+
+
 function ImageUpload(){
 
   function Post(e){
@@ -18,7 +23,7 @@ function ImageUpload(){
 
     document
       .getElementById("img")
-      .setAttribute("src", `http://localhost:5000/image/${file[0].name}`);
+      .setAttribute("src", `${API_ADDR}/${file[0].name}`);
     console.log(file[0]);
   };
 
