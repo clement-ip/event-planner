@@ -1,4 +1,4 @@
-# CMPT 470: Event Planner Web Application
+# Event Planner Web Application
 
 Created by: Clement Ip, Corey See, Edison Suen, Eric Lam, Hassan Ali
 
