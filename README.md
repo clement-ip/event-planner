@@ -1,25 +1,25 @@
-# <center>Timinar - The Event Web Application</center>
+# Timinar - The Event Web Application
 --- 
-<center> Created by: Clement Ip, Corey See, Edison Suen, Eric Lam, Hassan Ali </center>
----
-<br/><br/>
-
-## Description:
----
-Timinar is an events organization website application project. Users could host events and other users could join those events.
+Created by: Clement Ip, Corey See, Edison Suen, Eric Lam, Hassan Ali
 
 ---
-<br/><br/>
 
-## Important Notes:
+
+### Description:
+---
+Timinar is an events organization website application project. Users can host events and other users can join those events.
+
+---
+
+
+### Important Notes:
 ---
 - node_modules folder for the NPM packages is ignored in the .git_ignore
 - Refer to [package.json](planner-web-app\package.json) for NPM dependencies
 - You need to have [Elastic Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started-install.html) installed. [ [Link](https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started-install.html) ]
 ---
-<br/><br/>
 
-## NPM Install Commands:
+### NPM Install Commands:
 ---
 ```
 npm install --save -g
