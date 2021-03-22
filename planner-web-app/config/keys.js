@@ -1,4 +1,4 @@
 module.exports = {
-    atlasURI: "***REMOVED***",
+    atlasURI: "",
     secretOrKey: "secret"
 }

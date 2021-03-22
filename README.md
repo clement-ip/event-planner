@@ -6,7 +6,7 @@
 
 ## Description:
 ---
-Timinar is a events organization website application project. 
+Timinar is an events organization website application project. Users could host events and other users could join those events.
 
 ---
 <br/><br/>
